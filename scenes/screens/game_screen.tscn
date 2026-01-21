@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8ttfvppl820"]
+
+[ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="1_dtf0s"]
+[ext_resource type="Script" uid="uid://bp37um3fnl8ph" path="res://src/singleplayer/screens/game_screen.gd" id="1_v3r1a"]
+[ext_resource type="Texture2D" uid="uid://c1o868kqsyc28" path="res://assets/textures/logo512.png" id="2_beu7v"]
+
+[node name="GameScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_dtf0s")
+script = ExtResource("1_v3r1a")
+
+[node name="GameScreen__Content" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="_PanelContainer" type="PanelContainer" parent="GameScreen__Content"]
+layout_mode = 2
+
+[node name="_MarginContainer" type="MarginContainer" parent="GameScreen__Content/_PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="Topbar" type="HBoxContainer" parent="GameScreen__Content/_PanelContainer/_MarginContainer"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="GameLogo" type="TextureRect" parent="GameScreen__Content/_PanelContainer/_MarginContainer/Topbar"]
+layout_mode = 2
+texture = ExtResource("2_beu7v")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="PanelLabel" type="Label" parent="GameScreen__Content/_PanelContainer/_MarginContainer/Topbar"]
+layout_mode = 2
+theme_type_variation = &"Label__Header40"
+text = "Дорожная карта"
+
+[node name="RoadmapView" type="SubViewportContainer" parent="GameScreen__Content"]
+layout_mode = 2
+size_flags_vertical = 3

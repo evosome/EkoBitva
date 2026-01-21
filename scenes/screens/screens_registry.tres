@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="EditorRegistrationGroup" load_steps=9 format=3 uid="uid://c56g8j67f2l2q"]
+
+[ext_resource type="Script" uid="uid://bkuka0d5dhqyc" path="res://src/registry/utils/editor_registration_entry.gd" id="1_v3s14"]
+[ext_resource type="PackedScene" uid="uid://cw5wch80c5jxi" path="res://scenes/screens/loading_screen.tscn" id="2_745s4"]
+[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="2_gf0id"]
+[ext_resource type="PackedScene" uid="uid://c8rpkcufeoxri" path="res://scenes/screens/last_save_screen.tscn" id="3_745s4"]
+[ext_resource type="PackedScene" uid="uid://c8ttfvppl820" path="res://scenes/screens/game_screen.tscn" id="4_mem8p"]
+
+[sub_resource type="Resource" id="Resource_v3s14"]
+script = ExtResource("1_v3s14")
+qualified_name = "LoadingScreen"
+instance = ExtResource("2_745s4")
+metadata/_custom_type_script = "uid://bkuka0d5dhqyc"
+
+[sub_resource type="Resource" id="Resource_gf0id"]
+script = ExtResource("1_v3s14")
+qualified_name = "LastSaveScreen"
+instance = ExtResource("3_745s4")
+metadata/_custom_type_script = "uid://bkuka0d5dhqyc"
+
+[sub_resource type="Resource" id="Resource_745s4"]
+script = ExtResource("1_v3s14")
+qualified_name = "GameScreen"
+instance = ExtResource("4_mem8p")
+metadata/_custom_type_script = "uid://bkuka0d5dhqyc"
+
+[resource]
+script = ExtResource("2_gf0id")
+path = "screens"
+registry_entries = Array[ExtResource("1_v3s14")]([SubResource("Resource_v3s14"), SubResource("Resource_gf0id"), SubResource("Resource_745s4")])
+metadata/_custom_type_script = "uid://bl8v6px8fi0q1"
