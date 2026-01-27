@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://c3glnbum080au"]
+[gd_resource type="Theme" format=3 uid="uid://c3glnbum080au"]
 
 [ext_resource type="FontFile" uid="uid://cspmaq1gkpt32" path="res://assets/legal/fonts/CHAOS16.otf" id="1_bjmo7"]
 [ext_resource type="Texture2D" uid="uid://bkdrjv3uv6as" path="res://assets/legal/textures/Basic Pixel Health bar and Scroll bar/All.png" id="2_sin6b"]

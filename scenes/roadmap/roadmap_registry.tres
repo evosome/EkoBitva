@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="EditorRegistrationGroup" format=3 uid="uid://beiuqu57v61q6"]
+
+[ext_resource type="Script" uid="uid://bkuka0d5dhqyc" path="res://src/registry/utils/editor_registration_entry.gd" id="1_hfr18"]
+[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="2_4rvb0"]
+[ext_resource type="PackedScene" uid="uid://cavy8aaomojf3" path="res://scenes/roadmap/level_icon.tscn" id="2_a3j0h"]
+[ext_resource type="PackedScene" uid="uid://caxio728cqjm2" path="res://scenes/roadmap/level_line.tscn" id="3_a3j0h"]
+[ext_resource type="PackedScene" uid="uid://b1gdxtl5rnrc4" path="res://scenes/roadmap/roadmap.tscn" id="4_gel86"]
+
+[sub_resource type="Resource" id="Resource_hfr18"]
+script = ExtResource("1_hfr18")
+qualified_name = "LevelIcon"
+instance = ExtResource("2_a3j0h")
+metadata/_custom_type_script = "uid://bkuka0d5dhqyc"
+
+[sub_resource type="Resource" id="Resource_4rvb0"]
+script = ExtResource("1_hfr18")
+qualified_name = "LevelLine"
+instance = ExtResource("3_a3j0h")
+metadata/_custom_type_script = "uid://bkuka0d5dhqyc"
+
+[sub_resource type="Resource" id="Resource_a3j0h"]
+script = ExtResource("1_hfr18")
+qualified_name = "Roadmap"
+instance = ExtResource("4_gel86")
+metadata/_custom_type_script = "uid://bkuka0d5dhqyc"
+
+[resource]
+script = ExtResource("2_4rvb0")
+path = "scenes.roadmap"
+registry_entries = Array[ExtResource("1_hfr18")]([SubResource("Resource_hfr18"), SubResource("Resource_4rvb0"), SubResource("Resource_a3j0h")])
+metadata/_custom_type_script = "uid://bl8v6px8fi0q1"

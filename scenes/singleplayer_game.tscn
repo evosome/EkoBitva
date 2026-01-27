@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsgw43yxp7afc"]
+[gd_scene format=3 uid="uid://bsgw43yxp7afc"]
 
 [ext_resource type="Script" uid="uid://bsu6t00dyk8e3" path="res://src/registry/utils/editor_registration.gd" id="1_nt5c6"]
 [ext_resource type="Script" uid="uid://brg0ysw2t4omm" path="res://src/singleplayer/singleplayer_game.gd" id="1_yv1gn"]
 [ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="2_q5gnf"]
 [ext_resource type="Resource" uid="uid://c56g8j67f2l2q" path="res://scenes/screens/screens_registry.tres" id="3_vylko"]
 [ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="4_eoif4"]
+[ext_resource type="Resource" uid="uid://beiuqu57v61q6" path="res://scenes/roadmap/roadmap_registry.tres" id="4_yv1gn"]
 [ext_resource type="Texture2D" uid="uid://c1o868kqsyc28" path="res://assets/textures/logo512.png" id="5_yv1gn"]
 [ext_resource type="Texture2D" uid="uid://c35g2olitjdfi" path="res://assets/textures/evosome3d.png" id="6_84rfj"]
 
@@ -17,15 +18,15 @@ gradient = SubResource("Gradient_trlpq")
 fill_from = Vector2(1, 0)
 fill_to = Vector2(1, 1)
 
-[node name="SingleplayerGame" type="Node" node_paths=PackedStringArray("_screen_container")]
+[node name="SingleplayerGame" type="Node" unique_id=1924540075 node_paths=PackedStringArray("_screen_container")]
 script = ExtResource("1_yv1gn")
 _screen_container = NodePath("UI/_Margin/Content/Content__LogoContent/LogoContent__Container/LogoContent__ScreenContainer")
 
-[node name="EditorRegistration" type="Node" parent="."]
+[node name="EditorRegistration" type="Node" parent="." unique_id=505648854]
 script = ExtResource("1_nt5c6")
-_groups = Array[ExtResource("2_q5gnf")]([ExtResource("3_vylko")])
+_groups = Array[ExtResource("2_q5gnf")]([ExtResource("3_vylko"), ExtResource("4_yv1gn")])
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="." unique_id=1073741922]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,7 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_eoif4")
 
-[node name="BackgroundGradient" type="TextureRect" parent="UI"]
+[node name="BackgroundGradient" type="TextureRect" parent="UI" unique_id=155774529]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,7 +45,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_ulskj")
 stretch_mode = 6
 
-[node name="_Margin" type="MarginContainer" parent="UI"]
+[node name="_Margin" type="MarginContainer" parent="UI" unique_id=412968019]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,19 +57,19 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 4
 
-[node name="Content" type="VBoxContainer" parent="UI/_Margin"]
+[node name="Content" type="VBoxContainer" parent="UI/_Margin" unique_id=1731458969]
 layout_mode = 2
 
-[node name="Content__LogoContent" type="CenterContainer" parent="UI/_Margin/Content"]
+[node name="Content__LogoContent" type="CenterContainer" parent="UI/_Margin/Content" unique_id=879081595]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LogoContent__Container" type="VBoxContainer" parent="UI/_Margin/Content/Content__LogoContent"]
+[node name="LogoContent__Container" type="VBoxContainer" parent="UI/_Margin/Content/Content__LogoContent" unique_id=868941971]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="LogoContent__LogoTexture" type="TextureRect" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container"]
+[node name="LogoContent__LogoTexture" type="TextureRect" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container" unique_id=1114096811]
 custom_minimum_size = Vector2(0, 256)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -77,18 +78,18 @@ texture = ExtResource("5_yv1gn")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="LogoContent__ScreenContainer" type="VBoxContainer" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container"]
+[node name="LogoContent__ScreenContainer" type="VBoxContainer" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container" unique_id=1424960600]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Content__Footer" type="HBoxContainer" parent="UI/_Margin/Content"]
+[node name="Content__Footer" type="HBoxContainer" parent="UI/_Margin/Content" unique_id=134976276]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 
-[node name="Footer__Authors" type="HBoxContainer" parent="UI/_Margin/Content/Content__Footer"]
+[node name="Footer__Authors" type="HBoxContainer" parent="UI/_Margin/Content/Content__Footer" unique_id=2054456361]
 layout_mode = 2
 
-[node name="Author__Evosome" type="TextureRect" parent="UI/_Margin/Content/Content__Footer/Footer__Authors"]
+[node name="Author__Evosome" type="TextureRect" parent="UI/_Margin/Content/Content__Footer/Footer__Authors" unique_id=28536374]
 layout_mode = 2
 texture = ExtResource("6_84rfj")
 expand_mode = 3

@@ -58,7 +58,7 @@ func _on_state_changed(state: LevelTree.NodeStates) -> void:
 #region static
 
 static func between(node: LevelTree.LevelNode, parent: LevelTree.LevelNode) -> LevelLine:
-	var level_line = preload("res://scenes/roadmap/level_line.tscn").instantiate() as LevelLine
+	var level_line = Registry.instantiate(Id.of_game("scenes.roadmap", "LevelLine")) as LevelLine
 	level_line._node = node
 	level_line._parent = parent
 	return level_line

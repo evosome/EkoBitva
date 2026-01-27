@@ -75,8 +75,7 @@ func _on_node_state_changed(state: LevelTree.NodeStates) -> void:
 #region static
 
 static func of(level_node: LevelTree.LevelNode) -> LevelIcon:
-	#FIXME: remove preloading with `preload` method with `Registry.get_one()`
-	var level_icon = preload("res://scenes/roadmap/level_icon.tscn").instantiate() as LevelIcon
+	var level_icon = Registry.instantiate(Id.of_game("scenes.roadmap", "LevelIcon")) as LevelIcon
 	level_icon._level_node = level_node
 	return level_icon
 

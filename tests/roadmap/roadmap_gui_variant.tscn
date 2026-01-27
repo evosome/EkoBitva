@@ -2,6 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://doircmxyv4k20" path="res://assets/legal/textures/roadmap_background.png" id="1_mdlso"]
 [ext_resource type="PackedScene" uid="uid://87dht40eb6rw" path="res://tests/roadmap/roadmap_visual_test.tscn" id="1_omv1p"]
+[ext_resource type="Script" uid="uid://bsu6t00dyk8e3" path="res://src/registry/utils/editor_registration.gd" id="3_p5m4d"]
+[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="4_0j33m"]
+[ext_resource type="Resource" uid="uid://beiuqu57v61q6" path="res://scenes/roadmap/roadmap_registry.tres" id="5_ou266"]
+[ext_resource type="Resource" uid="uid://c56g8j67f2l2q" path="res://scenes/screens/screens_registry.tres" id="6_sc1ag"]
 
 [node name="RoadmapGuiVariant" type="Control" unique_id=601727222]
 layout_mode = 3
@@ -10,6 +14,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="EditorRegistration" type="Node" parent="." unique_id=490964594]
+script = ExtResource("3_p5m4d")
+_groups = Array[ExtResource("4_0j33m")]([ExtResource("5_ou266"), ExtResource("6_sc1ag")])
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1084269547]
 texture_repeat = 2

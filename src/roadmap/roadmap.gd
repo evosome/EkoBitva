@@ -79,7 +79,7 @@ func _on_node_added(node: LevelTree.LevelNode, parent: LevelTree.LevelNode) -> v
 #region static
 
 static func of(info: RoadmapInfo) -> Roadmap:
-	var roadmap = preload("res://scenes/roadmap/roadmap.tscn").instantiate() as Roadmap
+	var roadmap = Registry.instantiate(Id.of_game("scenes.roadmap", "Roadmap")) as Roadmap
 	roadmap._info = info
 	return roadmap
 

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EditorRegistrationGroup" load_steps=9 format=3 uid="uid://c56g8j67f2l2q"]
+[gd_resource type="Resource" script_class="EditorRegistrationGroup" format=3 uid="uid://c56g8j67f2l2q"]
 
 [ext_resource type="Script" uid="uid://bkuka0d5dhqyc" path="res://src/registry/utils/editor_registration_entry.gd" id="1_v3s14"]
 [ext_resource type="PackedScene" uid="uid://cw5wch80c5jxi" path="res://scenes/screens/loading_screen.tscn" id="2_745s4"]
