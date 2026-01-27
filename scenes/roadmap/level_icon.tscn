@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cavy8aaomojf3"]
+
+[ext_resource type="Script" uid="uid://d107j8pfxwhvt" path="res://src/roadmap/level_icon.gd" id="1_kit50"]
+[ext_resource type="Texture2D" uid="uid://g4duacqniyvd" path="res://assets/legal/textures/marker-halo.png" id="2_umlww"]
+
+[node name="LevelIcon" type="Node2D" unique_id=577389734 node_paths=PackedStringArray("_sprite", "_ring_sprite")]
+script = ExtResource("1_kit50")
+_sprite = NodePath("LevelIconSprite")
+_ring_sprite = NodePath("RingSprite")
+metadata/_custom_type_script = "uid://d107j8pfxwhvt"
+
+[node name="LevelIconSprite" type="Sprite2D" parent="." unique_id=441203550]
+
+[node name="RingSprite" type="Sprite2D" parent="." unique_id=877912453]
+texture = ExtResource("2_umlww")

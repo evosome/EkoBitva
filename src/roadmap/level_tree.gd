@@ -12,78 +12,108 @@ enum NodeStates {
 #endregion
 
 
+#region signals
+
+signal node_added(node: LevelNode, parent: LevelNode)
+
+#endregion
+
+
 #region fields
 
-var _root: _Node = null
+var _root: LevelNode = null
+
+#endregion
+
+
+#region builtins
 
 #endregion
 
 
 #region getters/setters
 
+
+func create_root(level: Level, position: Vector2) -> LevelNode:
+	if _root:
+		push_error("Root of level tree is already existing!")
+		return
+	
+	var root = LevelNode.new(self, level, position)
+	_root = root
+	
+	root.unlock()
+	node_added.emit(root, null)
+	
+	return root
+
+
 func get_root() -> LevelNode:
-	return null
+	return _root
 
 #endregion
 
 
 #region inner classes
 
-class _Node extends RefCounted:
+class LevelNode extends RefCounted:
 
+	signal state_changed(state: NodeStates)
+
+	var _tree: LevelTree
 	var _position: Vector2i
 	var _state: NodeStates = NodeStates.LOCKED
 	var _level: Level
-	var _parent: _Node
-	var _children: Array[_Node] = []
+	var _parent: LevelNode
+	var _children: Array[LevelNode] = []
 
-	func _init(level: Level, position: Vector2i, parent: _Node = null):
+	func _init(tree: LevelTree, level: Level, position: Vector2, parent: LevelNode = null):
+		_tree = tree
 		_position = position
 		_level = level
 		_parent = parent
 		_children = []
+	
+	func get_level() -> Level:
+		return _level
 
-	func get_position() -> Vector2i:
+	func get_position() -> Vector2:
 		return _position
 
 	func get_state() -> NodeStates:
 		return _state
 	
-	func set_state(value: NodeStates) -> void:
+	func _set_state(value: NodeStates) -> void:
 		_state = value
-
-	func get_level() -> Level:
-		return _level
-
-	func get_parent() -> _Node:
+		state_changed.emit(value)
+	
+	func get_parent() -> LevelNode:
 		return _parent
 
-	func add_child(node: _Node) -> void:
-		_children.append(node)
+	func create_child(level: Level, position: Vector2) -> LevelNode:
+		var new_node = LevelNode.new(_tree, level, position, self)
+		_children.append(new_node)
+		_tree.node_added.emit(new_node, self)
+		return new_node
 
-	func get_children() -> Array[_Node]:
+	func get_children() -> Array[LevelNode]:
 		return _children
-
-
-class LevelNode extends RefCounted:
 	
-	var _real_node: _Node
+	func unlock() -> void:
+		if _parent && _parent.get_state() == NodeStates.LOCKED:
+			return
+		
+		_set_state(NodeStates.UNLOCKED)
 
-	func _init(real_node: _Node) -> void:
-		_real_node = real_node
+	func pass_() -> void:
+		if _parent && _parent.get_state() == NodeStates.LOCKED:
+			return
+		
+		_set_state(NodeStates.PASSED)
+		_unlock_children()
 	
-	func get_level() -> Level:
-		return _real_node.get_level()
-
-	func get_state() -> NodeStates:
-		return _real_node.get_state()
-	
-	func get_position() -> Vector2i:
-		return _real_node.get_position()
-	
-	func create_child(level: Level, position: Vector2i) -> LevelNode:
-		var new_node = _Node.new(level, position, _real_node)
-		_real_node.add_child(new_node)
-		return LevelNode.new(new_node)
+	func _unlock_children() -> void:
+		for child in _children:
+			child.unlock()
 
 #endregion

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://87dht40eb6rw"]
+
+[ext_resource type="Script" uid="uid://bhfkam8otxfst" path="res://tests/roadmap/roadmap_visual_test.gd" id="1_womje"]
+[ext_resource type="Script" uid="uid://cb0e8nmbii4p4" path="res://src/roadmap/roadmap_camera.gd" id="2_womje"]
+
+[node name="RoadmapVisualTest" type="Node2D" unique_id=1706003892]
+script = ExtResource("1_womje")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1194999066]
+script = ExtResource("2_womje")

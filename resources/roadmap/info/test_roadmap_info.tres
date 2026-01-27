@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RoadmapInfo" format=3 uid="uid://c37jxywsowwic"]
+
+[ext_resource type="Script" uid="uid://qyt4a7f1hygf" path="res://src/levels/level_info.gd" id="1_63cxs"]
+[ext_resource type="Script" uid="uid://dqqmp53acpmhu" path="res://src/roadmap/roadmap_info.gd" id="1_ldws5"]
+[ext_resource type="Script" uid="uid://cwoqn4vdtj12m" path="res://src/roadmap/level_type_pool.gd" id="2_geuan"]
+[ext_resource type="Resource" uid="uid://baqjeka6k4hyo" path="res://resources/levels/info/test_level_info.tres" id="2_yvw0c"]
+
+[sub_resource type="Resource" id="Resource_yvw0c"]
+script = ExtResource("2_geuan")
+_level_types = Array[ExtResource("1_63cxs")]([ExtResource("2_yvw0c")])
+metadata/_custom_type_script = "uid://cwoqn4vdtj12m"
+
+[resource]
+script = ExtResource("1_ldws5")
+level_type_pool = SubResource("Resource_yvw0c")
+metadata/_custom_type_script = "uid://dqqmp53acpmhu"

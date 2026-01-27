@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://deky3qdvq1jp0"]
+
+[ext_resource type="Texture2D" uid="uid://doircmxyv4k20" path="res://assets/legal/textures/roadmap_background.png" id="1_mdlso"]
+[ext_resource type="PackedScene" uid="uid://87dht40eb6rw" path="res://tests/roadmap/roadmap_visual_test.tscn" id="1_omv1p"]
+
+[node name="RoadmapGuiVariant" type="Control" unique_id=601727222]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1084269547]
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mdlso")
+stretch_mode = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=2133422251]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=402627010]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="RoadmapVisualTest" parent="SubViewportContainer/SubViewport" unique_id=1706003892 instance=ExtResource("1_omv1p")]

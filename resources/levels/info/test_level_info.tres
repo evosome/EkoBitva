@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="LevelInfo" format=3 uid="uid://baqjeka6k4hyo"]
+
+[ext_resource type="Texture2D" uid="uid://jw6raywrs7k1" path="res://assets/legal/textures/tiles/level_icons.png" id="1_6x884"]
+[ext_resource type="Script" uid="uid://qyt4a7f1hygf" path="res://src/levels/level_info.gd" id="1_m6ab1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khije"]
+atlas = ExtResource("1_6x884")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_m6ab1")
+roadmap_icon = SubResource("AtlasTexture_khije")
+metadata/_custom_type_script = "uid://qyt4a7f1hygf"

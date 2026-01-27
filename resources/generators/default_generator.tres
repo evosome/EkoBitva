@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="DefaultGenerator" format=3 uid="uid://c0urf02wauasv"]
+
+[ext_resource type="Script" uid="uid://bgaycji2iomic" path="res://src/roadmap/generators/default_generator.gd" id="1_1nvhh"]
+
+[resource]
+script = ExtResource("1_1nvhh")
+metadata/_custom_type_script = "uid://bgaycji2iomic"

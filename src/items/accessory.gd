@@ -4,15 +4,15 @@ class_name Accessory
 #region getters/setters
 
 func get_quality() -> int:
-	pass
+	return 0
 
-func get_rarity() -> AccessoryRarity:
-	pass
+func get_rarity() -> int:
+	return 0
 
 func get_tier() -> int:
-	pass
+	return 0
 
 func get_type() -> AccessoryType:
-	pass
+	return null
 
 #endregion

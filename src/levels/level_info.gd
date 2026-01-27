@@ -5,5 +5,6 @@ class_name LevelInfo extends Resource
 
 @export var arena_info: ArenaInfo
 @export var round_sequencer: RoundSequencer
+@export var roadmap_icon: Texture2D
 
 #endregion

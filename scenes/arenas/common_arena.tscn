@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7iy3f3ts7mbc"]
+
+[ext_resource type="Script" uid="uid://q2fnjsptbw1p" path="res://src/arenas/arena.gd" id="1_6ptdr"]
+
+[node name="CommonArena" type="Node2D"]
+script = ExtResource("1_6ptdr")
+metadata/_custom_type_script = "uid://q2fnjsptbw1p"
+
+[node name="_Background" type="Sprite2D" parent="."]

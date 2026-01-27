@@ -1,13 +1,6 @@
 class_name Arena extends Node2D
 
 
-#region constants
-
-const ARENA_PRELOADED = preload("")
-
-#endregion
-
-
 #region signals
 
 ## Fires, when any first (both player and enemy) character died
@@ -69,9 +62,6 @@ func do_battle(battle_info: ArenaBattleInfo) -> void:
 #region static
 
 static func make(info: ArenaInfo, player: PlayerInfo) -> Arena:
-	var arena_instance = ARENA_PRELOADED.instantiate()
-	arena_instance._info = info
-	arena_instance._current_player = player
-	return arena_instance
+	return
 
 #endregion
