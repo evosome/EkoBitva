@@ -23,10 +23,21 @@ texture_margin_bottom = 3.0
 region_rect = Rect2(1899, 447, 93, 15)
 
 [resource]
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_bjmo7")
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_bjmo7")
 Label__Header40/base_type = &"Label"
 Label__Header40/colors/font_color = Color(0, 0, 0, 1)
 Label__Header40/font_sizes/font_size = 40
 Label__Header40/fonts/font = ExtResource("1_bjmo7")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_sin6b")
+ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 1)
+ProgressBar/font_sizes/font_size = 16
+ProgressBar/fonts/font = ExtResource("1_bjmo7")
 ProgressBar/styles/background = SubResource("StyleBoxTexture_2tnqe")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_sin6b")
+TabBar/font_sizes/font_size = 16
+TabBar/fonts/font = ExtResource("1_bjmo7")
+TabContainer/font_sizes/font_size = 16
+TabContainer/fonts/font = ExtResource("1_bjmo7")
