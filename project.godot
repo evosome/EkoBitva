@@ -18,9 +18,17 @@ config/name="EkoBitva"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Registry="*res://src/registry/registry.gd"
+
 [display]
 
 window/stretch/scale_mode="integer"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
 
 [input]
 
@@ -40,3 +48,4 @@ zoom_out={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=true

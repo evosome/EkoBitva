@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8rpkcufeoxri"]
+
+[ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="1_rh471"]
+[ext_resource type="Script" uid="uid://dolud6htg74i2" path="res://src/singleplayer/screens/loading_screen.gd" id="2_ixgvk"]
+[ext_resource type="Texture2D" uid="uid://c1o868kqsyc28" path="res://assets/textures/logo512.png" id="3_7n1eu"]
+[ext_resource type="Texture2D" uid="uid://c35g2olitjdfi" path="res://assets/textures/evosome3d.png" id="4_cknhy"]
+
+[sub_resource type="Gradient" id="Gradient_trlpq"]
+offsets = PackedFloat32Array(0, 0.61904764)
+colors = PackedColorArray(0.54509807, 0.7490196, 0.9764706, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_trlpq"]
+gradient = SubResource("Gradient_trlpq")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[node name="LoadingScreen" type="Control"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_rh471")
+script = ExtResource("2_ixgvk")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_rh471")
+
+[node name="BackgroundGradient" type="TextureRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_trlpq")
+stretch_mode = 6
+
+[node name="_Margin" type="MarginContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="Content" type="VBoxContainer" parent="UI/_Margin"]
+layout_mode = 2
+
+[node name="Content__LogoContent" type="CenterContainer" parent="UI/_Margin/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LogoContent__Container" type="VBoxContainer" parent="UI/_Margin/Content/Content__LogoContent"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="LogoContent__LogoTexture" type="TextureRect" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container"]
+custom_minimum_size = Vector2(0, 256)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture = ExtResource("3_7n1eu")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="_WaitGameIsLoading" type="Label" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Label__Header40"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Подождите, загружаем последее сохранение"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+step = 1.0
+value = 15.0
+show_percentage = false
+
+[node name="Content__Footer" type="HBoxContainer" parent="UI/_Margin/Content"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="Footer__Authors" type="HBoxContainer" parent="UI/_Margin/Content/Content__Footer"]
+layout_mode = 2
+
+[node name="Author__Evosome" type="TextureRect" parent="UI/_Margin/Content/Content__Footer/Footer__Authors"]
+layout_mode = 2
+texture = ExtResource("4_cknhy")
+expand_mode = 3
+stretch_mode = 5
