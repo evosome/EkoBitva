@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AccessoryType" format=3 uid="uid://3xd21ycfi340"]
+
+[ext_resource type="Texture2D" uid="uid://dddrgu167fgah" path="res://assets/legal/textures/Bagatan_Tsuri_rel_2023-01-12/materials/ice_box.png" id="1_3e5om"]
+[ext_resource type="Script" uid="uid://cggrs2kdxihw1" path="res://src/items/accessory_type.gd" id="1_rkxvb"]
+
+[resource]
+script = ExtResource("1_rkxvb")
+icon = ExtResource("1_3e5om")
+wearing = 1
+metadata/_custom_type_script = "uid://cggrs2kdxihw1"

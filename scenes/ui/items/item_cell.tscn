@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cypsyqthk6gbh"]
+
+[ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="1_vtmlt"]
+[ext_resource type="Script" uid="uid://dxwac2krstgn0" path="res://src/ui/items/item_cell.gd" id="2_xelmw"]
+[ext_resource type="Texture2D" uid="uid://dg2ax6pry2ftn" path="res://assets/textures/ui/item/quality_star.png" id="4_xelmw"]
+
+[node name="ItemCell" type="MarginContainer" unique_id=1125393888 node_paths=PackedStringArray("_item_icon", "_cell_panel", "_quality_star")]
+offset_right = 96.0
+offset_bottom = 96.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("1_vtmlt")
+theme_type_variation = &"PanelContainer__ItemCell"
+script = ExtResource("2_xelmw")
+_item_icon = NodePath("_Margin/ItemIcon")
+_cell_panel = NodePath("CellPanel")
+_quality_star = NodePath("_Margin/VBoxContainer/HBoxContainer/QualityStar")
+
+[node name="CellPanel" type="Panel" parent="." unique_id=2097746964]
+layout_mode = 2
+theme_type_variation = &"Panel__ItemCell"
+
+[node name="_Margin" type="MarginContainer" parent="." unique_id=943517730]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ItemIcon" type="TextureRect" parent="_Margin" unique_id=90962652]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="_Margin" unique_id=918818040]
+layout_mode = 2
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="_Margin/VBoxContainer" unique_id=1634542795]
+layout_mode = 2
+alignment = 2
+
+[node name="QualityStar" type="TextureRect" parent="_Margin/VBoxContainer/HBoxContainer" unique_id=72037676]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("4_xelmw")
+stretch_mode = 5

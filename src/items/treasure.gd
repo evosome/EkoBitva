@@ -15,6 +15,13 @@ func _init(gold: int, items: Array[Accessory]):
 	_gold = gold
 	_items = items
 
+
+func _to_string() -> String:
+	return "Treasure(gold={gold}, items_amount={items_amount})".format({
+		gold = _gold,
+		items_amount = _items.size()
+	})
+
 #endregion
 
 

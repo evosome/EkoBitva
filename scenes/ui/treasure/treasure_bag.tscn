@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://b0bx71475ou2i"]
+
+[ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="1_r6lwo"]
+[ext_resource type="Script" uid="uid://cqa3kjyuaalfq" path="res://src/ui/treasure/treasure_bag.gd" id="2_44gue"]
+[ext_resource type="Texture2D" uid="uid://614f7aqwyci5" path="res://assets/textures/ui/treasure/treasure_bag.png" id="2_c1h5b"]
+[ext_resource type="PackedScene" uid="uid://cypsyqthk6gbh" path="res://scenes/ui/items/item_cell.tscn" id="3_c1h5b"]
+[ext_resource type="Texture2D" uid="uid://csxaice1u3syh" path="res://assets/textures/ui/icons/coin.png" id="5_kncob"]
+
+[node name="TreasureBag" type="MarginContainer" unique_id=1248185447 node_paths=PackedStringArray("_gold_label", "_period_label", "_treasure_list", "_period_container")]
+custom_minimum_size = Vector2(0, 96)
+offset_right = 596.0
+offset_bottom = 128.0
+theme = ExtResource("1_r6lwo")
+script = ExtResource("2_44gue")
+_gold_label = NodePath("_VBox/_HBox/_GoldBadgePanel/_GoldBadgeText/GoldLabel")
+_period_label = NodePath("_OuterMargin/_Panel/_Margin/_Content/TreasureCarousel/Period/_PeriodTextContainer/IndicatorLabel")
+_treasure_list = NodePath("_OuterMargin/_Panel/_Margin/_Content/TreasureCarousel")
+_period_container = NodePath("_OuterMargin/_Panel/_Margin/_Content/TreasureCarousel/Period")
+
+[node name="_OuterMargin" type="MarginContainer" parent="." unique_id=37341911]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 0
+
+[node name="_Panel" type="PanelContainer" parent="_OuterMargin" unique_id=1031605519]
+layout_mode = 2
+theme_type_variation = &"TreasureBagBackground"
+
+[node name="_Margin" type="MarginContainer" parent="_OuterMargin/_Panel" unique_id=183519826]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="_Content" type="HBoxContainer" parent="_OuterMargin/_Panel/_Margin" unique_id=543719955]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="_IconPanel" type="PanelContainer" parent="_OuterMargin/_Panel/_Margin/_Content" unique_id=135478140]
+layout_mode = 2
+theme_type_variation = &"PanelContainer__TreasurePeriod"
+
+[node name="_TreasuresIcon" type="TextureRect" parent="_OuterMargin/_Panel/_Margin/_Content/_IconPanel" unique_id=1096274248]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("2_c1h5b")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="_Divider" type="ColorRect" parent="_OuterMargin/_Panel/_Margin/_Content" unique_id=1298502030]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[node name="TreasureCarousel" type="HBoxContainer" parent="_OuterMargin/_Panel/_Margin/_Content" unique_id=1726421521]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="ItemCell" parent="_OuterMargin/_Panel/_Margin/_Content/TreasureCarousel" unique_id=1125393888 instance=ExtResource("3_c1h5b")]
+layout_mode = 2
+
+[node name="ItemCell2" parent="_OuterMargin/_Panel/_Margin/_Content/TreasureCarousel" unique_id=1145122474 instance=ExtResource("3_c1h5b")]
+layout_mode = 2
+
+[node name="ItemCell3" parent="_OuterMargin/_Panel/_Margin/_Content/TreasureCarousel" unique_id=1225568814 instance=ExtResource("3_c1h5b")]
+layout_mode = 2
+
+[node name="ItemCell4" parent="_OuterMargin/_Panel/_Margin/_Content/TreasureCarousel" unique_id=436298761 instance=ExtResource("3_c1h5b")]
+layout_mode = 2
+
+[node name="Period" type="PanelContainer" parent="_OuterMargin/_Panel/_Margin/_Content/TreasureCarousel" unique_id=972922548]
+visible = false
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_type_variation = &"PanelContainer__ItemCell"
+
+[node name="_PeriodTextContainer" type="HBoxContainer" parent="_OuterMargin/_Panel/_Margin/_Content/TreasureCarousel/Period" unique_id=1540927840]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="_Plus" type="Label" parent="_OuterMargin/_Panel/_Margin/_Content/TreasureCarousel/Period/_PeriodTextContainer" unique_id=197769427]
+layout_mode = 2
+theme_type_variation = &"Label__Header32"
+text = "+"
+horizontal_alignment = 1
+
+[node name="IndicatorLabel" type="Label" parent="_OuterMargin/_Panel/_Margin/_Content/TreasureCarousel/Period/_PeriodTextContainer" unique_id=1758882314]
+layout_mode = 2
+theme_type_variation = &"Label__Header32"
+horizontal_alignment = 1
+
+[node name="_VBox" type="VBoxContainer" parent="." unique_id=1357320593]
+layout_mode = 2
+
+[node name="_HBox" type="HBoxContainer" parent="_VBox" unique_id=95349821]
+layout_mode = 2
+alignment = 2
+
+[node name="_GoldBadgePanel" type="PanelContainer" parent="_VBox/_HBox" unique_id=1172050161]
+layout_mode = 2
+theme_type_variation = &"PanelContainer__TreasurePeriod"
+
+[node name="_GoldBadgeText" type="HBoxContainer" parent="_VBox/_HBox/_GoldBadgePanel" unique_id=341464888]
+layout_mode = 2
+
+[node name="_Plus" type="Label" parent="_VBox/_HBox/_GoldBadgePanel/_GoldBadgeText" unique_id=952408283]
+layout_mode = 2
+theme_type_variation = &"Label__Header32"
+text = "+"
+
+[node name="GoldLabel" type="Label" parent="_VBox/_HBox/_GoldBadgePanel/_GoldBadgeText" unique_id=374419326]
+layout_mode = 2
+theme_type_variation = &"Label__Header32"
+text = "1300"
+
+[node name="_GoldIcon" type="TextureRect" parent="_VBox/_HBox/_GoldBadgePanel/_GoldBadgeText" unique_id=1996797846]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("5_kncob")
+expand_mode = 3
+stretch_mode = 5

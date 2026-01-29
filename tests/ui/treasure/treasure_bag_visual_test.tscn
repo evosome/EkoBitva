@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://ddh4wrml15en5"]
+
+[ext_resource type="Script" uid="uid://ybq46071ya2m" path="res://tests/ui/treasure/treasure_bag_visual_test.gd" id="1_rejhb"]
+[ext_resource type="Script" uid="uid://bsu6t00dyk8e3" path="res://src/registry/utils/editor_registration.gd" id="2_swkb4"]
+[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="3_wc8kd"]
+[ext_resource type="Resource" uid="uid://bj4bjsnadh2qr" path="res://scenes/ui/items/items_registry.tres" id="4_ofwfg"]
+[ext_resource type="Resource" uid="uid://cycykrb7066sj" path="res://scenes/ui/treasure/treasure_registry.tres" id="5_mexrk"]
+
+[node name="TreasureBagVisualTest" type="Control" unique_id=29583449 node_paths=PackedStringArray("_timer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rejhb")
+_timer = NodePath("Timer")
+
+[node name="Registration" type="Node" parent="." unique_id=2056258571]
+script = ExtResource("2_swkb4")
+_groups = Array[ExtResource("3_wc8kd")]([ExtResource("4_ofwfg"), ExtResource("5_mexrk")])
+metadata/_custom_type_script = "uid://bsu6t00dyk8e3"
+
+[node name="Timer" type="Timer" parent="." unique_id=931746195]
+autostart = true

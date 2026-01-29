@@ -1,5 +1,5 @@
 ## Helper class for simple registration via editor
-class_name EditorRegistration extends Node
+class_name Registration extends Node
 
 
 #region fields

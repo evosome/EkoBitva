@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EditorRegistrationGroup" format=3 uid="uid://bj4bjsnadh2qr"]
+
+[ext_resource type="Script" uid="uid://bkuka0d5dhqyc" path="res://src/registry/utils/editor_registration_entry.gd" id="1_uicre"]
+[ext_resource type="PackedScene" uid="uid://cypsyqthk6gbh" path="res://scenes/ui/items/item_cell.tscn" id="2_allgd"]
+[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="2_lg2pi"]
+
+[sub_resource type="Resource" id="Resource_uicre"]
+script = ExtResource("1_uicre")
+qualified_name = "ItemCellUI"
+instance = ExtResource("2_allgd")
+metadata/_custom_type_script = "uid://bkuka0d5dhqyc"
+
+[resource]
+script = ExtResource("2_lg2pi")
+path = "scenes.ui.items"
+registry_entries = Array[ExtResource("1_uicre")]([SubResource("Resource_uicre")])
+metadata/_custom_type_script = "uid://bl8v6px8fi0q1"

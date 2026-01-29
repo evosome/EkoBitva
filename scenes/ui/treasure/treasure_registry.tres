@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EditorRegistrationGroup" format=3 uid="uid://cycykrb7066sj"]
+
+[ext_resource type="Script" uid="uid://bkuka0d5dhqyc" path="res://src/registry/utils/editor_registration_entry.gd" id="1_g5hrc"]
+[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="2_7dhch"]
+[ext_resource type="PackedScene" uid="uid://b0bx71475ou2i" path="res://scenes/ui/treasure/treasure_bag.tscn" id="2_rg381"]
+
+[sub_resource type="Resource" id="Resource_g5hrc"]
+script = ExtResource("1_g5hrc")
+qualified_name = "TreasureBagUI"
+instance = ExtResource("2_rg381")
+metadata/_custom_type_script = "uid://bkuka0d5dhqyc"
+
+[resource]
+script = ExtResource("2_7dhch")
+path = "scenes.ui.treasure"
+registry_entries = Array[ExtResource("1_g5hrc")]([SubResource("Resource_g5hrc")])
+metadata/_custom_type_script = "uid://bl8v6px8fi0q1"
