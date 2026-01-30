@@ -1,21 +1,31 @@
 class_name RoundInfo extends Resource
 
 
+#region enums
+
+enum BattleTypes {
+	## Default battle with weak or medium enemies
+	COMMON,
+	## Final battle with strong and hard to defeat enemy
+	BOSS
+}
+
+#endregion
+
+
+#region fields
+
+@export var possible_enemy_types: Array[CharacterType]
+@export var possible_loot: Array[AccessoryType]
+@export var base_gold: int
+@export var battle_type: BattleTypes
+
+#endregion
+
+
 #region getters/setters
 
-func get_enemy_character() -> CharacterType:
-	return null
-
-
-func get_loot_accessory_types() -> Array[AccessoryType]:
-	return []
-
-
-func get_base_gold() -> int:
-	return 0
-
-
 func is_boss() -> bool:
-	return true
+	return battle_type == BattleTypes.BOSS
 
 #endregion

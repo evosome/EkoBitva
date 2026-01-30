@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="RoundSequencer" format=3 uid="uid://c4hl4my4oruje"]
+
+[ext_resource type="Script" uid="uid://bm74qmiy2mrtu" path="res://src/round/round_info.gd" id="1_mp5hq"]
+[ext_resource type="Script" uid="uid://balkf4qojhffe" path="res://src/round/round_sequencer.gd" id="2_6x80i"]
+[ext_resource type="Script" uid="uid://dpkac3o5r5r88" path="res://src/characters/character_type.gd" id="2_konkt"]
+[ext_resource type="Script" uid="uid://cggrs2kdxihw1" path="res://src/items/accessory_type.gd" id="3_r1scm"]
+
+[sub_resource type="Resource" id="Resource_y7x52"]
+script = ExtResource("1_mp5hq")
+metadata/_custom_type_script = "uid://bm74qmiy2mrtu"
+
+[sub_resource type="Resource" id="Resource_e702o"]
+script = ExtResource("1_mp5hq")
+metadata/_custom_type_script = "uid://bm74qmiy2mrtu"
+
+[sub_resource type="Resource" id="Resource_1ud30"]
+script = ExtResource("1_mp5hq")
+battle_type = 1
+metadata/_custom_type_script = "uid://bm74qmiy2mrtu"
+
+[resource]
+script = ExtResource("2_6x80i")
+_round_types = Array[ExtResource("1_mp5hq")]([SubResource("Resource_y7x52"), SubResource("Resource_e702o"), SubResource("Resource_1ud30")])
+metadata/_custom_type_script = "uid://balkf4qojhffe"

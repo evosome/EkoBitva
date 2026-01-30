@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cp6tko4640vjk"]
+
+[ext_resource type="Texture2D" uid="uid://dfnnf14bvwr71" path="res://assets/textures/ui/round_path/danger_indicator.png" id="1_522h1"]
+[ext_resource type="Script" uid="uid://dlbxcvmxqgbhy" path="res://src/ui/round_path/round_indicator_ui.gd" id="2_tplnm"]
+
+[node name="RoundIndicator" type="TextureRect" unique_id=579413222 node_paths=PackedStringArray("_indicator_texture_rect")]
+custom_minimum_size = Vector2(32, 32)
+texture = ExtResource("1_522h1")
+script = ExtResource("2_tplnm")
+_indicator_texture_rect = NodePath(".")

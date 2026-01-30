@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://duu8256yvkrev"]
+
+[ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="1_uhob8"]
+[ext_resource type="Script" uid="uid://dwxw28sxshm8c" path="res://src/ui/round_path/round_path_ui.gd" id="2_m27kh"]
+
+[node name="RoundPath" type="MarginContainer" unique_id=399677028 node_paths=PackedStringArray("_indicator_list")]
+theme = ExtResource("1_uhob8")
+script = ExtResource("2_m27kh")
+_indicator_list = NodePath("_Panel/_Margin/PathContainer")
+
+[node name="_Panel" type="PanelContainer" parent="." unique_id=1702140021]
+layout_mode = 2
+theme_type_variation = &"TreasureBagBackground"
+
+[node name="_Margin" type="MarginContainer" parent="_Panel" unique_id=75407749]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="PathContainer" type="HBoxContainer" parent="_Panel/_Margin" unique_id=483805176]
+layout_mode = 2

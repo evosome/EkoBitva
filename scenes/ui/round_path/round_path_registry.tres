@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="EditorRegistrationGroup" format=3 uid="uid://c2rpun6ff886w"]
+
+[ext_resource type="Script" uid="uid://bkuka0d5dhqyc" path="res://src/registry/utils/editor_registration_entry.gd" id="1_7ggid"]
+[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="2_fvgt3"]
+[ext_resource type="PackedScene" uid="uid://duu8256yvkrev" path="res://scenes/ui/round_path/round_path.tscn" id="2_mkjm2"]
+[ext_resource type="PackedScene" uid="uid://cp6tko4640vjk" path="res://scenes/ui/round_path/round_indicator.tscn" id="3_mkjm2"]
+
+[sub_resource type="Resource" id="Resource_7ggid"]
+script = ExtResource("1_7ggid")
+qualified_name = "RoundPath"
+instance = ExtResource("2_mkjm2")
+metadata/_custom_type_script = "uid://bkuka0d5dhqyc"
+
+[sub_resource type="Resource" id="Resource_fvgt3"]
+script = ExtResource("1_7ggid")
+qualified_name = "RoundIndicator"
+instance = ExtResource("3_mkjm2")
+metadata/_custom_type_script = "uid://bkuka0d5dhqyc"
+
+[resource]
+script = ExtResource("2_fvgt3")
+path = "scenes.ui.round_path"
+registry_entries = Array[ExtResource("1_7ggid")]([SubResource("Resource_7ggid"), SubResource("Resource_fvgt3")])
+metadata/_custom_type_script = "uid://bl8v6px8fi0q1"
