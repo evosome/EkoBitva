@@ -63,6 +63,8 @@ func do_attack(character: Character) -> void:
 #region static
 
 static func of(type: CharacterType) -> Character:
-	return null
+	var character = Registry.instantiate(Id.of_game("scenes.characters", "Character")) as Character
+	character._type = type
+	return character
 
 #endregion

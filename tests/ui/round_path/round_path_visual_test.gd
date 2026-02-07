@@ -8,15 +8,38 @@ const TEST_ROUND_SEQUENCE = preload("res://resources/round_sequencers/test_seque
 #endregion
 
 
+#region fields
+
+var _round_path: RoundPath
+
+@export var _timer: Timer
+
+#endregion
+
+
 #region builtins
 
 func _ready() -> void:
-	var round_path = RoundPath.new(TEST_ROUND_SEQUENCE)
-	var round_path_ui = RoundPathUI.of(round_path)
+	_round_path = RoundPath.new(TEST_ROUND_SEQUENCE)
+	
+	var round_path_ui = RoundPathUI.of(_round_path)
 	add_child(round_path_ui)
 
-	var new_round = round_path.get_next()
-	new_round.start()
-	new_round.__force_over()
+	_timer.timeout.connect(_on_timeout)
+
+#endregion
+
+
+#region event handlers
+
+func _on_timeout() -> void:
+	
+	if !_round_path.has_next():
+		_timer.timeout.disconnect(_on_timeout)
+		return
+	
+	var next_round = _round_path.get_next()
+	next_round.start()
+	next_round.__force_over()
 
 #endregion

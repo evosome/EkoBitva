@@ -26,6 +26,9 @@ func _init(info: RoundInfo) -> void:
 	_info = info
 	_is_over = false
 
+	var enemy_type = info.possible_enemy_types.pick_random()
+	_enemy_character = Character.of(enemy_type)
+
 #endregion
 
 
@@ -36,6 +39,7 @@ func __force_over() -> void:
 		push_error("Unable to call `__force_over` debug method in non-debug enviroment")
 		return
 	
+	print("Forcely end the round")
 	_internal_over.emit()
 
 #endregion
@@ -72,6 +76,7 @@ func start() -> Result:
 
 	_is_over = true
 	var random_treasure = _randomize_treasure()
+	over.emit()
 	return Result.new(true, random_treasure)
 
 #endregion

@@ -7,7 +7,7 @@ const COMMON_ROUND_COLOR = Color.WHITE
 const BOSS_ROUND_COLOR = Color.RED
 
 const PASSED_ROUND_BRIGHTNESS = 0.3
-const UNPASSED_ROUND_BRIGHTNESS = 0.6
+const UNPASSED_ROUND_BRIGHTNESS = 0.8
 const CURRENT_ROUND_BRIGHTNESS = 1.0
 
 const COLOR_MAP = {
@@ -34,7 +34,7 @@ func _ready() -> void:
 	
 	var battle_type = round_info.battle_type
 	_set_indicator_color_by(battle_type)
-	_set_indicator_saturation(UNPASSED_ROUND_BRIGHTNESS)
+	_set_indicator_brightness(UNPASSED_ROUND_BRIGHTNESS)
 
 	_checkpoint.passed.connect(_on_checkpoint_passed)
 
@@ -52,7 +52,7 @@ func _set_indicator_color_by(battle_type: RoundInfo.BattleTypes) -> void:
 	_set_indicator_color(color)
 
 
-func _set_indicator_saturation(value: float) -> void:
+func _set_indicator_brightness(value: float) -> void:
 	_indicator_texture_rect.modulate.v = value
 
 #endregion
@@ -61,7 +61,7 @@ func _set_indicator_saturation(value: float) -> void:
 #region event handlers
 
 func _on_checkpoint_passed() -> void:
-	_set_indicator_saturation(PASSED_ROUND_BRIGHTNESS)
+	_set_indicator_brightness(PASSED_ROUND_BRIGHTNESS)
 
 #endregion
 

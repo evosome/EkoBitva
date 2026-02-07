@@ -5,16 +5,31 @@
 [ext_resource type="Script" uid="uid://dpkac3o5r5r88" path="res://src/characters/character_type.gd" id="2_konkt"]
 [ext_resource type="Script" uid="uid://cggrs2kdxihw1" path="res://src/items/accessory_type.gd" id="3_r1scm"]
 
+[sub_resource type="Resource" id="Resource_konkt"]
+script = ExtResource("2_konkt")
+metadata/_custom_type_script = "uid://dpkac3o5r5r88"
+
 [sub_resource type="Resource" id="Resource_y7x52"]
 script = ExtResource("1_mp5hq")
+possible_enemy_types = Array[ExtResource("2_konkt")]([SubResource("Resource_konkt")])
 metadata/_custom_type_script = "uid://bm74qmiy2mrtu"
+
+[sub_resource type="Resource" id="Resource_r1scm"]
+script = ExtResource("2_konkt")
+metadata/_custom_type_script = "uid://dpkac3o5r5r88"
 
 [sub_resource type="Resource" id="Resource_e702o"]
 script = ExtResource("1_mp5hq")
+possible_enemy_types = Array[ExtResource("2_konkt")]([SubResource("Resource_r1scm")])
 metadata/_custom_type_script = "uid://bm74qmiy2mrtu"
+
+[sub_resource type="Resource" id="Resource_x8pa0"]
+script = ExtResource("2_konkt")
+metadata/_custom_type_script = "uid://dpkac3o5r5r88"
 
 [sub_resource type="Resource" id="Resource_1ud30"]
 script = ExtResource("1_mp5hq")
+possible_enemy_types = Array[ExtResource("2_konkt")]([SubResource("Resource_x8pa0")])
 battle_type = 1
 metadata/_custom_type_script = "uid://bm74qmiy2mrtu"
 

@@ -4,13 +4,18 @@
 [ext_resource type="Script" uid="uid://bsu6t00dyk8e3" path="res://src/registry/utils/editor_registration.gd" id="2_c2n3d"]
 [ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="3_ptf24"]
 [ext_resource type="Resource" uid="uid://c2rpun6ff886w" path="res://scenes/ui/round_path/round_path_registry.tres" id="4_q58p5"]
+[ext_resource type="Resource" uid="uid://dbsiuiaodcrvv" path="res://scenes/characters/characters_registry.tres" id="5_q58p5"]
 
-[node name="RoundPathVisualTest" type="Control" unique_id=1616394526]
+[node name="RoundPathVisualTest" type="Control" unique_id=1616394526 node_paths=PackedStringArray("_timer")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_g8l8h")
+_timer = NodePath("Timer")
 
 [node name="Registration" type="Node" parent="." unique_id=868429786]
 script = ExtResource("2_c2n3d")
-_groups = Array[ExtResource("3_ptf24")]([ExtResource("4_q58p5")])
+_groups = Array[ExtResource("3_ptf24")]([ExtResource("4_q58p5"), ExtResource("5_q58p5")])
 metadata/_custom_type_script = "uid://bsu6t00dyk8e3"
+
+[node name="Timer" type="Timer" parent="." unique_id=150859639]
+autostart = true

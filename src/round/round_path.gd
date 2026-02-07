@@ -17,7 +17,7 @@ func _init(round_sequencer: RoundSequencer) -> void:
 #endregion
 
 
-#region public
+#region getters/setters
 
 func get_size() -> int:
 	return _checkpoints.size()
@@ -29,6 +29,10 @@ func get_next() -> Round:
 
 	var round_instance = checkpoint._round
 	return round_instance
+
+
+func has_next() -> bool:
+	return _index < _checkpoints.size()
 
 
 func get_checkpoints() -> Array[Checkpoint]:
