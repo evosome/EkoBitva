@@ -62,6 +62,9 @@ func do_battle(battle_info: ArenaBattleInfo) -> void:
 #region static
 
 static func make(info: ArenaInfo) -> Arena:
-	return
+	var packed_arena = info.packed_scene
+	var arena = packed_arena.instantiate() as Arena
+	arena._info = info
+	return arena
 
 #endregion

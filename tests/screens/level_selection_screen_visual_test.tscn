@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="3_cwm1y"]
 [ext_resource type="Resource" uid="uid://c56g8j67f2l2q" path="res://scenes/screens/screens_registry.tres" id="4_nflpn"]
 [ext_resource type="Resource" uid="uid://beiuqu57v61q6" path="res://scenes/roadmap/roadmap_registry.tres" id="5_u5p1x"]
+[ext_resource type="Resource" uid="uid://vv525js56mk0" path="res://scenes/ui/player_info/player_info_registry.tres" id="6_tj7nv"]
 
 [node name="LevelSelectionScreenVisualTest" type="Control" unique_id=724911083]
 layout_mode = 3
@@ -17,5 +18,5 @@ script = ExtResource("1_kt7uu")
 
 [node name="Registration" type="Node" parent="." unique_id=2093252307]
 script = ExtResource("2_o0o64")
-_groups = Array[ExtResource("3_cwm1y")]([ExtResource("4_nflpn"), ExtResource("5_u5p1x")])
+_groups = Array[ExtResource("3_cwm1y")]([ExtResource("4_nflpn"), ExtResource("5_u5p1x"), ExtResource("6_tj7nv")])
 metadata/_custom_type_script = "uid://bsu6t00dyk8e3"

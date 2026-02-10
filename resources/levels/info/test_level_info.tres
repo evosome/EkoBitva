@@ -1,7 +1,15 @@
 [gd_resource type="Resource" script_class="LevelInfo" format=3 uid="uid://baqjeka6k4hyo"]
 
+[ext_resource type="PackedScene" uid="uid://b7iy3f3ts7mbc" path="res://scenes/arenas/common_arena.tscn" id="1_0e5cg"]
+[ext_resource type="Script" uid="uid://c86ndaqgv723p" path="res://src/arenas/arena_info.gd" id="1_6tufr"]
 [ext_resource type="Texture2D" uid="uid://jw6raywrs7k1" path="res://assets/legal/textures/tiles/level_icons.png" id="1_6x884"]
 [ext_resource type="Script" uid="uid://qyt4a7f1hygf" path="res://src/levels/level_info.gd" id="1_m6ab1"]
+[ext_resource type="Resource" uid="uid://c4hl4my4oruje" path="res://resources/round_sequencers/test_sequence.tres" id="2_khije"]
+
+[sub_resource type="Resource" id="Resource_0e5cg"]
+script = ExtResource("1_6tufr")
+packed_scene = ExtResource("1_0e5cg")
+metadata/_custom_type_script = "uid://c86ndaqgv723p"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_khije"]
 atlas = ExtResource("1_6x884")
@@ -9,5 +17,7 @@ region = Rect2(0, 0, 16, 16)
 
 [resource]
 script = ExtResource("1_m6ab1")
+arena_info = SubResource("Resource_0e5cg")
+round_sequencer = ExtResource("2_khije")
 roadmap_icon = SubResource("AtlasTexture_khije")
 metadata/_custom_type_script = "uid://qyt4a7f1hygf"

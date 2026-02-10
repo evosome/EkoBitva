@@ -8,7 +8,7 @@ class_name LevelSelectionScreen extends Screen
 var _player_data: PlayerInfo
 
 @export var _roadmap_container: Node
-@export var _inventory_container: Node
+@export var _player_info_container: Node
 
 #endregion
 
@@ -26,7 +26,7 @@ func on_enter(ctx: Context) -> void:
 	if !_player_data:
 		push_error("Entered `LevelSelectionScreen`, but `player_data` was not set in context")
 		return
-	_setup_inventory_by(_player_data)
+	_setup_player_info(_player_data)
 
 
 func on_exit() -> void:
@@ -42,9 +42,9 @@ func _setup_roadmap(roadmap: Roadmap) -> void:
 	roadmap.icon_selected.connect(_on_icon_selected)
 
 
-func _setup_inventory_by(player_data: PlayerInfo) -> void:
-	var inventory_ui = null
-	#_inventory_container.add_child(inventory_ui)
+func _setup_player_info(player_data: PlayerInfo) -> void:
+	var player_info_ui = PlayerInfoUI.of(player_data)
+	_player_info_container.add_child(player_info_ui)
 
 
 func _switch_battle_screen_with(level_attempt: LevelAttempt) -> void:
@@ -52,7 +52,7 @@ func _switch_battle_screen_with(level_attempt: LevelAttempt) -> void:
 
 	var context = BattleScreen.Context.new()
 	context.level_attempt = level_attempt
-	switch_to(battle_screen, null)
+	switch_to(battle_screen, context)
 
 #endregion
 

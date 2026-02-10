@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EditorRegistrationGroup" format=3 uid="uid://vv525js56mk0"]
+
+[ext_resource type="Script" uid="uid://bkuka0d5dhqyc" path="res://src/registry/utils/editor_registration_entry.gd" id="1_i8trm"]
+[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="2_a53wc"]
+[ext_resource type="PackedScene" uid="uid://bdb3xip1yotfl" path="res://scenes/ui/player_info/player_info.tscn" id="2_h20kt"]
+
+[sub_resource type="Resource" id="Resource_i8trm"]
+script = ExtResource("1_i8trm")
+qualified_name = "PlayerInfo"
+instance = ExtResource("2_h20kt")
+metadata/_custom_type_script = "uid://bkuka0d5dhqyc"
+
+[resource]
+script = ExtResource("2_a53wc")
+path = "scenes.ui.player_info"
+registry_entries = Array[ExtResource("1_i8trm")]([SubResource("Resource_i8trm")])
+metadata/_custom_type_script = "uid://bl8v6px8fi0q1"

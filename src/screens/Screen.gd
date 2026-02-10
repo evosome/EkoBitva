@@ -43,7 +43,7 @@ func enter(node: Node, ctx = null) -> void:
 ## Called, when the screen exits scene tree.
 func exit() -> void:
 
-	if _parent_node:
+	if !_parent_node:
 		push_error("Screen hasn't been assigned to any node. Unable to exit")
 		return
 
@@ -56,8 +56,9 @@ func exit() -> void:
 ## This method is asynchronous.
 ## Replace the current screen with other one on the same parent node.
 func switch_to(screen: Screen, ctx = null) -> void:
+	var shared_parent = _parent_node
 	await exit()
-	await screen.enter(_parent_node, ctx)
+	await screen.enter(shared_parent, ctx)
 
 #endregion
 

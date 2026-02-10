@@ -2,13 +2,16 @@
 
 [ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="1_igj4u"]
 [ext_resource type="PackedScene" uid="uid://cypsyqthk6gbh" path="res://scenes/ui/items/item_cell.tscn" id="2_ojhcd"]
+[ext_resource type="Script" uid="uid://d2yqxruaicmct" path="res://src/ui/player_info/player_info.gd" id="2_prcyt"]
 [ext_resource type="Texture2D" uid="uid://bskt3x8gp4gg2" path="res://assets/legal/textures/characters/berg_icon.png" id="3_7obx8"]
 [ext_resource type="Texture2D" uid="uid://614f7aqwyci5" path="res://assets/textures/ui/treasure/treasure_bag.png" id="4_tx5ef"]
 [ext_resource type="Texture2D" uid="uid://csxaice1u3syh" path="res://assets/textures/ui/icons/coin.png" id="4_wcwlr"]
 [ext_resource type="Texture2D" uid="uid://di7s1eo3ey5c3" path="res://assets/legal/textures/Bagatan_Tsuri_rel_2023-01-12/fishes/freshwater/carp.png" id="5_prcyt"]
 
 [node name="PlayerInfo" type="MarginContainer" unique_id=2074675826]
+custom_minimum_size = Vector2(320, 0)
 theme = ExtResource("1_igj4u")
+script = ExtResource("2_prcyt")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=159979040]
 layout_mode = 2
@@ -25,7 +28,6 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/_Margin/VBoxContainer" unique_id=508687187]
 layout_mode = 2
-alignment = 1
 
 [node name="_AccessoriesVBox" type="VBoxContainer" parent="PanelContainer/_Margin/VBoxContainer/HBoxContainer" unique_id=1648655422]
 layout_mode = 2
@@ -39,21 +41,34 @@ layout_mode = 2
 [node name="ItemCell3" parent="PanelContainer/_Margin/VBoxContainer/HBoxContainer/_AccessoriesVBox" unique_id=1751425044 instance=ExtResource("2_ojhcd")]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/_Margin/VBoxContainer/HBoxContainer" unique_id=1190377662]
-custom_minimum_size = Vector2(256, 256)
+[node name="_StatsVBox" type="VBoxContainer" parent="PanelContainer/_Margin/VBoxContainer/HBoxContainer" unique_id=555318453]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/_Margin/VBoxContainer/HBoxContainer" unique_id=911724961]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/_Margin/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1845134322]
+layout_mode = 2
+alignment = 1
+
+[node name="CharacterName" type="Label" parent="PanelContainer/_Margin/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1684896354]
+layout_mode = 2
+theme_type_variation = &"Label__Header40"
+text = "Берг"
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/_Margin/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1190377662]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
 theme_type_variation = &"PanelContainer__ItemCell"
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/_Margin/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1016278052]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/_Margin/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer" unique_id=1016278052]
 layout_mode = 2
 texture = ExtResource("3_7obx8")
 expand_mode = 3
 stretch_mode = 5
-
-[node name="_StatsVBox" type="VBoxContainer" parent="PanelContainer/_Margin/VBoxContainer/HBoxContainer" unique_id=555318453]
-layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="PanelContainer/_Margin/VBoxContainer" unique_id=608814704]
 custom_minimum_size = Vector2(0, 4)
@@ -64,6 +79,7 @@ color = Color(0.5176471, 0.49411765, 0.5294118, 1)
 clip_contents = true
 custom_minimum_size = Vector2(0, 256)
 layout_mode = 2
+size_flags_vertical = 3
 current_tab = 1
 tab_0/icon = ExtResource("4_tx5ef")
 tab_1/icon = ExtResource("5_prcyt")
