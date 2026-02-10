@@ -14,7 +14,7 @@ const TEST_ROADMAP_INFO = preload("res://resources/roadmap/info/test_roadmap_inf
 func _ready() -> void:
 	var roadmap = Roadmap.of(TEST_ROADMAP_INFO)
 	add_child(roadmap)
-	TEST_GENERATOR.generate(roadmap)
+	TEST_GENERATOR.generate(8, roadmap)
 
 	# unlock and pass some first levels
 	var level_tree = roadmap.get_level_tree()

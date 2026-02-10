@@ -35,6 +35,17 @@ func get_last_attempt() -> LevelAttempt:
 #endregion
 
 
+#region public
+
+func make_attempt(player_data: PlayerInfo) -> LevelAttempt:
+	var arena_info = _info.arena_info
+	var arena = Arena.make(arena_info)
+	var round_sequencer = _info.round_sequencer
+	return LevelAttempt.on(arena, player_data, round_sequencer)
+
+#endregion
+
+
 #region static
 
 static func of(tier: int, info: LevelInfo) -> Level:

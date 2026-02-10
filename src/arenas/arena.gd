@@ -61,7 +61,7 @@ func do_battle(battle_info: ArenaBattleInfo) -> void:
 
 #region static
 
-static func make(info: ArenaInfo, player: PlayerInfo) -> Arena:
+static func make(info: ArenaInfo) -> Arena:
 	return
 
 #endregion

@@ -3,13 +3,21 @@
 [ext_resource type="Script" uid="uid://d107j8pfxwhvt" path="res://src/roadmap/level_icon.gd" id="1_kit50"]
 [ext_resource type="Texture2D" uid="uid://g4duacqniyvd" path="res://assets/legal/textures/marker-halo.png" id="2_umlww"]
 
-[node name="LevelIcon" type="Node2D" unique_id=577389734 node_paths=PackedStringArray("_sprite", "_ring_sprite")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umlww"]
+size = Vector2(22, 22)
+
+[node name="LevelIcon" type="Node2D" unique_id=1797038075 node_paths=PackedStringArray("_sprite", "_ring_sprite", "_area2d")]
 script = ExtResource("1_kit50")
 _sprite = NodePath("LevelIconSprite")
 _ring_sprite = NodePath("RingSprite")
-metadata/_custom_type_script = "uid://d107j8pfxwhvt"
+_area2d = NodePath("Area2D")
 
 [node name="LevelIconSprite" type="Sprite2D" parent="." unique_id=441203550]
 
 [node name="RingSprite" type="Sprite2D" parent="." unique_id=877912453]
 texture = ExtResource("2_umlww")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=171978149]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=895999824]
+shape = SubResource("RectangleShape2D_umlww")

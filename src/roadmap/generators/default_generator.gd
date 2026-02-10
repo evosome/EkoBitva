@@ -22,10 +22,10 @@ var _level_type_pool: LevelTypePool
 
 #region abstract
 
-func generate(roadmap: Roadmap) -> void:
+func generate(depth: int, roadmap: Roadmap) -> void:
 	var level_tree = roadmap.get_level_tree()
 
-	_max_depth = roadmap.get_level_amount()
+	_max_depth = depth
 	_tilemap = roadmap.get_tilemap()
 	_level_type_pool = roadmap.get_level_type_pool()
 

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://c8rpkcufeoxri"]
 
-[ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="1_rh471"]
-[ext_resource type="Script" uid="uid://dolud6htg74i2" path="res://src/singleplayer/screens/loading_screen.gd" id="2_ixgvk"]
-[ext_resource type="Texture2D" uid="uid://c1o868kqsyc28" path="res://assets/textures/logo512.png" id="3_7n1eu"]
-[ext_resource type="Texture2D" uid="uid://c35g2olitjdfi" path="res://assets/textures/evosome3d.png" id="4_cknhy"]
+[ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="1_ksij3"]
+[ext_resource type="Script" uid="uid://b8chn5okpo7m5" path="res://src/roadmap/roadmap_generation_info.gd" id="2_ksij3"]
+[ext_resource type="Texture2D" uid="uid://c1o868kqsyc28" path="res://assets/textures/logo512.png" id="3_s1of1"]
+[ext_resource type="Texture2D" uid="uid://c35g2olitjdfi" path="res://assets/textures/evosome3d.png" id="4_7leqw"]
 
 [sub_resource type="Gradient" id="Gradient_trlpq"]
 offsets = PackedFloat32Array(0, 0.61904764)
@@ -14,7 +14,7 @@ gradient = SubResource("Gradient_trlpq")
 fill_from = Vector2(1, 0)
 fill_to = Vector2(1, 1)
 
-[node name="LoadingScreen" type="Control" unique_id=445021642]
+[node name="LevelSelectionScreen" type="Control" unique_id=445021642]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 3
 anchors_preset = 15
@@ -22,8 +22,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_rh471")
-script = ExtResource("2_ixgvk")
+theme = ExtResource("1_ksij3")
+script = ExtResource("2_ksij3")
 
 [node name="UI" type="Control" parent="." unique_id=106029772]
 layout_mode = 1
@@ -32,7 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_rh471")
+theme = ExtResource("1_ksij3")
 
 [node name="BackgroundGradient" type="TextureRect" parent="UI" unique_id=145557687]
 layout_mode = 1
@@ -73,7 +73,7 @@ custom_minimum_size = Vector2(0, 256)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
-texture = ExtResource("3_7n1eu")
+texture = ExtResource("3_s1of1")
 expand_mode = 3
 stretch_mode = 5
 
@@ -105,6 +105,6 @@ layout_mode = 2
 
 [node name="Author__Evosome" type="TextureRect" parent="UI/_Margin/Content/Content__Footer/Footer__Authors" unique_id=1548601095]
 layout_mode = 2
-texture = ExtResource("4_cknhy")
+texture = ExtResource("4_7leqw")
 expand_mode = 3
 stretch_mode = 5

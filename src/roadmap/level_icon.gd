@@ -15,12 +15,20 @@ const DEFAULT_PASSED_MODCOLOR = Color.WHITE
 #endregion
 
 
+#region signals
+
+signal clicked()
+
+#endregion
+
+
 #region fields
 
 var _level_node: LevelTree.LevelNode
 
 @export var _sprite: Sprite2D
 @export var _ring_sprite: Sprite2D
+@export var _area2d: Area2D
 
 #endregion
 
@@ -39,6 +47,16 @@ func _ready() -> void:
 	_set_color_by_state(node_state)
 
 	_level_node.state_changed.connect(_on_node_state_changed)
+	
+	_area2d.input_event.connect(_on_input_event)
+
+#endregion
+
+
+#region getters/setters
+
+func get_level_node() -> LevelTree.LevelNode:
+	return _level_node
 
 #endregion
 
@@ -68,6 +86,16 @@ func _set_color_by_state(state: LevelTree.NodeStates) -> void:
 
 func _on_node_state_changed(state: LevelTree.NodeStates) -> void:
 	_set_color_by_state(state)
+
+
+func _on_input_event(viewport, event: InputEvent, shape_idx: int):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			print("Clicked on {icon} (level node: {level_node})".format({
+				icon = self,
+				level_node = _level_node
+			}))
+			clicked.emit()
 
 #endregion
 

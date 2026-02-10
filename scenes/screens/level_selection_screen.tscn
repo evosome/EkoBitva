@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://c8ttfvppl820"]
+
+[ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="1_e7bav"]
+[ext_resource type="Script" uid="uid://c8f30to0m808o" path="res://src/screens/level_selection_screen.gd" id="2_2jbq8"]
+[ext_resource type="Texture2D" uid="uid://c1o868kqsyc28" path="res://assets/textures/logo512.png" id="3_iyd3q"]
+[ext_resource type="Texture2D" uid="uid://doircmxyv4k20" path="res://assets/legal/textures/roadmap_background.png" id="4_e7bav"]
+
+[node name="LevelSelectionScreen" type="Control" unique_id=11095200 node_paths=PackedStringArray("_roadmap_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_e7bav")
+script = ExtResource("2_2jbq8")
+_roadmap_container = NodePath("GameScreen__Content/RoadmapView/SubViewport")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1385421026]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_e7bav")
+stretch_mode = 1
+
+[node name="GameScreen__Content" type="VBoxContainer" parent="." unique_id=280056251]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="_PanelContainer" type="PanelContainer" parent="GameScreen__Content" unique_id=30513409]
+layout_mode = 2
+
+[node name="_MarginContainer" type="MarginContainer" parent="GameScreen__Content/_PanelContainer" unique_id=1943619523]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="Topbar" type="HBoxContainer" parent="GameScreen__Content/_PanelContainer/_MarginContainer" unique_id=388041749]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="GameLogo" type="TextureRect" parent="GameScreen__Content/_PanelContainer/_MarginContainer/Topbar" unique_id=187981388]
+layout_mode = 2
+texture = ExtResource("3_iyd3q")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="PanelLabel" type="Label" parent="GameScreen__Content/_PanelContainer/_MarginContainer/Topbar" unique_id=2040710490]
+layout_mode = 2
+theme_type_variation = &"Label__Header40"
+text = "Дорожная карта"
+
+[node name="RoadmapView" type="SubViewportContainer" parent="GameScreen__Content" unique_id=1173066927]
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="GameScreen__Content/RoadmapView" unique_id=1867221540]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+physics_object_picking = true
+size = Vector2i(1152, 512)
+render_target_update_mode = 4

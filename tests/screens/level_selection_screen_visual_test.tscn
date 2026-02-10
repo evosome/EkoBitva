@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bf3g88okbke45"]
+
+[ext_resource type="Script" uid="uid://bvx8ou2doja46" path="res://tests/screens/level_selection_screen_visual_test.gd" id="1_kt7uu"]
+[ext_resource type="Script" uid="uid://bsu6t00dyk8e3" path="res://src/registry/utils/editor_registration.gd" id="2_o0o64"]
+[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="3_cwm1y"]
+[ext_resource type="Resource" uid="uid://c56g8j67f2l2q" path="res://scenes/screens/screens_registry.tres" id="4_nflpn"]
+[ext_resource type="Resource" uid="uid://beiuqu57v61q6" path="res://scenes/roadmap/roadmap_registry.tres" id="5_u5p1x"]
+
+[node name="LevelSelectionScreenVisualTest" type="Control" unique_id=724911083]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kt7uu")
+
+[node name="Registration" type="Node" parent="." unique_id=2093252307]
+script = ExtResource("2_o0o64")
+_groups = Array[ExtResource("3_cwm1y")]([ExtResource("4_nflpn"), ExtResource("5_u5p1x")])
+metadata/_custom_type_script = "uid://bsu6t00dyk8e3"
