@@ -24,7 +24,8 @@ Registry="*res://src/registry/registry.gd"
 
 [display]
 
-window/stretch/scale_mode="integer"
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 
