@@ -1,4 +1,4 @@
-extends Camera2D
+class_name RoadmapCamera extends Camera2D
 
 
 #region fields
@@ -6,6 +6,9 @@ extends Camera2D
 var _is_dragging = false
 var _drag_start_position = Vector2.ZERO
 var _camera_start_position = Vector2.ZERO
+var _zoom_in_tween: Tween
+var _dragging_enabled: bool = true
+var _manual_zooming_enabled: bool = true
 
 @export var zoom_speed: float = 0.1
 @export var min_zoom: Vector2 = Vector2(0.5, 0.5)
@@ -17,8 +20,38 @@ var _camera_start_position = Vector2.ZERO
 #region builtins
 
 func _input(event: InputEvent) -> void:
-	_handle_cam_drag(event)
-	_handle_zoom_in_out(event)
+	if _dragging_enabled: _handle_cam_drag(event)
+	if _manual_zooming_enabled: _handle_zoom_in_out(event)
+
+#endregion
+
+
+#region public
+
+## This method is asynchronous
+func do_zoom_in(zoom_position: Vector2, duration: float = 0.8) -> void:
+
+	if _zoom_in_tween:
+		print("Camera is already zooming in, kill previous tween animation")
+		_zoom_in_tween.stop()
+		_zoom_in_tween.kill()
+	
+	# Disable camera interactions
+	_dragging_enabled = false
+	_manual_zooming_enabled = false
+
+	_zoom_in_tween = create_tween()
+
+	zoom = min_zoom
+	
+	_zoom_in_tween.tween_property(self, "zoom", max_zoom, duration)
+	_zoom_in_tween.parallel().tween_property(self, "position", zoom_position, duration)
+	_zoom_in_tween.play()
+
+	await _zoom_in_tween.finished
+
+	_dragging_enabled = true
+	_manual_zooming_enabled = true
 
 #endregion
 

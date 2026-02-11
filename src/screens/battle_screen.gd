@@ -18,4 +18,29 @@ func on_exit() -> void:
 class Context:
 	var level_attempt: LevelAttempt
 
+
+## Base class for all battle states
+class BattleState:
+	pass
+
+
+class IntroState:
+	pass
+
+
+class ShowQuestionState:
+	pass
+
+
+class QuestionAnswerState:
+	pass
+
+
+class BattleShowState:
+	pass
+
+
+class OutroState:
+	pass
+
 #endregion

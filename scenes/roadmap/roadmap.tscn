@@ -176,11 +176,12 @@ sources/0 = SubResource("TileSetAtlasSource_idb2h")
 sources/1 = SubResource("TileSetAtlasSource_71c52")
 sources/2 = SubResource("TileSetAtlasSource_cmejt")
 
-[node name="Roadmap" type="Node2D" unique_id=2000454596 node_paths=PackedStringArray("_tilemap", "_icons_container", "_lines_container")]
+[node name="Roadmap" type="Node2D" unique_id=2000454596 node_paths=PackedStringArray("_tilemap", "_icons_container", "_lines_container", "_roadmap_camera")]
 script = ExtResource("1_b0ibs")
 _tilemap = NodePath("BackgroundWater")
 _icons_container = NodePath("Icons")
 _lines_container = NodePath("Lines")
+_roadmap_camera = NodePath("RoadmapCamera")
 metadata/_custom_type_script = "uid://bi1psbqhfty3a"
 
 [node name="BackgroundWater" type="TileMapLayer" parent="." unique_id=673575592]

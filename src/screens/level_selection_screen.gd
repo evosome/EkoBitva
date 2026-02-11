@@ -61,6 +61,10 @@ func _switch_battle_screen_with(level_attempt: LevelAttempt) -> void:
 
 func _on_icon_selected(level_icon: LevelIcon) -> void:
 	var level_node = level_icon.get_level_node()
+	
+	if !level_node.is_unlocked():
+		return
+
 	var level = level_node.get_level()
 	var level_attempt = level.make_attempt(_player_data)
 	_switch_battle_screen_with(level_attempt)

@@ -115,5 +115,8 @@ class LevelNode extends RefCounted:
 	func _unlock_children() -> void:
 		for child in _children:
 			child.unlock()
+	
+	func is_unlocked() -> bool:
+		return _state == NodeStates.UNLOCKED
 
 #endregion

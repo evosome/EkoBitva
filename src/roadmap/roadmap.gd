@@ -13,10 +13,12 @@ signal icon_selected(level_icon: LevelIcon)
 var _info: RoadmapInfo
 var _level_tree: LevelTree
 var _level_type_pool: LevelTypePool
+var _first_level_node: LevelTree.LevelNode
 
 @export var _tilemap: TileMapLayer
 @export var _icons_container: Node
 @export var _lines_container: Node
+@export var _roadmap_camera: RoadmapCamera
 
 #endregion
 
@@ -74,6 +76,11 @@ func _on_node_added(node: LevelTree.LevelNode, parent: LevelTree.LevelNode) -> v
 	_create_icon_for(node)
 	if parent:
 		_create_line_between(node, parent)
+	
+	if !_first_level_node && node.is_unlocked():
+		_first_level_node = node
+		var node_position = node.get_position()
+		_roadmap_camera.do_zoom_in(node_position)
 
 
 func _on_icon_clicked(icon: LevelIcon) -> void:
