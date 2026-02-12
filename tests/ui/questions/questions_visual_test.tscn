@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://d2va6qlkcg7gn"]
+
+[ext_resource type="Script" uid="uid://cq1l0afy4jbu6" path="res://tests/ui/questions/questions_visual_test.gd" id="1_6n2ku"]
+[ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="1_u1a40"]
+[ext_resource type="Script" uid="uid://bsu6t00dyk8e3" path="res://src/registry/utils/editor_registration.gd" id="2_5asnj"]
+[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="3_2olh5"]
+[ext_resource type="Resource" uid="uid://cq4u4n7cplerd" path="res://scenes/questions/questions_registry.tres" id="4_u1a40"]
+
+[node name="QuestionsVisualTest" type="Control" unique_id=1709620145]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_u1a40")
+script = ExtResource("1_6n2ku")
+
+[node name="Registration" type="Node" parent="." unique_id=1981145363]
+script = ExtResource("2_5asnj")
+_groups = Array[ExtResource("3_2olh5")]([ExtResource("4_u1a40")])
+metadata/_custom_type_script = "uid://bsu6t00dyk8e3"

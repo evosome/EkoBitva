@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="QuestionBank" format=3 uid="uid://c7qw6pbma82ka"]
+
+[ext_resource type="Script" uid="uid://qikh37pmhhqy" path="res://src/questions/question_type.gd" id="1_8bx8r"]
+[ext_resource type="Script" uid="uid://dcwkyocb5105v" path="res://src/questions/question_bank.gd" id="2_u1wd2"]
+
+[sub_resource type="Resource" id="Resource_8bx8r"]
+script = ExtResource("1_8bx8r")
+title = "Сколько месяцев в году?"
+seconds_to_answer = 20
+answer_variants = Array[String](["12", "13", "8", "1"])
+metadata/_custom_type_script = "uid://qikh37pmhhqy"
+
+[sub_resource type="Resource" id="Resource_u1wd2"]
+script = ExtResource("1_8bx8r")
+title = "В чем смысл жизни?"
+seconds_to_answer = 20
+answer_variants = Array[String](["42", "В познании себя", "В развлечениях", "В получении матеральных благ"])
+correct_answer_index = 1
+metadata/_custom_type_script = "uid://qikh37pmhhqy"
+
+[sub_resource type="Resource" id="Resource_pu1yg"]
+script = ExtResource("1_8bx8r")
+title = "Сколько заповедей глобализма было составлено в Скрижалях Джорджии?"
+seconds_to_answer = 20
+answer_variants = Array[String](["12", "5", "7", "10"])
+correct_answer_index = 3
+metadata/_custom_type_script = "uid://qikh37pmhhqy"
+
+[resource]
+script = ExtResource("2_u1wd2")
+name = "Тестовые простые"
+color = Color(0, 0.93, 0.41850004, 1)
+question_types = Array[ExtResource("1_8bx8r")]([SubResource("Resource_8bx8r"), SubResource("Resource_u1wd2"), SubResource("Resource_pu1yg")])
+metadata/_custom_type_script = "uid://dcwkyocb5105v"

@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="EditorRegistrationGroup" format=3 uid="uid://cq4u4n7cplerd"]
+
+[ext_resource type="Script" uid="uid://bkuka0d5dhqyc" path="res://src/registry/utils/editor_registration_entry.gd" id="1_bs7qp"]
+[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="2_hjnso"]
+[ext_resource type="PackedScene" uid="uid://hmx4kj3amtkw" path="res://scenes/questions/answer_variants.tscn" id="2_rbgto"]
+[ext_resource type="PackedScene" uid="uid://br0qj680wyqvx" path="res://scenes/questions/answer_variant_button_ui.tscn" id="3_rbgto"]
+[ext_resource type="PackedScene" uid="uid://x46l6dn1iueu" path="res://scenes/questions/countdown_timer.tscn" id="4_xpycc"]
+[ext_resource type="PackedScene" uid="uid://vl443t31pkj6" path="res://scenes/questions/question_layer.tscn" id="5_1chic"]
+
+[sub_resource type="Resource" id="Resource_bs7qp"]
+script = ExtResource("1_bs7qp")
+qualified_name = "AnswerVariantsUI"
+instance = ExtResource("2_rbgto")
+metadata/_custom_type_script = "uid://bkuka0d5dhqyc"
+
+[sub_resource type="Resource" id="Resource_hjnso"]
+script = ExtResource("1_bs7qp")
+qualified_name = "AnswerVariantButtonUI"
+instance = ExtResource("3_rbgto")
+metadata/_custom_type_script = "uid://bkuka0d5dhqyc"
+
+[sub_resource type="Resource" id="Resource_rbgto"]
+script = ExtResource("1_bs7qp")
+qualified_name = "CountdownTimerUI"
+instance = ExtResource("4_xpycc")
+metadata/_custom_type_script = "uid://bkuka0d5dhqyc"
+
+[sub_resource type="Resource" id="Resource_xpycc"]
+script = ExtResource("1_bs7qp")
+qualified_name = "QuestionLayerUI"
+instance = ExtResource("5_1chic")
+metadata/_custom_type_script = "uid://bkuka0d5dhqyc"
+
+[resource]
+script = ExtResource("2_hjnso")
+path = "scenes.ui.questions"
+registry_entries = Array[ExtResource("1_bs7qp")]([SubResource("Resource_bs7qp"), SubResource("Resource_hjnso"), SubResource("Resource_rbgto"), SubResource("Resource_xpycc")])
+metadata/_custom_type_script = "uid://bl8v6px8fi0q1"

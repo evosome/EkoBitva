@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://hmx4kj3amtkw"]
+
+[ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="1_mjy0t"]
+[ext_resource type="Script" uid="uid://dvwfwd3y3oivs" path="res://src/ui/questions/answer_variants_ui.gd" id="2_oc2hu"]
+[ext_resource type="PackedScene" uid="uid://br0qj680wyqvx" path="res://scenes/questions/answer_variant_button_ui.tscn" id="3_eapd0"]
+
+[node name="AnswerVariants" type="MarginContainer" unique_id=380954978 node_paths=PackedStringArray("_container")]
+theme = ExtResource("1_mjy0t")
+script = ExtResource("2_oc2hu")
+_container = NodePath("GridContainer")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=13360954]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="AnswerVariantButtonUI" parent="GridContainer" unique_id=1151637995 instance=ExtResource("3_eapd0")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AnswerVariantButtonUI2" parent="GridContainer" unique_id=2102090119 instance=ExtResource("3_eapd0")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AnswerVariantButtonUI3" parent="GridContainer" unique_id=683190358 instance=ExtResource("3_eapd0")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AnswerVariantButtonUI4" parent="GridContainer" unique_id=57665965 instance=ExtResource("3_eapd0")]
+layout_mode = 2
+size_flags_horizontal = 3

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://br0qj680wyqvx"]
+
+[ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="1_irxxv"]
+[ext_resource type="Script" uid="uid://cydj04qb6c4qq" path="res://src/ui/questions/answer_variant_button_ui.gd" id="2_dxd87"]
+
+[node name="AnswerVariantButtonUI" type="Button" unique_id=1151637995]
+theme = ExtResource("1_irxxv")
+theme_type_variation = &"Button__AnswerVariantButton"
+text = "Answer Variant"
+script = ExtResource("2_dxd87")

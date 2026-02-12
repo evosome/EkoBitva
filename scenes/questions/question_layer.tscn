@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://vl443t31pkj6"]
+
+[ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="1_bcvti"]
+[ext_resource type="PackedScene" uid="uid://x46l6dn1iueu" path="res://scenes/questions/countdown_timer.tscn" id="2_38tm7"]
+[ext_resource type="Script" uid="uid://c4ljeudl41fsw" path="res://src/ui/questions/question_layer_ui.gd" id="2_yklo2"]
+[ext_resource type="PackedScene" uid="uid://hmx4kj3amtkw" path="res://scenes/questions/answer_variants.tscn" id="4_mtwkb"]
+
+[node name="QuestionLayer" type="MarginContainer" unique_id=273062299 node_paths=PackedStringArray("_question_title_label", "_question_number_label", "_question_bank_name_label", "_question_bank_color_control", "_answer_variants_ui", "_countdown_timer_ui")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_bcvti")
+script = ExtResource("2_yklo2")
+_question_title_label = NodePath("CenterContainer/VBoxContainer/VBoxContainer/QuestionTitleLabel")
+_question_number_label = NodePath("CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/QuestionNo")
+_question_bank_name_label = NodePath("CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/PanelContainer/QuestionBankName")
+_question_bank_color_control = NodePath("CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/PanelContainer")
+_answer_variants_ui = NodePath("CenterContainer/VBoxContainer/AnswerVariantsContainer/AnswerVariants")
+_countdown_timer_ui = NodePath("CenterContainer/VBoxContainer/HBoxContainer/TimerHBox")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=8410166]
+layout_mode = 2
+color = Color(0, 0, 0, 0.49803922)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1466220314]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1362065482]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1602290136]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer" unique_id=2044338767]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1604766288]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="_RandomQuestionLabel" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1107356155]
+layout_mode = 2
+theme_type_variation = &"Label__Header32"
+text = "Случайный вопрос"
+
+[node name="QuestionNo" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1652563088]
+layout_mode = 2
+theme_type_variation = &"Label__Header32"
+text = "5"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=2053210206]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="_RandomQuestionLabel" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=167316074]
+layout_mode = 2
+theme_type_variation = &"Label__Header32"
+text = "из категории"
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=739752508]
+layout_mode = 2
+theme_type_variation = &"PanelContainer__ItemCell"
+
+[node name="QuestionBankName" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/PanelContainer" unique_id=447167855]
+layout_mode = 2
+theme_type_variation = &"Label__Header32"
+text = "Простые"
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/HBoxContainer" unique_id=946730590]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TimerHBox" parent="CenterContainer/VBoxContainer/HBoxContainer" unique_id=1275614138 instance=ExtResource("2_38tm7")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=2014786004]
+layout_mode = 2
+
+[node name="QuestionTitleLabel" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer" unique_id=288716355]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+theme_type_variation = &"Label__Header40"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Очень длинный вопрос. Очень длинный вопрос. Очень длинный вопрос. Очень длинный вопрос."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AnswerVariantsContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer" unique_id=1152746278]
+layout_mode = 2
+
+[node name="AnswerVariants" parent="CenterContainer/VBoxContainer/AnswerVariantsContainer" unique_id=380954978 instance=ExtResource("4_mtwkb")]
+layout_mode = 2
