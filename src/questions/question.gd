@@ -1,9 +1,19 @@
 class_name Question extends RefCounted
 
 
+#region enums
+
+enum EndReasons {
+	NO_ANSWER,
+	ANSWERED
+}
+
+#endregion
+
+
 #region signals
 
-signal answered(result: Result)
+signal over(result: Result)
 
 #endregion
 
@@ -13,6 +23,9 @@ signal answered(result: Result)
 var _type: QuestionType
 var _countdown_timer: CountdownTimer
 var _question_bank: QuestionBank
+var _current_result: Result
+var _is_running: bool = false
+var _timeout_seconds: int = -1
 
 #endregion
 
@@ -22,9 +35,11 @@ var _question_bank: QuestionBank
 func _init(type: QuestionType, question_bank: QuestionBank) -> void:
 	_type = type
 	_question_bank = question_bank
-
-	var seconds_to_answer = type.seconds_to_answer
-	_countdown_timer = CountdownTimer.new(seconds_to_answer) if seconds_to_answer > 0 else null
+	_timeout_seconds = _type.seconds_to_answer
+	
+	if _has_timeout():
+		_countdown_timer = CountdownTimer.new(_timeout_seconds)
+		_countdown_timer.timeout.connect(_on_countdown_timeout)
 
 #endregion
 
@@ -46,19 +61,65 @@ func has_countdown() -> bool:
 func get_question_bank() -> QuestionBank:
 	return _question_bank
 
+
+func is_answered() -> bool:
+	return _current_result != null
+
+
+func get_result() -> Result:
+	return _current_result
+
+
+func _has_timeout() -> bool:
+	return _timeout_seconds > 0
+
 #endregion
 
 
 #region public
 
-func answer(variant_idx: int) -> Result:
-	_countdown_timer.stop()
-
-	var correct_idx = _type.correct_answer_index
-	var result = Result.new(variant_idx, correct_idx)
-	answered.emit(result)
+## Make it possible to answer on question with countdown (if present in type info).
+func start() -> void:
+	_is_running = true
 	
-	return result
+	if _has_timeout():
+		_countdown_timer.start()
+
+
+func answer(variant_idx: int) -> Result:
+
+	if !_is_running:
+		push_error(
+			"Unable to answer on question, because it has not been " + 
+			"started yet. Call `start` method to make it possible to answer this question")
+		return
+
+	if _has_timeout():
+		_countdown_timer.stop()
+		_countdown_timer.timeout.disconnect(_on_countdown_timeout)
+
+	_do_over_with(EndReasons.ANSWERED, variant_idx)
+	return _current_result
+
+#endregion
+
+
+#region private
+
+func _do_over_with(reason: EndReasons, user_answer_idx: int) -> void:
+	var correct_idx = _type.correct_answer_index
+	var result = Result.new(reason, user_answer_idx, correct_idx)
+	_current_result = result
+	over.emit(result)
+
+#endregion
+
+
+#region event handlers
+
+func _on_countdown_timeout() -> void:
+	_countdown_timer.timeout.disconnect(_on_countdown_timeout)
+	_do_over_with(EndReasons.NO_ANSWER, -1)
 
 #endregion
 
@@ -67,10 +128,12 @@ func answer(variant_idx: int) -> Result:
 
 class Result:
 
+	var _reason: EndReasons
 	var _user_answer_idx: int
 	var _correct_answer_idx: int
 
-	func _init(user_answer_idx: int, correct_answer_idx: int) -> void:
+	func _init(end_reason: EndReasons, user_answer_idx: int, correct_answer_idx: int) -> void:
+		_reason = end_reason
 		_user_answer_idx = user_answer_idx
 		_correct_answer_idx = correct_answer_idx
 	
@@ -82,6 +145,9 @@ class Result:
 	
 	func get_user_answer_idx() -> int:
 		return _user_answer_idx
+	
+	func get_end_reason() -> EndReasons:
+		return _reason
 
 #endregion
 

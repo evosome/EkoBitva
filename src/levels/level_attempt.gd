@@ -64,7 +64,7 @@ func get_result() -> Result:
 ## this method will throw error.
 func next() -> Round:
 	
-	if !_current_round.is_over():
+	if _current_round && !_current_round.is_over():
 		push_error("Unable to produce new round, because the previous one has not over yet")
 		return
 	

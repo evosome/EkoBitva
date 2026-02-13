@@ -32,17 +32,12 @@ func _set_interactive(value: bool) -> void:
 
 #region public
 
-## This method is async.
 ## This method updates answer button according to the passed `variants` list and
 ## makes grid of answer buttons active (so each button becomes interactive), so user
 ## can choose his answer.
-## Returns index of answer variant, selected by user
-func do_questionare_with(variants: Array[String]) -> int:
+func do_questionare_with(variants: Array[String]) -> void:
 	_refresh_buttons_with(variants)
 	_set_interactive(true)
-	
-	var result_answer = await answered
-	return result_answer
 
 
 ## This method is async.

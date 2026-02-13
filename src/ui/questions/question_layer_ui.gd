@@ -12,6 +12,7 @@ const INCORRECT_TITLE_TEXT = "Неправильно!"
 #region fields
 
 var _question_number: int = 0
+var _current_question: Question
 
 @export var _question_title_label: Label
 @export var _question_number_label: Label
@@ -29,6 +30,7 @@ var _question_number: int = 0
 
 func _ready() -> void:
 	_set_question_visible(false)
+	_answer_variants_ui.answered.connect(_on_user_answered)
 
 #endregion
 
@@ -44,7 +46,9 @@ func _set_question_visible(value: bool) -> void:
 #region public
 
 ## This method is async.
-func ask_question(question: Question) -> int:
+func show_question(question: Question) -> void:
+
+	_current_question = question
 
 	_question_number += 1
 	_update_question_number(_question_number)
@@ -58,12 +62,10 @@ func ask_question(question: Question) -> int:
 	var countdown_timer = question.get_countdown()
 	_update_countdown_timer(countdown_timer)
 
-	_set_question_visible(true)
-
 	var answer_variants = question_type.answer_variants
-	var user_answer = await _answer_variants_ui.do_questionare_with(answer_variants)
+	_answer_variants_ui.do_questionare_with(answer_variants)
 
-	return user_answer
+	_set_question_visible(true)
 
 
 ## This method is async.
@@ -97,6 +99,14 @@ func _update_question_correct_title(is_correct: bool) -> void:
 
 func _update_countdown_timer(countdown_timer: CountdownTimer) -> void:
 	_countdown_timer_ui.wrap_timer(countdown_timer)
+
+#endregion
+
+
+#region event handlers
+
+func _on_user_answered(variant_idx: int) -> void:
+	_current_question.answer(variant_idx)
 
 #endregion
 

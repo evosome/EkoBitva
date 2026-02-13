@@ -41,7 +41,7 @@ func wrap_timer(countdown_timer: CountdownTimer) -> void:
 
 	_timer = countdown_timer
 	_timer.tick.connect(_on_tick)
-	_timer.timeout.connect(_on_timeout)
+	_timer.stopped.connect(_on_stopped)
 
 
 func make_infinite() -> void:
@@ -75,10 +75,10 @@ func _on_tick(seconds: int) -> void:
 	_update_label(seconds)
 
 
-func _on_timeout() -> void:
-	_timer = null
+func _on_stopped() -> void:
 	_timer.tick.disconnect(_on_tick)
-	_timer.timeout.disconnect(_on_timeout)
+	_timer.stopped.disconnect(_on_stopped)
+	_timer = null
 	_update_label(0)
 
 #endregion

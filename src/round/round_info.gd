@@ -19,6 +19,7 @@ enum BattleTypes {
 @export var possible_loot: Array[AccessoryType]
 @export var base_gold: int
 @export var battle_type: BattleTypes
+@export var associated_question_bank: QuestionBank
 
 #endregion
 

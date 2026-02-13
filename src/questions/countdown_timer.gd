@@ -5,6 +5,7 @@ class_name CountdownTimer extends RefCounted
 
 signal tick(seconds: int)
 signal timeout()
+signal stopped()
 
 #endregion
 
@@ -28,8 +29,6 @@ func _init(duration: int) -> void:
 	_timer = Global.create_timer()
 	_timer.wait_time = 1.0
 	_timer.timeout.connect(_on_timer_timeout)
-	
-	_start()
 
 #endregion
 
@@ -52,7 +51,7 @@ func is_running() -> bool:
 
 #region private
 
-func _start() -> void:
+func start() -> void:
 	_timer.start()
 	tick.emit(_remaining)
 
@@ -62,6 +61,7 @@ func stop() -> void:
 	_remaining = 0
 	_timer.queue_free()
 	_timer.timeout.disconnect(_on_timer_timeout)
+	stopped.emit()
 
 #endregion
 
@@ -73,7 +73,7 @@ func _on_timer_timeout() -> void:
 	if _remaining > 0:
 		tick.emit(_remaining)
 	else:
+		stop()
 		timeout.emit()
-		_timer.stop()
 
 #endregion
