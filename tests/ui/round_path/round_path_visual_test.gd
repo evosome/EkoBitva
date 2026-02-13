@@ -39,7 +39,6 @@ func _on_timeout() -> void:
 		return
 	
 	var next_round = _round_path.get_next()
-	next_round.start()
 	next_round.__force_over()
 
 #endregion

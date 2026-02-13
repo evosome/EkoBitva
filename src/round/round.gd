@@ -95,6 +95,7 @@ func _do_over() -> void:
 	_is_over = true
 	var random_treasure = _randomize_treasure()
 	_result = Result.new(true, random_treasure)
+	over.emit(_result)
 
 
 func _randomize_treasure() -> Treasure:

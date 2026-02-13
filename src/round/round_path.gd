@@ -63,7 +63,7 @@ class Checkpoint:
 	
 	func _init(round_instance: Round) -> void:
 		_round = round_instance
-		_round.over.connect(func(): passed.emit())
+		_round.over.connect(func(_result): passed.emit())
 	
 	func get_round_info() -> RoundInfo:
 		return _round.get_info()
