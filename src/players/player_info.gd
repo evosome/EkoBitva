@@ -5,6 +5,7 @@ class_name PlayerInfo
 
 var _inventory: Inventory
 var _character_type: CharacterType
+var _fishtiary: Fishtiary
 
 #endregion
 
@@ -13,6 +14,7 @@ var _character_type: CharacterType
 
 func _init() -> void:
 	_inventory = Inventory.new()
+	_fishtiary = Fishtiary.new()
 
 #endregion
 
@@ -25,5 +27,9 @@ func get_inventory() -> Inventory:
 
 func get_character_type() -> CharacterType:
 	return _character_type
+
+
+func get_fishtiary() -> Fishtiary:
+	return _fishtiary
 
 #endregion

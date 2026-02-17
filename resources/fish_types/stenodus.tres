@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FishType" format=3 uid="uid://b30ipbj46mlgs"]
+
+[ext_resource type="Script" uid="uid://csk4i8yl640ak" path="res://src/players/fish_type.gd" id="1_d4h7u"]
+[ext_resource type="Texture2D" uid="uid://ceyd4jkiqcjal" path="res://assets/legal/textures/Bagatan_Tsuri_rel_2023-01-12/fishes/saltwater/mackerel.png" id="1_nloj6"]
+
+[resource]
+script = ExtResource("1_d4h7u")
+name = "Белорыбица"
+icon = ExtResource("1_nloj6")
+metadata/_custom_type_script = "uid://csk4i8yl640ak"

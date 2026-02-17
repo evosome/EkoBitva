@@ -3,6 +3,7 @@ extends Control
 
 #region constants
 
+const BERG_GOBY_FISH_TYPE = preload("res://resources/fish_types/berg_goby_fish.tres")
 const TEST_ITEM_TYPE = preload("res://resources/items/types/icebox.tres")
 
 #endregion
@@ -18,5 +19,9 @@ func _ready() -> void:
 	var player_inventory = player_info.get_inventory()
 	var accessory = Accessory.of(TEST_ITEM_TYPE)
 	player_inventory.push(accessory)
+	
+	var fishtiary = player_info.get_fishtiary()
+	var fish_entry = fishtiary.get_entry(BERG_GOBY_FISH_TYPE)
+	fish_entry.unlock()
 
 #endregion

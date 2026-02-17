@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="3_745yj"]
 [ext_resource type="Resource" uid="uid://vv525js56mk0" path="res://scenes/ui/player_info/player_info_registry.tres" id="4_fwy4x"]
 [ext_resource type="Resource" uid="uid://bj4bjsnadh2qr" path="res://scenes/ui/items/items_registry.tres" id="5_fwy4x"]
+[ext_resource type="Resource" uid="uid://jk1284eoyldv" path="res://resources/fish_types/fish_types_registry.tres" id="6_lfkfi"]
 
 [node name="PlayerInfoVisualTest" type="Control" unique_id=811881810]
 layout_mode = 3
@@ -17,5 +18,5 @@ script = ExtResource("1_s6dbw")
 
 [node name="Registration" type="Node" parent="." unique_id=1883101042]
 script = ExtResource("2_ph6fl")
-_groups = Array[ExtResource("3_745yj")]([ExtResource("4_fwy4x"), ExtResource("5_fwy4x")])
+_groups = Array[ExtResource("3_745yj")]([ExtResource("4_fwy4x"), ExtResource("5_fwy4x"), ExtResource("6_lfkfi")])
 metadata/_custom_type_script = "uid://bsu6t00dyk8e3"

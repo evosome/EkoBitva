@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FishType" format=3 uid="uid://bgraj4bt77cpt"]
+
+[ext_resource type="Texture2D" uid="uid://canq52s5lhliy" path="res://assets/legal/textures/Bagatan_Tsuri_rel_2023-01-12/fishes/freshwater/goby.png" id="1_43ad1"]
+[ext_resource type="Script" uid="uid://csk4i8yl640ak" path="res://src/players/fish_type.gd" id="1_f6lu0"]
+
+[resource]
+script = ExtResource("1_f6lu0")
+name = "бычок Берга"
+icon = ExtResource("1_43ad1")
+metadata/_custom_type_script = "uid://csk4i8yl640ak"

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bo8xv3kg3xkno"]
+
+[ext_resource type="Script" uid="uid://h7jb002dqpwv" path="res://src/ui/player_info/fishtiary_ui.gd" id="1_jtm5k"]
+
+[node name="FishtiaryUI" type="MarginContainer" unique_id=434849020 node_paths=PackedStringArray("_entries_container")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jtm5k")
+_entries_container = NodePath("GridContainer")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1567284093]
+layout_mode = 2
+columns = 3
