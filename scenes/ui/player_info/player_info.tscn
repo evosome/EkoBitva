@@ -8,12 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://csxaice1u3syh" path="res://assets/textures/ui/icons/coin.png" id="4_wcwlr"]
 [ext_resource type="Texture2D" uid="uid://di7s1eo3ey5c3" path="res://assets/legal/textures/Bagatan_Tsuri_rel_2023-01-12/fishes/freshwater/carp.png" id="5_prcyt"]
 
-[node name="PlayerInfo" type="MarginContainer" unique_id=2074675826 node_paths=PackedStringArray("_inventory_ui_container", "_fishtiary_ui_container")]
+[node name="PlayerInfo" type="MarginContainer" unique_id=2074675826 node_paths=PackedStringArray("_inventory_ui_container", "_fishtiary_ui_container", "character_name_label", "character_icon_texture_rect")]
 custom_minimum_size = Vector2(320, 0)
 theme = ExtResource("1_igj4u")
 script = ExtResource("2_prcyt")
 _inventory_ui_container = NodePath("PanelContainer/_Margin/VBoxContainer/TabContainer/Инвентарь/VBoxContainer/ScrollContainer/CenterContainer")
 _fishtiary_ui_container = NodePath("PanelContainer/_Margin/VBoxContainer/TabContainer/Рыбтиарий/MarginContainer/ScrollContainer/MarginContainer")
+character_name_label = NodePath("PanelContainer/_Margin/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/CharacterName")
+character_icon_texture_rect = NodePath("PanelContainer/_Margin/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/TextureRect")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=159979040]
 layout_mode = 2
@@ -83,12 +85,11 @@ clip_contents = true
 custom_minimum_size = Vector2(360, 256)
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 0
 tab_0/icon = ExtResource("4_tx5ef")
 tab_1/icon = ExtResource("5_prcyt")
 
 [node name="Инвентарь" type="MarginContainer" parent="PanelContainer/_Margin/VBoxContainer/TabContainer" unique_id=1239785826]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 4
@@ -136,6 +137,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Рыбтиарий" type="MarginContainer" parent="PanelContainer/_Margin/VBoxContainer/TabContainer" unique_id=1288887461]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 

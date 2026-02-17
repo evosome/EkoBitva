@@ -12,9 +12,10 @@ var _fishtiary: Fishtiary
 
 #region builtins
 
-func _init() -> void:
+func _init(character_type: CharacterType) -> void:
 	_inventory = Inventory.new()
 	_fishtiary = Fishtiary.new()
+	_character_type = character_type
 
 #endregion
 

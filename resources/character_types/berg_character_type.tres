@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterType" format=3 uid="uid://cruifhqw6ohqc"]
+
+[ext_resource type="Texture2D" uid="uid://bskt3x8gp4gg2" path="res://assets/legal/textures/characters/berg_icon.png" id="1_upas0"]
+[ext_resource type="Script" uid="uid://dpkac3o5r5r88" path="res://src/characters/character_type.gd" id="1_vljme"]
+
+[resource]
+script = ExtResource("1_vljme")
+icon = ExtResource("1_upas0")
+name = "Берг"
+metadata/_custom_type_script = "uid://dpkac3o5r5r88"
