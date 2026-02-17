@@ -5,6 +5,7 @@ class_name LevelSelectionScreen extends Screen
 
 #region fields
 
+var _roadmap: Roadmap
 var _player_data: PlayerInfo
 
 @export var _roadmap_container: Node
@@ -16,11 +17,11 @@ var _player_data: PlayerInfo
 #region overrides
 
 func on_enter(ctx: Context) -> void:
-	var roadmap = ctx.roadmap
-	if !roadmap:
+	_roadmap = ctx.roadmap
+	if !_roadmap:
 		push_error("Entered `LevelSelectionScreen`, but `roadmap` reference was not set in context")
 		return
-	_setup_roadmap(roadmap)
+	_setup_roadmap(_roadmap)
 
 	_player_data = ctx.player_data
 	if !_player_data:
@@ -30,7 +31,7 @@ func on_enter(ctx: Context) -> void:
 
 
 func on_exit() -> void:
-	return
+	_roadmap_container.remove_child(_roadmap)
 
 #endregion
 
@@ -39,7 +40,7 @@ func on_exit() -> void:
 
 func _setup_roadmap(roadmap: Roadmap) -> void:
 	_roadmap_container.add_child(roadmap)
-	roadmap.icon_selected.connect(_on_icon_selected)
+	roadmap.icon_selected.connect(_on_icon_selected, CONNECT_ONE_SHOT)
 
 
 func _setup_player_info(player_data: PlayerInfo) -> void:
@@ -52,6 +53,8 @@ func _switch_battle_screen_with(level_attempt: LevelAttempt) -> void:
 
 	var context = BattleScreen.Context.new()
 	context.level_attempt = level_attempt
+	context.roadmap = _roadmap
+	context.player_info = _player_data
 	switch_to(battle_screen, context)
 
 #endregion

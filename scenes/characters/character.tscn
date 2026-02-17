@@ -1,20 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbr4uyuuya63u"]
+[gd_scene format=3 uid="uid://bbr4uyuuya63u"]
 
 [ext_resource type="Script" uid="uid://uwud1g7fcueg" path="res://src/characters/character.gd" id="1_x31xa"]
 [ext_resource type="Script" uid="uid://b7nsb5gn7n274" path="res://src/characters/components/health_component.gd" id="2_1bdar"]
 [ext_resource type="Script" uid="uid://bqml33obkhxfo" path="res://src/characters/components/buff_component.gd" id="3_e22cc"]
 
-[node name="Character" type="Node2D" node_paths=PackedStringArray("_health_component")]
+[node name="Character" type="Node2D" unique_id=1293764638 node_paths=PackedStringArray("_health_component")]
 script = ExtResource("1_x31xa")
 _health_component = NodePath("HealthComponent")
 metadata/_custom_type_script = "uid://uwud1g7fcueg"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1271059466]
 
-[node name="HealthComponent" type="Node" parent="."]
+[node name="HealthComponent" type="Node" parent="." unique_id=1158821778]
 script = ExtResource("2_1bdar")
 metadata/_custom_type_script = "uid://b7nsb5gn7n274"
 
-[node name="BuffComponent" type="Node" parent="."]
+[node name="BuffComponent" type="Node" parent="." unique_id=870197647 node_paths=PackedStringArray("_target", "_activating_timer")]
 script = ExtResource("3_e22cc")
+_target = NodePath("..")
+_activating_timer = NodePath("Timer")
 metadata/_custom_type_script = "uid://bqml33obkhxfo"
+
+[node name="Timer" type="Timer" parent="BuffComponent" unique_id=1268113654]

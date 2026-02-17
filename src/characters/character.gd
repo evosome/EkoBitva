@@ -18,6 +18,20 @@ var _type: CharacterType
 #endregion
 
 
+#region builtins
+
+func _ready() -> void:
+	_health_component.died.connect(_on_health_ended)
+
+
+func _to_string() -> String:
+	return "Character(type={type})".format({
+		type = _type
+	})
+
+#endregion
+
+
 #region getters/setters
 
 func get_buffs() -> Array[BuffType]:
@@ -52,10 +66,26 @@ func despawn() -> void:
 func do_damage(damage_info: DamageInfo) -> void:
 	var damage_amount = damage_info.get_amount()
 	_health_component.withdraw(damage_amount)
+	print_debug("Dealed {damage_amount} damage points to {character}. Remaining HP: {remains}".format({
+		damage_amount = damage_amount,
+		character = self,
+		remains = _health_component.get_health()
+	}))
 
 
 func do_attack(character: Character) -> void:
 	pass
+
+#endregion
+
+
+#region event handlers
+
+func _on_health_ended() -> void:
+	print_debug("Character {character} died".format({
+		character = self
+	}))
+	died.emit()
 
 #endregion
 

@@ -14,7 +14,7 @@ var _buffs_behaviors: Array[BuffBehavior]
 #region builtins
 
 func _ready() -> void:
-    _activating_timer.timeout.connect(_on_activation_timeout)
+	_activating_timer.timeout.connect(_on_activation_timeout)
 
 #endregion
 
@@ -22,12 +22,12 @@ func _ready() -> void:
 #region private
 
 func _handle_buffs() -> void:
-    for buff_behavior in _buffs_behaviors:
-        if buff_behavior.should_reveal():
-            _buffs_behaviors.erase(buff_behavior)
-            continue
-        
-        buff_behavior.tick(_target)
+	for buff_behavior in _buffs_behaviors:
+		if buff_behavior.should_reveal():
+			_buffs_behaviors.erase(buff_behavior)
+			continue
+		
+		buff_behavior.tick(_target)
 
 #endregion
 
@@ -35,6 +35,6 @@ func _handle_buffs() -> void:
 #region event handlers
 
 func _on_activation_timeout() -> void:
-    _handle_buffs()
+	_handle_buffs()
 
 #endregion

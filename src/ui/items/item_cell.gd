@@ -53,6 +53,10 @@ func _ready() -> void:
 
 ## Dynamicly wrap item and apply visibility changes for new wrapped item
 func wrap_item(value: Accessory) -> void:
+	
+	if !value:
+		return
+	
 	var item_type = value.get_type()
 
 	var rarity = value.get_rarity()
@@ -109,7 +113,7 @@ func _set_quality_star_visible(value: bool) -> void:
 #region static
 
 static func of(item: Accessory) -> ItemCellUI:
-	var item_cell = Registry.instantiate(Id.of_game("scenes.ui.items", "ItemCell")) as ItemCellUI
+	var item_cell = Registry.instantiate(Id.of_game("scenes.ui.items", "ItemCellUI")) as ItemCellUI
 	item_cell._item = item
 	return item_cell
 

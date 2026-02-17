@@ -17,17 +17,24 @@ var _treasure_bag: TreasureBag
 var _result: Result
 var _current_player: PlayerInfo
 var _round_sequencer: RoundSequencer
+var _player_character: Character
 
 #endregion
 
 
 #region builtins
 
-func _init(player: PlayerInfo, arena: Arena, round_sequencer: RoundSequencer) -> void:
-	_arena = arena
+func _init(player: PlayerInfo, arena_info: ArenaInfo, round_sequencer: RoundSequencer) -> void:
 	_current_player = player
 	_round_sequencer = round_sequencer
+
+	var player_character_type = player.get_character_type()
+	var player_character = Character.of(player_character_type)
+	_player_character = player_character
+
+	var arena = Arena.make(arena_info, player_character)
 	arena.character_died.connect(_on_character_died)
+	_arena = arena
 
 #endregion
 
@@ -53,6 +60,10 @@ func get_treasure_bag() -> TreasureBag:
 func get_result() -> Result:
 	return _result
 
+
+func get_player_character() -> Character:
+	return _player_character
+
 #endregion
 
 
@@ -73,7 +84,7 @@ func next() -> Round:
 		return
 
 	var round_info = _round_sequencer.get_next()
-	var round_instance = Round.new(round_info)
+	var round_instance = Round.new(round_info, _arena)
 	_current_round = round_instance
 	return round_instance
 
@@ -97,7 +108,7 @@ func _on_character_died(character: Character) -> void:
 	var is_win = false
 
 	# if the player character is died, we lose
-	if character:
+	if character == _player_character:
 		is_win = false
 	# if non-player character died and there's no more rounds, we win
 	elif !_round_sequencer.has_next():
@@ -113,8 +124,8 @@ func _on_character_died(character: Character) -> void:
 
 #region static
 
-static func on(arena: Arena, with_player: PlayerInfo, with_rounds: RoundSequencer) -> LevelAttempt:
-	return LevelAttempt.new(with_player, arena, with_rounds)
+static func on(arena_info: ArenaInfo, with_player: PlayerInfo, with_rounds: RoundSequencer) -> LevelAttempt:
+	return LevelAttempt.new(with_player, arena_info, with_rounds)
 
 #endregion
 

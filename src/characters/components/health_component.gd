@@ -56,6 +56,6 @@ func get_max_health() -> int:
 
 func withdraw(amount: int) -> void:
 	var health_withdraw = clamp(amount, 0, _health_amount)
-	_health_amount -= health_withdraw
+	set_health(_health_amount - health_withdraw)
 
 #endregion

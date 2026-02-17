@@ -42,6 +42,10 @@ func _init(size: int = DEFAULT_SIZE) -> void:
 func is_full() -> bool:
 	return _space_remaining == 0
 
+
+func get_all() -> Array[Accessory]:
+	return _item_array
+
 #endregion
 
 

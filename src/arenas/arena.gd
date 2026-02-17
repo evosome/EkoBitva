@@ -15,9 +15,13 @@ signal enemy_changed(character: Character)
 
 var _info: ArenaInfo
 var _is_purged: bool
-var _current_player: PlayerInfo
 var _enemy_character: Character
 var _player_character: Character
+
+@export var _player_spawnpoint: Node2D
+@export var _enemy_spawnpoint: Node2D
+
+@export var _characters_container: Node
 
 #endregion
 
@@ -36,11 +40,17 @@ func get_player_character() -> Character:
 	return _player_character
 
 
+func _set_player_character(player_character: Character) -> void:
+	_player_character = player_character
+	_spawn_character_at(player_character, _player_spawnpoint.position)
+
+
 ## Replace previous character by a new one.
 ## The corresponding signal `enemy_changed` will fire.
-func set_enemy_character(character: Character) -> void:
-	_enemy_character = character
-	enemy_changed.emit(character)
+func set_enemy_character(enemy_character: Character) -> void:
+	_enemy_character = enemy_character
+	_spawn_character_at(enemy_character, _enemy_spawnpoint.position)
+	enemy_changed.emit(enemy_character)
 
 #endregion
 
@@ -59,12 +69,23 @@ func do_battle(battle_info: ArenaBattleInfo) -> void:
 #endregion
 
 
+#region private
+
+func _spawn_character_at(character: Character, spawn_position: Vector2) -> void:
+	character.position = spawn_position
+	character.died.connect(func(): character_died.emit(character))
+	_characters_container.add_child(character)
+
+#endregion
+
+
 #region static
 
-static func make(info: ArenaInfo) -> Arena:
+static func make(info: ArenaInfo, player_character: Character) -> Arena:
 	var packed_arena = info.packed_scene
 	var arena = packed_arena.instantiate() as Arena
 	arena._info = info
+	arena._player_character = player_character
 	return arena
 
 #endregion

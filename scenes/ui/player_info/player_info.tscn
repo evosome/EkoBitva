@@ -8,10 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://csxaice1u3syh" path="res://assets/textures/ui/icons/coin.png" id="4_wcwlr"]
 [ext_resource type="Texture2D" uid="uid://di7s1eo3ey5c3" path="res://assets/legal/textures/Bagatan_Tsuri_rel_2023-01-12/fishes/freshwater/carp.png" id="5_prcyt"]
 
-[node name="PlayerInfo" type="MarginContainer" unique_id=2074675826]
+[node name="PlayerInfo" type="MarginContainer" unique_id=2074675826 node_paths=PackedStringArray("_inventory_ui_container")]
 custom_minimum_size = Vector2(320, 0)
 theme = ExtResource("1_igj4u")
 script = ExtResource("2_prcyt")
+_inventory_ui_container = NodePath("PanelContainer/_Margin/VBoxContainer/TabContainer/Инвентарь/VBoxContainer/ScrollContainer/CenterContainer")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=159979040]
 layout_mode = 2
@@ -78,15 +79,14 @@ color = Color(0.5176471, 0.49411765, 0.5294118, 1)
 
 [node name="TabContainer" type="TabContainer" parent="PanelContainer/_Margin/VBoxContainer" unique_id=1859510392]
 clip_contents = true
-custom_minimum_size = Vector2(0, 256)
+custom_minimum_size = Vector2(360, 256)
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 0
 tab_0/icon = ExtResource("4_tx5ef")
 tab_1/icon = ExtResource("5_prcyt")
 
 [node name="Инвентарь" type="MarginContainer" parent="PanelContainer/_Margin/VBoxContainer/TabContainer" unique_id=1239785826]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 4
@@ -133,34 +133,7 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/_Margin/VBoxContainer/TabContainer/Инвентарь/VBoxContainer/ScrollContainer/CenterContainer" unique_id=228863]
-layout_mode = 2
-columns = 3
-
-[node name="ItemCell" parent="PanelContainer/_Margin/VBoxContainer/TabContainer/Инвентарь/VBoxContainer/ScrollContainer/CenterContainer/GridContainer" unique_id=1895003581 instance=ExtResource("2_ojhcd")]
-layout_mode = 2
-
-[node name="ItemCell2" parent="PanelContainer/_Margin/VBoxContainer/TabContainer/Инвентарь/VBoxContainer/ScrollContainer/CenterContainer/GridContainer" unique_id=479728661 instance=ExtResource("2_ojhcd")]
-layout_mode = 2
-
-[node name="ItemCell3" parent="PanelContainer/_Margin/VBoxContainer/TabContainer/Инвентарь/VBoxContainer/ScrollContainer/CenterContainer/GridContainer" unique_id=752925422 instance=ExtResource("2_ojhcd")]
-layout_mode = 2
-
-[node name="ItemCell4" parent="PanelContainer/_Margin/VBoxContainer/TabContainer/Инвентарь/VBoxContainer/ScrollContainer/CenterContainer/GridContainer" unique_id=2028119352 instance=ExtResource("2_ojhcd")]
-layout_mode = 2
-
-[node name="ItemCell5" parent="PanelContainer/_Margin/VBoxContainer/TabContainer/Инвентарь/VBoxContainer/ScrollContainer/CenterContainer/GridContainer" unique_id=1268824898 instance=ExtResource("2_ojhcd")]
-layout_mode = 2
-
-[node name="ItemCell6" parent="PanelContainer/_Margin/VBoxContainer/TabContainer/Инвентарь/VBoxContainer/ScrollContainer/CenterContainer/GridContainer" unique_id=2123876090 instance=ExtResource("2_ojhcd")]
-layout_mode = 2
-
-[node name="ItemCell7" parent="PanelContainer/_Margin/VBoxContainer/TabContainer/Инвентарь/VBoxContainer/ScrollContainer/CenterContainer/GridContainer" unique_id=2097646055 instance=ExtResource("2_ojhcd")]
-layout_mode = 2
-
-[node name="ItemCell8" parent="PanelContainer/_Margin/VBoxContainer/TabContainer/Инвентарь/VBoxContainer/ScrollContainer/CenterContainer/GridContainer" unique_id=1688227697 instance=ExtResource("2_ojhcd")]
-layout_mode = 2
-
 [node name="Рыбтиарий" type="MarginContainer" parent="PanelContainer/_Margin/VBoxContainer/TabContainer" unique_id=1288887461]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1

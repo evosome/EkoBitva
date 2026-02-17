@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://37vgamfipd14"]
 
 [ext_resource type="Script" uid="uid://cuvxtwgr7aytr" path="res://src/screens/battle_screen.gd" id="1_eg4kv"]
+[ext_resource type="Texture2D" uid="uid://ugs6xijyhwuv" path="res://assets/legal/textures/Underwater Fantasy/far.png" id="2_2uuxv"]
 [ext_resource type="PackedScene" uid="uid://vl443t31pkj6" path="res://scenes/questions/question_layer.tscn" id="2_nbdul"]
+[ext_resource type="Texture2D" uid="uid://7qphb6perl37" path="res://assets/legal/textures/Underwater Fantasy/foreground-1.png" id="3_htrb7"]
 
-[node name="BattleScreen" type="MarginContainer" unique_id=1196866225 node_paths=PackedStringArray("_question_layer")]
+[node name="BattleScreen" type="MarginContainer" unique_id=1196866225 node_paths=PackedStringArray("_question_layer", "_battle_viewport_container")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -11,6 +13,25 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eg4kv")
 _question_layer = NodePath("QuestionLayer")
+_battle_viewport_container = NodePath("SubViewportContainer/SubViewport")
+
+[node name="BackgroundFar" type="TextureRect" parent="." unique_id=940785854]
+layout_mode = 2
+texture = ExtResource("2_2uuxv")
+
+[node name="BackgroundNear" type="TextureRect" parent="." unique_id=259359589]
+layout_mode = 2
+texture = ExtResource("3_htrb7")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1386680351]
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=929920187]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
 
 [node name="QuestionLayer" parent="." unique_id=273062299 instance=ExtResource("2_nbdul")]
 layout_mode = 2

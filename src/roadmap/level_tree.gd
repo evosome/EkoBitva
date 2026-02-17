@@ -73,6 +73,7 @@ class LevelNode extends RefCounted:
 		_level = level
 		_parent = parent
 		_children = []
+		level.last_attempt_over.connect(_on_last_attempt_over)
 	
 	func get_level() -> Level:
 		return _level
@@ -118,5 +119,9 @@ class LevelNode extends RefCounted:
 	
 	func is_unlocked() -> bool:
 		return _state == NodeStates.UNLOCKED
+	
+	func _on_last_attempt_over(result: LevelAttempt.Result) -> void:
+		if result.is_win():
+			pass_()
 
 #endregion

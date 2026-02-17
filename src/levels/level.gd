@@ -1,6 +1,13 @@
 class_name Level
 
 
+#region signals
+
+signal last_attempt_over(result: LevelAttempt.Result)
+
+#endregion
+
+
 #region fields
 
 var _info: LevelInfo
@@ -39,9 +46,23 @@ func get_last_attempt() -> LevelAttempt:
 
 func make_attempt(player_data: PlayerInfo) -> LevelAttempt:
 	var arena_info = _info.arena_info
-	var arena = Arena.make(arena_info)
 	var round_sequencer = _info.round_sequencer
-	return LevelAttempt.on(arena, player_data, round_sequencer)
+	var attempt = LevelAttempt.on(arena_info, player_data, round_sequencer)
+	attempt.over.connect(_on_attempt_over, CONNECT_ONE_SHOT)
+	_last_attempt = attempt
+	return attempt
+
+#endregion
+
+
+#region event handlers
+
+func _on_attempt_over(result: LevelAttempt.Result) -> void:
+	last_attempt_over.emit(result)
+	print_debug("Last attempt {attemp} is over with result {result}".format({
+		attempt = _last_attempt,
+		result = result
+	}))
 
 #endregion
 

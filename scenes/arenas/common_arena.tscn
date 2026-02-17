@@ -1,9 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7iy3f3ts7mbc"]
+[gd_scene format=3 uid="uid://b7iy3f3ts7mbc"]
 
 [ext_resource type="Script" uid="uid://q2fnjsptbw1p" path="res://src/arenas/arena.gd" id="1_6ptdr"]
 
-[node name="CommonArena" type="Node2D"]
+[node name="CommonArena" type="Node2D" unique_id=1039605322 node_paths=PackedStringArray("_player_spawnpoint", "_enemy_spawnpoint", "_characters_container")]
 script = ExtResource("1_6ptdr")
+_player_spawnpoint = NodePath("Spawnpoints/PlayerSpawnpoint")
+_enemy_spawnpoint = NodePath("Spawnpoints/EnemySpawnpoint")
+_characters_container = NodePath("Characters")
 metadata/_custom_type_script = "uid://q2fnjsptbw1p"
 
-[node name="_Background" type="Sprite2D" parent="."]
+[node name="_Background" type="Sprite2D" parent="." unique_id=1203829674]
+
+[node name="Characters" type="Node" parent="." unique_id=1656013309]
+
+[node name="Spawnpoints" type="Node" parent="." unique_id=230306339]
+
+[node name="PlayerSpawnpoint" type="Node2D" parent="Spawnpoints" unique_id=1837999506]
+position = Vector2(128, 512)
+
+[node name="EnemySpawnpoint" type="Node2D" parent="Spawnpoints" unique_id=1539902424]
+position = Vector2(1024, 512)

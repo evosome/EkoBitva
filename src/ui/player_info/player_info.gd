@@ -5,6 +5,19 @@ class_name PlayerInfoUI extends Control
 
 var _player_info: PlayerInfo
 
+@export var _inventory_ui_container: Control
+
+#endregion
+
+
+#region builtins
+
+func _ready() -> void:
+	var inventory = _player_info.get_inventory()
+	var inventory_ui = InventoryUI.of(inventory)
+	inventory_ui.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_inventory_ui_container.add_child(inventory_ui)
+
 #endregion
 
 

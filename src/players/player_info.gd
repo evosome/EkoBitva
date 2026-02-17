@@ -4,6 +4,7 @@ class_name PlayerInfo
 #region fields
 
 var _inventory: Inventory
+var _character_type: CharacterType
 
 #endregion
 
@@ -20,5 +21,9 @@ func _init() -> void:
 
 func get_inventory() -> Inventory:
 	return _inventory
+
+
+func get_character_type() -> CharacterType:
+	return _character_type
 
 #endregion

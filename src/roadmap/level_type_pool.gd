@@ -14,10 +14,10 @@ var _pool: Array[LevelInfo]
 
 func get_next() -> LevelInfo:
 
-    if _pool.size() == 0:
-        _fill_and_shuffle()
+	if _pool.size() == 0:
+		_fill_and_shuffle()
 
-    return _pool.pop_front()
+	return _pool.pop_front()
 
 #endregion
 
@@ -25,8 +25,8 @@ func get_next() -> LevelInfo:
 #region private
 
 func _fill_and_shuffle() -> void:
-    for type in _level_types:
-        _pool.append(type)
-    _level_types.shuffle()
+	for type in _level_types:
+		_pool.append(type)
+	_level_types.shuffle()
 
 #endregion

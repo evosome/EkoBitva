@@ -22,7 +22,7 @@ _countdown_timer_ui = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Time
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=8410166]
 layout_mode = 2
-color = Color(0, 0, 0, 0.49803922)
+color = Color(0, 0, 0, 0.5882353)
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1466220314]
 layout_mode = 2

@@ -22,7 +22,7 @@ var _result: Result
 
 #region builtins
 
-func _init(info: RoundInfo) -> void:
+func _init(info: RoundInfo, arena: Arena) -> void:
 	_info = info
 	_is_over = false
 
@@ -32,6 +32,8 @@ func _init(info: RoundInfo) -> void:
 	var enemy_type = info.possible_enemy_types.pick_random()
 	_enemy_character = Character.of(enemy_type)
 	_enemy_character.died.connect(_on_enemy_died)
+
+	arena.set_enemy_character(_enemy_character)
 
 #endregion
 

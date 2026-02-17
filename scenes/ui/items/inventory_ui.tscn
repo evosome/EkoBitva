@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bq17lx2juymgh"]
+
+[ext_resource type="Script" uid="uid://bo7y1mnhmf7ko" path="res://src/ui/items/inventory_ui.gd" id="1_2hovk"]
+
+[node name="InventoryUi" type="MarginContainer" unique_id=540421871 node_paths=PackedStringArray("_item_cell_container")]
+script = ExtResource("1_2hovk")
+_item_cell_container = NodePath("GridContainer")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=240385296]
+layout_mode = 2
+columns = 3
