@@ -29,7 +29,7 @@ func queue() -> Question:
 		return null
 	
 	var question_type = _question_types.pop_front()
-	_question_types.append(question_type)
+	_question_types.push_back(question_type)
 	return Question.of(question_type, _question_bank)
 
 #endregion
@@ -38,6 +38,9 @@ func queue() -> Question:
 #region static
 
 static func of(question_bank: QuestionBank) -> QuestionPool:
-	return pool.get(question_bank, QuestionPool.new(question_bank))
+	if !pool.has(question_bank):
+		pool[question_bank] = QuestionPool.new(question_bank)
+	var current_pool = pool[question_bank]
+	return current_pool
 
 #endregion

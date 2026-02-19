@@ -12,23 +12,29 @@ metadata/_custom_type_script = "uid://qikh37pmhhqy"
 
 [sub_resource type="Resource" id="Resource_u1wd2"]
 script = ExtResource("1_8bx8r")
-title = "В чем смысл жизни?"
+title = "Какие отходы самые опасные?"
 seconds_to_answer = 20
-answer_variants = Array[String](["42", "В познании себя", "В развлечениях", "В получении матеральных благ"])
+answer_variants = Array[String](["Бумажные", "Пластиковые", "Деревянные", "Стеклянные"])
 correct_answer_index = 1
 metadata/_custom_type_script = "uid://qikh37pmhhqy"
 
 [sub_resource type="Resource" id="Resource_pu1yg"]
 script = ExtResource("1_8bx8r")
-title = "Сколько заповедей глобализма было составлено в Скрижалях Джорджии?"
+title = "Что хуже всего влияет на рыбу?"
 seconds_to_answer = 20
-answer_variants = Array[String](["12", "5", "7", "10"])
-correct_answer_index = 3
+answer_variants = Array[String](["Ядовитые отходы", "Шум моторных лодок", "Сильное течение", "Холод"])
+metadata/_custom_type_script = "uid://qikh37pmhhqy"
+
+[sub_resource type="Resource" id="Resource_6an3u"]
+script = ExtResource("1_8bx8r")
+title = "Куда попадают отходы с полей и огородов?"
+seconds_to_answer = 30
+answer_variants = Array[String](["В специльные печи", "В реки с дождевой водой", "Под землю", "На свалку"])
 metadata/_custom_type_script = "uid://qikh37pmhhqy"
 
 [resource]
 script = ExtResource("2_u1wd2")
 name = "Тестовые простые"
 color = Color(0, 0.93, 0.41850004, 1)
-question_types = Array[ExtResource("1_8bx8r")]([SubResource("Resource_8bx8r"), SubResource("Resource_u1wd2"), SubResource("Resource_pu1yg")])
+question_types = Array[ExtResource("1_8bx8r")]([SubResource("Resource_8bx8r"), SubResource("Resource_u1wd2"), SubResource("Resource_pu1yg"), SubResource("Resource_6an3u")])
 metadata/_custom_type_script = "uid://dcwkyocb5105v"
