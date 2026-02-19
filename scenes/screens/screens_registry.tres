@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c8rpkcufeoxri" path="res://scenes/screens/roadmap_generation_screen.tscn" id="3_y5aiy"]
 [ext_resource type="PackedScene" uid="uid://c8ttfvppl820" path="res://scenes/screens/level_selection_screen.tscn" id="4_fvsav"]
 [ext_resource type="PackedScene" uid="uid://37vgamfipd14" path="res://scenes/screens/battle_screen.tscn" id="5_y5aiy"]
+[ext_resource type="PackedScene" uid="uid://cl66q8u8pxhpn" path="res://scenes/screens/developer_message_screen.tscn" id="6_fvsav"]
 
 [sub_resource type="Resource" id="Resource_v3s14"]
 script = ExtResource("1_v3s14")
@@ -31,8 +32,14 @@ qualified_name = "BattleScreen"
 instance = ExtResource("5_y5aiy")
 metadata/_custom_type_script = "uid://bkuka0d5dhqyc"
 
+[sub_resource type="Resource" id="Resource_y5aiy"]
+script = ExtResource("1_v3s14")
+qualified_name = "DeveloperMessageScreen"
+instance = ExtResource("6_fvsav")
+metadata/_custom_type_script = "uid://bkuka0d5dhqyc"
+
 [resource]
 script = ExtResource("2_gf0id")
 path = "scenes.screens"
-registry_entries = Array[ExtResource("1_v3s14")]([SubResource("Resource_v3s14"), SubResource("Resource_gf0id"), SubResource("Resource_745s4"), SubResource("Resource_mem8p")])
+registry_entries = Array[ExtResource("1_v3s14")]([SubResource("Resource_v3s14"), SubResource("Resource_gf0id"), SubResource("Resource_745s4"), SubResource("Resource_mem8p"), SubResource("Resource_y5aiy")])
 metadata/_custom_type_script = "uid://bl8v6px8fi0q1"

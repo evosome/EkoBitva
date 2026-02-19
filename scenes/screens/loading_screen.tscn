@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cw5wch80c5jxi"]
+[gd_scene format=3 uid="uid://cw5wch80c5jxi"]
 
-[ext_resource type="Script" uid="uid://dolud6htg74i2" path="res://src/singleplayer/screens/loading_screen.gd" id="1_o7q6f"]
+[ext_resource type="Script" uid="uid://dolud6htg74i2" path="res://src/screens/loading_screen.gd" id="1_o7q6f"]
 [ext_resource type="Texture2D" uid="uid://c35g2olitjdfi" path="res://assets/textures/evosome3d.png" id="2_fywt6"]
 [ext_resource type="Texture2D" uid="uid://c1o868kqsyc28" path="res://assets/textures/logo512.png" id="2_hb618"]
 [ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="2_trlpq"]
@@ -14,7 +14,43 @@ gradient = SubResource("Gradient_trlpq")
 fill_from = Vector2(1, 0)
 fill_to = Vector2(1, 1)
 
-[node name="LoadingScreen" type="Control"]
+[sub_resource type="Animation" id="Animation_trlpq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/_Margin/Content/Content__LogoContent/LogoContent__Container/VBoxContainer/ProgressBar:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_lhky6"]
+resource_name = "loading_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/_Margin/Content/Content__LogoContent/LogoContent__Container/VBoxContainer/ProgressBar:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.93333334),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [0.0, 99.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2x3tr"]
+_data = {
+&"RESET": SubResource("Animation_trlpq"),
+&"loading_anim": SubResource("Animation_lhky6")
+}
+
+[node name="LoadingScreen" type="Control" unique_id=1877961415 node_paths=PackedStringArray("_animation_player")]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 3
 anchors_preset = 15
@@ -24,8 +60,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_trlpq")
 script = ExtResource("1_o7q6f")
+_animation_player = NodePath("AnimationPlayer")
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="." unique_id=1930688258]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,7 +71,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_trlpq")
 
-[node name="BackgroundGradient" type="TextureRect" parent="UI"]
+[node name="BackgroundGradient" type="TextureRect" parent="UI" unique_id=642174563]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,7 +81,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_trlpq")
 stretch_mode = 6
 
-[node name="_Margin" type="MarginContainer" parent="UI"]
+[node name="_Margin" type="MarginContainer" parent="UI" unique_id=1770580512]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,19 +93,19 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 4
 
-[node name="Content" type="VBoxContainer" parent="UI/_Margin"]
+[node name="Content" type="VBoxContainer" parent="UI/_Margin" unique_id=1593590912]
 layout_mode = 2
 
-[node name="Content__LogoContent" type="CenterContainer" parent="UI/_Margin/Content"]
+[node name="Content__LogoContent" type="CenterContainer" parent="UI/_Margin/Content" unique_id=846062608]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LogoContent__Container" type="VBoxContainer" parent="UI/_Margin/Content/Content__LogoContent"]
+[node name="LogoContent__Container" type="VBoxContainer" parent="UI/_Margin/Content/Content__LogoContent" unique_id=510471348]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="LogoContent__LogoTexture" type="TextureRect" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container"]
+[node name="LogoContent__LogoTexture" type="TextureRect" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container" unique_id=1660960426]
 custom_minimum_size = Vector2(0, 256)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -77,37 +114,39 @@ texture = ExtResource("2_hb618")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container" unique_id=1195133000]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="_WaitGameIsLoading" type="Label" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container/VBoxContainer"]
+[node name="_WaitGameIsLoading" type="Label" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container/VBoxContainer" unique_id=41557603]
 layout_mode = 2
 theme_type_variation = &"Label__Header40"
 text = "Подождите, игра загружается..."
 horizontal_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container/VBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container/VBoxContainer" unique_id=495172668]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 step = 1.0
-value = 15.0
 show_percentage = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container/VBoxContainer" unique_id=1546033606]
 layout_mode = 2
 
-[node name="Content__Footer" type="HBoxContainer" parent="UI/_Margin/Content"]
+[node name="Content__Footer" type="HBoxContainer" parent="UI/_Margin/Content" unique_id=393993386]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 
-[node name="Footer__Authors" type="HBoxContainer" parent="UI/_Margin/Content/Content__Footer"]
+[node name="Footer__Authors" type="HBoxContainer" parent="UI/_Margin/Content/Content__Footer" unique_id=2144573622]
 layout_mode = 2
 
-[node name="Author__Evosome" type="TextureRect" parent="UI/_Margin/Content/Content__Footer/Footer__Authors"]
+[node name="Author__Evosome" type="TextureRect" parent="UI/_Margin/Content/Content__Footer/Footer__Authors" unique_id=1511430683]
 layout_mode = 2
 texture = ExtResource("2_fywt6")
 expand_mode = 3
 stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=345653520]
+libraries/ = SubResource("AnimationLibrary_2x3tr")

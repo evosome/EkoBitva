@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8rpkcufeoxri"]
 
 [ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="1_ksij3"]
-[ext_resource type="Script" uid="uid://b8chn5okpo7m5" path="res://src/roadmap/roadmap_generation_info.gd" id="2_ksij3"]
+[ext_resource type="Script" uid="uid://djkblkaitfysg" path="res://src/screens/roadmap_generation_screen.gd" id="2_ksij3"]
 [ext_resource type="Texture2D" uid="uid://c1o868kqsyc28" path="res://assets/textures/logo512.png" id="3_s1of1"]
 [ext_resource type="Texture2D" uid="uid://c35g2olitjdfi" path="res://assets/textures/evosome3d.png" id="4_7leqw"]
 
@@ -14,7 +14,68 @@ gradient = SubResource("Gradient_trlpq")
 fill_from = Vector2(1, 0)
 fill_to = Vector2(1, 1)
 
-[node name="LevelSelectionScreen" type="Control" unique_id=445021642]
+[sub_resource type="Animation" id="Animation_ksij3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/_Margin/Content/Content__LogoContent/LogoContent__Container/VBoxContainer/ProgressBar:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/_Margin/Content/Content__LogoContent/LogoContent__Container/VBoxContainer/ProgressBar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_57hp2"]
+resource_name = "loading_anim"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/_Margin/Content/Content__LogoContent/LogoContent__Container/VBoxContainer/ProgressBar:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [0.0, 99.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/_Margin/Content/Content__LogoContent/LogoContent__Container/VBoxContainer/ProgressBar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.4666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s1of1"]
+_data = {
+&"RESET": SubResource("Animation_ksij3"),
+&"loading_anim": SubResource("Animation_57hp2")
+}
+
+[node name="LevelSelectionScreen" type="Control" unique_id=445021642 node_paths=PackedStringArray("_animation_player")]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 3
 anchors_preset = 15
@@ -24,6 +85,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ksij3")
 script = ExtResource("2_ksij3")
+_animation_player = NodePath("AnimationPlayer")
 
 [node name="UI" type="Control" parent="." unique_id=106029772]
 layout_mode = 1
@@ -87,7 +149,7 @@ alignment = 1
 layout_mode = 2
 theme_type_variation = &"Label__Header40"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Подождите, загружаем последее сохранение"
+text = "Подождите, создаем новую игру"
 horizontal_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container/VBoxContainer" unique_id=456257894]
@@ -108,3 +170,6 @@ layout_mode = 2
 texture = ExtResource("4_7leqw")
 expand_mode = 3
 stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=586628299]
+libraries/ = SubResource("AnimationLibrary_s1of1")

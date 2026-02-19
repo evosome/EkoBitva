@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://cl66q8u8pxhpn"]
+
+[ext_resource type="Script" uid="uid://geaywh8oqr73" path="res://src/screens/developer_message_screen.gd" id="1_7tvn3"]
+[ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="2_lm7n5"]
+[ext_resource type="Texture2D" uid="uid://33dfgbtnnlup" path="res://assets/textures/ui/developer_message/inital-screen__content.png" id="3_tmsh2"]
+
+[sub_resource type="Gradient" id="Gradient_trlpq"]
+offsets = PackedFloat32Array(0, 0.5555556)
+colors = PackedColorArray(0.54509807, 0.7490196, 0.9764706, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_06gmj"]
+gradient = SubResource("Gradient_trlpq")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[node name="DeveloperMessageScreen" type="Control" unique_id=1157585384 node_paths=PackedStringArray("continue_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lm7n5")
+script = ExtResource("1_7tvn3")
+continue_button = NodePath("UI/MarginContainer/Button")
+
+[node name="_Gradient" type="TextureRect" parent="." unique_id=462375049]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_06gmj")
+stretch_mode = 6
+
+[node name="UI" type="MarginContainer" parent="." unique_id=1501799654]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lm7n5")
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="_MessageMargin" type="MarginContainer" parent="UI" unique_id=1719442213]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 32
+
+[node name="_DeveloperMessageImage" type="TextureRect" parent="UI/_MessageMargin" unique_id=1720636584]
+layout_mode = 2
+texture = ExtResource("3_tmsh2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=1412435567]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="UI/MarginContainer" unique_id=1626425512]
+self_modulate = Color(0.54509807, 0.7490196, 0.9764706, 1)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_type_variation = &"Button__AnswerVariantButton"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Пропустить >>>"

@@ -26,10 +26,6 @@ var _first_level_node: LevelTree.LevelNode
 #region builtins
 
 func _ready() -> void:
-
-	_level_type_pool = _info.level_type_pool
-
-	_level_tree = LevelTree.new()
 	_level_tree.node_added.connect(_on_node_added)
 
 #endregion
@@ -94,6 +90,8 @@ func _on_icon_clicked(icon: LevelIcon) -> void:
 static func of(info: RoadmapInfo) -> Roadmap:
 	var roadmap = Registry.instantiate(Id.of_game("scenes.roadmap", "Roadmap")) as Roadmap
 	roadmap._info = info
+	roadmap._level_type_pool = info.level_type_pool
+	roadmap._level_tree = LevelTree.new()
 	return roadmap
 
 #endregion

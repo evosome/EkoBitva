@@ -1,93 +1,21 @@
 [gd_scene format=3 uid="uid://bsgw43yxp7afc"]
 
 [ext_resource type="Script" uid="uid://bsu6t00dyk8e3" path="res://src/registry/utils/editor_registration.gd" id="1_nt5c6"]
+[ext_resource type="Script" uid="uid://b4dgb7ksfoo6n" path="res://src/singleplayer_game.gd" id="1_ygfj8"]
 [ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="2_q5gnf"]
 [ext_resource type="Resource" uid="uid://c56g8j67f2l2q" path="res://scenes/screens/screens_registry.tres" id="3_vylko"]
-[ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="4_eoif4"]
 [ext_resource type="Resource" uid="uid://beiuqu57v61q6" path="res://scenes/roadmap/roadmap_registry.tres" id="4_yv1gn"]
-[ext_resource type="Texture2D" uid="uid://c1o868kqsyc28" path="res://assets/textures/logo512.png" id="5_yv1gn"]
-[ext_resource type="Texture2D" uid="uid://c35g2olitjdfi" path="res://assets/textures/evosome3d.png" id="6_84rfj"]
-
-[sub_resource type="Gradient" id="Gradient_trlpq"]
-offsets = PackedFloat32Array(0, 0.5555556)
-colors = PackedColorArray(0.54509807, 0.7490196, 0.9764706, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ulskj"]
-gradient = SubResource("Gradient_trlpq")
-fill_from = Vector2(1, 0)
-fill_to = Vector2(1, 1)
+[ext_resource type="Resource" uid="uid://vv525js56mk0" path="res://scenes/ui/player_info/player_info_registry.tres" id="5_ygfj8"]
+[ext_resource type="Resource" uid="uid://c2rpun6ff886w" path="res://scenes/ui/round_path/round_path_registry.tres" id="6_s1j42"]
+[ext_resource type="Resource" uid="uid://cycykrb7066sj" path="res://scenes/ui/treasure/treasure_registry.tres" id="7_xhb01"]
+[ext_resource type="Resource" uid="uid://bj4bjsnadh2qr" path="res://scenes/ui/items/items_registry.tres" id="8_ga4cn"]
+[ext_resource type="Resource" uid="uid://cq4u4n7cplerd" path="res://scenes/questions/questions_registry.tres" id="9_hd1lb"]
+[ext_resource type="Resource" uid="uid://dbsiuiaodcrvv" path="res://scenes/characters/characters_registry.tres" id="10_s1j42"]
+[ext_resource type="Resource" uid="uid://jk1284eoyldv" path="res://resources/fish_types/fish_types_registry.tres" id="11_xhb01"]
 
 [node name="SingleplayerGame" type="Node" unique_id=1924540075]
+script = ExtResource("1_ygfj8")
 
 [node name="EditorRegistration" type="Node" parent="." unique_id=505648854]
 script = ExtResource("1_nt5c6")
-_groups = Array[ExtResource("2_q5gnf")]([ExtResource("3_vylko"), ExtResource("4_yv1gn")])
-
-[node name="UI" type="Control" parent="." unique_id=1073741922]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("4_eoif4")
-
-[node name="BackgroundGradient" type="TextureRect" parent="UI" unique_id=155774529]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_ulskj")
-stretch_mode = 6
-
-[node name="_Margin" type="MarginContainer" parent="UI" unique_id=412968019]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 4
-
-[node name="Content" type="VBoxContainer" parent="UI/_Margin" unique_id=1731458969]
-layout_mode = 2
-
-[node name="Content__LogoContent" type="CenterContainer" parent="UI/_Margin/Content" unique_id=879081595]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="LogoContent__Container" type="VBoxContainer" parent="UI/_Margin/Content/Content__LogoContent" unique_id=868941971]
-custom_minimum_size = Vector2(600, 0)
-layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="LogoContent__LogoTexture" type="TextureRect" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container" unique_id=1114096811]
-custom_minimum_size = Vector2(0, 256)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-texture = ExtResource("5_yv1gn")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="LogoContent__ScreenContainer" type="VBoxContainer" parent="UI/_Margin/Content/Content__LogoContent/LogoContent__Container" unique_id=1424960600]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Content__Footer" type="HBoxContainer" parent="UI/_Margin/Content" unique_id=134976276]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-
-[node name="Footer__Authors" type="HBoxContainer" parent="UI/_Margin/Content/Content__Footer" unique_id=2054456361]
-layout_mode = 2
-
-[node name="Author__Evosome" type="TextureRect" parent="UI/_Margin/Content/Content__Footer/Footer__Authors" unique_id=28536374]
-layout_mode = 2
-texture = ExtResource("6_84rfj")
-expand_mode = 3
-stretch_mode = 5
+_groups = Array[ExtResource("2_q5gnf")]([ExtResource("3_vylko"), ExtResource("4_yv1gn"), ExtResource("5_ygfj8"), ExtResource("6_s1j42"), ExtResource("7_xhb01"), ExtResource("8_ga4cn"), ExtResource("9_hd1lb"), ExtResource("10_s1j42"), ExtResource("11_xhb01")])
