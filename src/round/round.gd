@@ -1,6 +1,14 @@
 class_name Round extends RefCounted
 
 
+#region constants
+
+const MIN_LOOT_AMOUNT = 0
+const MAX_LOOT_AMOUNT = 2
+
+#endregion
+
+
 #region signals
 
 signal over(result: Result)
@@ -101,7 +109,22 @@ func _do_over() -> void:
 
 
 func _randomize_treasure() -> Treasure:
-	return null
+	var base_gold = _info.base_gold
+	var possible_loot = _info.possible_loot
+
+	var result_loot: Array[Accessory] = []
+	var random_loot_amount: int = randi_range(MIN_LOOT_AMOUNT, MAX_LOOT_AMOUNT)
+	for i in range(random_loot_amount):
+		var random_type = possible_loot.pick_random()
+		result_loot.append(Accessory
+			.random_of(random_type)
+			.range_tier(1, 10)  # TODO: range tier must be in current_tier, current_tier+2
+			.include_rarity(Accessory.ALL_RARITIES)
+			.include_quality(Accessory.ALL_QUALITIES)
+			.build())
+
+	var new_treasure = Treasure.new(base_gold, result_loot)
+	return new_treasure
 
 #endregion
 

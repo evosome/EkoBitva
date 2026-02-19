@@ -20,25 +20,29 @@ var _round_path: RoundPath
 #region builtins
 
 func _ready() -> void:
-	_round_path = RoundPath.new(TEST_ROUND_SEQUENCE)
+	pass
+
+# 	#var test_arena = Arena.make()
+
+# 	_round_path = RoundPath.new(TEST_ROUND_SEQUENCE, null)
 	
-	var round_path_ui = RoundPathUI.of(_round_path)
-	add_child(round_path_ui)
+# 	var round_path_ui = RoundPathUI.of(_round_path)
+# 	add_child(round_path_ui)
 
-	_timer.timeout.connect(_on_timeout)
+# 	_timer.timeout.connect(_on_timeout)
 
-#endregion
+# #endregion
 
 
-#region event handlers
+# #region event handlers
 
-func _on_timeout() -> void:
+# func _on_timeout() -> void:
 	
-	if !_round_path.has_next():
-		_timer.timeout.disconnect(_on_timeout)
-		return
+# 	if !_round_path.has_next():
+# 		_timer.timeout.disconnect(_on_timeout)
+# 		return
 	
-	var next_round = _round_path.get_next()
-	next_round.__force_over()
+# 	var next_round = _round_path.get_next()
+# 	next_round.__force_over()
 
 #endregion

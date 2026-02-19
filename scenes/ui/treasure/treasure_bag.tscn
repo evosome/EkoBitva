@@ -119,7 +119,7 @@ text = "+"
 [node name="GoldLabel" type="Label" parent="_VBox/_HBox/_GoldBadgePanel/_GoldBadgeText" unique_id=374419326]
 layout_mode = 2
 theme_type_variation = &"Label__Header32"
-text = "1300"
+text = "0"
 
 [node name="_GoldIcon" type="TextureRect" parent="_VBox/_HBox/_GoldBadgePanel/_GoldBadgeText" unique_id=1996797846]
 custom_minimum_size = Vector2(16, 16)

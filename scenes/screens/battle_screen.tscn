@@ -5,15 +5,17 @@
 [ext_resource type="PackedScene" uid="uid://vl443t31pkj6" path="res://scenes/questions/question_layer.tscn" id="2_nbdul"]
 [ext_resource type="Texture2D" uid="uid://7qphb6perl37" path="res://assets/legal/textures/Underwater Fantasy/foreground-1.png" id="3_htrb7"]
 
-[node name="BattleScreen" type="MarginContainer" unique_id=1196866225 node_paths=PackedStringArray("_question_layer", "_battle_viewport_container")]
+[node name="BattleScreen" type="MarginContainer" unique_id=1196866225 node_paths=PackedStringArray("_question_layer", "_battle_viewport_container", "_round_indicator_path_container", "_treasure_bag_container")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eg4kv")
-_question_layer = NodePath("QuestionLayer")
+_question_layer = NodePath("UI/QuestionLayer")
 _battle_viewport_container = NodePath("SubViewportContainer/SubViewport")
+_round_indicator_path_container = NodePath("UI/HBoxContainer/_Margin/VBoxContainer/RoundIndicatorPathContainer/CenterContainer")
+_treasure_bag_container = NodePath("UI/HBoxContainer/_Margin/VBoxContainer/TreasureBagContainer")
 
 [node name="BackgroundFar" type="TextureRect" parent="." unique_id=940785854]
 layout_mode = 2
@@ -33,5 +35,42 @@ handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="QuestionLayer" parent="." unique_id=273062299 instance=ExtResource("2_nbdul")]
+[node name="UI" type="MarginContainer" parent="." unique_id=1893837009]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI" unique_id=1359548767]
+layout_mode = 2
+
+[node name="_PlayerHealthPlaceholder" type="Control" parent="UI/HBoxContainer" unique_id=114136898]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_Margin" type="MarginContainer" parent="UI/HBoxContainer" unique_id=248388051]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HBoxContainer/_Margin" unique_id=166236434]
+layout_mode = 2
+
+[node name="RoundIndicatorPathContainer" type="MarginContainer" parent="UI/HBoxContainer/_Margin/VBoxContainer" unique_id=102352809]
+z_index = 10
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/HBoxContainer/_Margin/VBoxContainer/RoundIndicatorPathContainer" unique_id=180359949]
+layout_mode = 2
+
+[node name="_Wider" type="Control" parent="UI/HBoxContainer/_Margin/VBoxContainer" unique_id=911183117]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TreasureBagContainer" type="MarginContainer" parent="UI/HBoxContainer/_Margin/VBoxContainer" unique_id=1154141087]
+layout_mode = 2
+
+[node name="_EnemyHealthPlaceholder" type="Control" parent="UI/HBoxContainer" unique_id=2100180356]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuestionLayer" parent="UI" unique_id=273062299 instance=ExtResource("2_nbdul")]
 layout_mode = 2

@@ -16,7 +16,7 @@ var _current_round: Round
 var _treasure_bag: TreasureBag
 var _result: Result
 var _current_player: PlayerInfo
-var _round_sequencer: RoundSequencer
+var _round_path: RoundPath
 var _player_character: Character
 
 #endregion
@@ -25,8 +25,10 @@ var _player_character: Character
 #region builtins
 
 func _init(player: PlayerInfo, arena_info: ArenaInfo, round_sequencer: RoundSequencer) -> void:
+
+	_treasure_bag = TreasureBag.new()
+
 	_current_player = player
-	_round_sequencer = round_sequencer
 
 	var player_character_type = player.get_character_type()
 	var player_character = Character.of(player_character_type)
@@ -35,6 +37,8 @@ func _init(player: PlayerInfo, arena_info: ArenaInfo, round_sequencer: RoundSequ
 	var arena = Arena.make(arena_info, player_character)
 	arena.character_died.connect(_on_character_died)
 	_arena = arena
+
+	_round_path = RoundPath.new(round_sequencer, arena)
 
 #endregion
 
@@ -64,6 +68,10 @@ func get_result() -> Result:
 func get_player_character() -> Character:
 	return _player_character
 
+
+func get_round_path() -> RoundPath:
+	return _round_path
+
 #endregion
 
 
@@ -83,8 +91,8 @@ func next() -> Round:
 		push_error("Unable to produce a new round, because level attemp is over")
 		return
 
-	var round_info = _round_sequencer.get_next()
-	var round_instance = Round.new(round_info, _arena)
+	var round_instance = _round_path.get_next()
+	round_instance.over.connect(_on_round_over, CONNECT_ONE_SHOT)
 	_current_round = round_instance
 	return round_instance
 
@@ -94,7 +102,7 @@ func next() -> Round:
 #region private
 
 func _make_over(is_win: bool) -> void:
-	var result = Result.new(is_win, null)
+	var result = Result.new(is_win, _treasure_bag)
 	_result = result
 	_is_over = true
 	over.emit(result)
@@ -111,7 +119,7 @@ func _on_character_died(character: Character) -> void:
 	if character == _player_character:
 		is_win = false
 	# if non-player character died and there's no more rounds, we win
-	elif !_round_sequencer.has_next():
+	elif !_round_path.has_next():
 		is_win = true
 	# otherwise skip
 	else:
@@ -119,13 +127,18 @@ func _on_character_died(character: Character) -> void:
 	
 	_make_over(is_win)
 
+
+func _on_round_over(round_result: Round.Result) -> void:
+	var treasure = round_result.get_treasure()
+	_treasure_bag.add(treasure)
+
 #endregion
 
 
 #region static
 
-static func on(arena_info: ArenaInfo, with_player: PlayerInfo, with_rounds: RoundSequencer) -> LevelAttempt:
-	return LevelAttempt.new(with_player, arena_info, with_rounds)
+static func on(arena_info: ArenaInfo, with_player: PlayerInfo, round_sequencer: RoundSequencer) -> LevelAttempt:
+	return LevelAttempt.new(with_player, arena_info, round_sequencer)
 
 #endregion
 

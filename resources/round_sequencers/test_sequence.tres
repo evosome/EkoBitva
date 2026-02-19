@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dpkac3o5r5r88" path="res://src/characters/character_type.gd" id="2_konkt"]
 [ext_resource type="Resource" uid="uid://c7qw6pbma82ka" path="res://resources/questions/test_simple_questions.tres" id="2_r1scm"]
 [ext_resource type="Script" uid="uid://cggrs2kdxihw1" path="res://src/items/accessory_type.gd" id="3_r1scm"]
+[ext_resource type="Resource" uid="uid://3xd21ycfi340" path="res://resources/items/types/icebox.tres" id="5_y7x52"]
 
 [sub_resource type="Resource" id="Resource_konkt"]
 script = ExtResource("2_konkt")
@@ -13,6 +14,8 @@ metadata/_custom_type_script = "uid://dpkac3o5r5r88"
 [sub_resource type="Resource" id="Resource_y7x52"]
 script = ExtResource("1_mp5hq")
 possible_enemy_types = Array[ExtResource("2_konkt")]([SubResource("Resource_konkt")])
+possible_loot = Array[ExtResource("3_r1scm")]([ExtResource("5_y7x52")])
+base_gold = 90
 associated_question_bank = ExtResource("2_r1scm")
 metadata/_custom_type_script = "uid://bm74qmiy2mrtu"
 
@@ -23,6 +26,8 @@ metadata/_custom_type_script = "uid://dpkac3o5r5r88"
 [sub_resource type="Resource" id="Resource_e702o"]
 script = ExtResource("1_mp5hq")
 possible_enemy_types = Array[ExtResource("2_konkt")]([SubResource("Resource_r1scm")])
+possible_loot = Array[ExtResource("3_r1scm")]([ExtResource("5_y7x52")])
+base_gold = 140
 associated_question_bank = ExtResource("2_r1scm")
 metadata/_custom_type_script = "uid://bm74qmiy2mrtu"
 
@@ -33,6 +38,8 @@ metadata/_custom_type_script = "uid://dpkac3o5r5r88"
 [sub_resource type="Resource" id="Resource_1ud30"]
 script = ExtResource("1_mp5hq")
 possible_enemy_types = Array[ExtResource("2_konkt")]([SubResource("Resource_x8pa0")])
+possible_loot = Array[ExtResource("3_r1scm")]([ExtResource("5_y7x52")])
+base_gold = 240
 battle_type = 1
 associated_question_bank = ExtResource("2_r1scm")
 metadata/_custom_type_script = "uid://bm74qmiy2mrtu"

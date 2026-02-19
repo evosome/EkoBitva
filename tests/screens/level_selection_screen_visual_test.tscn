@@ -10,6 +10,8 @@
 [ext_resource type="Resource" uid="uid://cq4u4n7cplerd" path="res://scenes/questions/questions_registry.tres" id="8_u52ne"]
 [ext_resource type="Resource" uid="uid://bj4bjsnadh2qr" path="res://scenes/ui/items/items_registry.tres" id="9_e512q"]
 [ext_resource type="Resource" uid="uid://jk1284eoyldv" path="res://resources/fish_types/fish_types_registry.tres" id="11_h84r0"]
+[ext_resource type="Resource" uid="uid://cycykrb7066sj" path="res://scenes/ui/treasure/treasure_registry.tres" id="11_xqdp7"]
+[ext_resource type="Resource" uid="uid://c2rpun6ff886w" path="res://scenes/ui/round_path/round_path_registry.tres" id="12_xqdp7"]
 
 [node name="LevelSelectionScreenVisualTest" type="Control" unique_id=724911083]
 layout_mode = 3
@@ -22,5 +24,5 @@ script = ExtResource("1_kt7uu")
 
 [node name="Registration" type="Node" parent="." unique_id=2093252307]
 script = ExtResource("2_o0o64")
-_groups = Array[ExtResource("3_cwm1y")]([ExtResource("4_nflpn"), ExtResource("5_u5p1x"), ExtResource("6_tj7nv"), ExtResource("7_8ucrv"), ExtResource("8_u52ne"), ExtResource("9_e512q"), ExtResource("11_h84r0")])
+_groups = Array[ExtResource("3_cwm1y")]([ExtResource("4_nflpn"), ExtResource("5_u5p1x"), ExtResource("6_tj7nv"), ExtResource("7_8ucrv"), ExtResource("8_u52ne"), ExtResource("9_e512q"), ExtResource("11_h84r0"), ExtResource("11_xqdp7"), ExtResource("12_xqdp7")])
 metadata/_custom_type_script = "uid://bsu6t00dyk8e3"

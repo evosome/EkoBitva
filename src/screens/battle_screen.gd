@@ -8,6 +8,8 @@ var _roadmap: Roadmap
 
 @export var _question_layer: QuestionLayerUI
 @export var _battle_viewport_container: Node
+@export var _round_indicator_path_container: Control
+@export var _treasure_bag_container: Control
 
 #endregion
 
@@ -22,6 +24,14 @@ func on_enter(ctx: Context) -> void:
 	var level_attempt = ctx.level_attempt
 	var attempt_arena = level_attempt.get_arena()
 	_battle_viewport_container.add_child(attempt_arena)
+
+	var current_treasure_bag = level_attempt.get_treasure_bag()
+	var treasure_bag_ui = TreasureBagUI.of(current_treasure_bag)
+	_treasure_bag_container.add_child(treasure_bag_ui)
+
+	var round_path = level_attempt.get_round_path()
+	var round_path_ui = RoundPathUI.of(round_path)
+	_round_indicator_path_container.add_child(round_path_ui)
 
 	var battle_context = BattleContext.new()
 	battle_context.screen = self
@@ -165,7 +175,7 @@ class BattleShowState extends BattleState:
 
 		var current_round = ctx.current_round
 
-		#TODO - remove this
+		#FIXME - remove this
 		var current_attempt = ctx.level_attempt
 		var answer_result = ctx.last_answer_result
 		if answer_result.is_correct():
@@ -189,6 +199,15 @@ class BattleShowState extends BattleState:
 class OutroState extends BattleState:
 	
 	func on_enter() -> void:
+
+		var current_attempt = ctx.level_attempt
+
+		#FIXME - remove it
+		var treasure_bag = current_attempt.get_treasure_bag()
+		var player_info = ctx.screen._player_info
+		var player_inventory = player_info.get_inventory()
+		InventoryUtils.consume_treasure_bag(player_inventory, treasure_bag)
+
 		ctx.screen._switch_back_to_level_selection()
 	
 	func get_qualified_name() -> String:

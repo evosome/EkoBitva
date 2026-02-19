@@ -4,6 +4,7 @@ class_name RoundPath extends RefCounted
 #region fields
 
 var _index: int = 0
+var _arena: Arena
 var _checkpoints: Array[Checkpoint]
 
 #endregion
@@ -11,7 +12,8 @@ var _checkpoints: Array[Checkpoint]
 
 #region builtins
 
-func _init(round_sequencer: RoundSequencer) -> void:
+func _init(round_sequencer: RoundSequencer, arena: Arena) -> void:
+	_arena = arena
 	_init_rounds(round_sequencer)
 
 #endregion
@@ -44,9 +46,9 @@ func get_checkpoints() -> Array[Checkpoint]:
 #region private
 
 func _init_rounds(round_sequencer: RoundSequencer) -> void:
-	while round_sequencer.has_next():
-		var round_type = round_sequencer.get_next()
-		var round_instance = Round.new(round_type)
+	var round_types = round_sequencer.get_all()
+	for round_type in round_types:
+		var round_instance = Round.new(round_type, _arena)
 		var round_checkpoint = Checkpoint.new(round_instance)
 		_checkpoints.append(round_checkpoint)
 
