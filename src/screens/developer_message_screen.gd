@@ -4,7 +4,8 @@ class_name DeveloperMessageScreen extends Screen
 #region constants
 
 #FIXME - generation info should be read from question packs, loaded via our website
-const TEST_GENERATION_INFO = preload("res://resources/roadmap_generation/info/test_generation_info.tres")
+const TEST_GENERATION_INFO = preload("uid://cmwa7rcn5lud2")
+const ROADMAP_GENERATION_SCREEN = preload("uid://c8rpkcufeoxri")
 
 #endregion
 
@@ -39,7 +40,7 @@ func on_exit() -> void:
 #region private
 
 func _on_continue_button_pressed() -> void:
-	var roadmap_generation_screen = Registry.instantiate(Id.of_game("scenes.screens", "RoadmapGenerationScreen"))
+	var roadmap_generation_screen = ROADMAP_GENERATION_SCREEN.instantiate()
 	var context = RoadmapGenerationScreen.Context.new()
 	context.roadmap_generation_info = TEST_GENERATION_INFO
 	switch_to(roadmap_generation_screen, context)

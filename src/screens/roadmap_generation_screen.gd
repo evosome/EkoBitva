@@ -4,7 +4,8 @@ class_name RoadmapGenerationScreen extends Screen
 #region constants
 
 #FIXME - character should be selected in special screen
-const BERG_CHARACTER = preload("res://resources/character_types/berg_character_type.tres")
+const BERG_CHARACTER = preload("uid://cruifhqw6ohqc")
+const LEVEL_SELECTION_SCREEN = preload("uid://c8ttfvppl820")
 
 #endregion
 
@@ -34,7 +35,7 @@ func on_enter(ctx: Context) -> void:
 	_animation_player.play("loading_anim")
 	await _animation_player.animation_finished
 	
-	var level_selection_screen = Registry.instantiate(Id.of_game("scenes.screens", "LevelSelectionScreen"))
+	var level_selection_screen = LEVEL_SELECTION_SCREEN.instantiate()
 	
 	var context = LevelSelectionScreen.Context.new()
 	context.roadmap = roadmap

@@ -1,6 +1,15 @@
 class_name RoadmapUI extends Control
 
 
+#region constants
+
+const DEFAULT_VISIBLE_SIZE = 4
+
+const ROADMAP_UI_SCENE = preload("uid://lgo435hcs47b")
+
+#endregion
+
+
 #region signals
 
 signal icon_selected(level_icon: LevelIcon)
@@ -54,7 +63,7 @@ func _on_icon_selected(icon: LevelIcon) -> void:
 #region static
 
 static func of(roadmap: Roadmap) -> RoadmapUI:
-	var roadmap_ui = Registry.instantiate(Id.of_game("scenes.ui.roadmap", "RoadmapUI")) as RoadmapUI
+	var roadmap_ui = ROADMAP_UI_SCENE.instantiate() as RoadmapUI
 	roadmap_ui._roadmap = roadmap
 	return roadmap_ui
 

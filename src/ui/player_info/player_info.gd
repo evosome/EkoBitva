@@ -1,6 +1,13 @@
 class_name PlayerInfoUI extends Control
 
 
+#region constants
+
+const PLAYER_INFO_UI_SCENE = preload("uid://bdb3xip1yotfl")
+
+#endregion
+
+
 #region fields
 
 var _player_info: PlayerInfo
@@ -51,7 +58,7 @@ func _set_character_icon(icon: Texture2D) -> void:
 #region static
 
 static func of(player_info: PlayerInfo) -> PlayerInfoUI:
-	var player_info_ui = Registry.instantiate(Id.of_game("scenes.ui.player_info", "PlayerInfo")) as PlayerInfoUI
+	var player_info_ui = PLAYER_INFO_UI_SCENE.instantiate() as PlayerInfoUI
 	player_info_ui._player_info = player_info
 	return player_info_ui
 

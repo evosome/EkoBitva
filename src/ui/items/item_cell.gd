@@ -3,6 +3,13 @@ class_name ItemCellUI extends Control
 
 #region constants
 
+const ITEM_CELL_UI_SCENE = preload("uid://cypsyqthk6gbh")
+
+#endregion
+
+
+#region constants
+
 const COMMON_RARITY_COLOR = Color.GRAY
 const RARE_RARITY_COLOR = Color.GREEN
 const EPIC_RARITY_COLOR = Color.PURPLE
@@ -113,7 +120,7 @@ func _set_quality_star_visible(value: bool) -> void:
 #region static
 
 static func of(item: Accessory) -> ItemCellUI:
-	var item_cell = Registry.instantiate(Id.of_game("scenes.ui.items", "ItemCellUI")) as ItemCellUI
+	var item_cell = ITEM_CELL_UI_SCENE.instantiate() as ItemCellUI
 	item_cell._item = item
 	return item_cell
 

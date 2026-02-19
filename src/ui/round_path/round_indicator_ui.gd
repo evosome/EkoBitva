@@ -3,6 +3,13 @@ class_name RoundIndicatorUI extends Control
 
 #region constants
 
+const ROUND_INDICATOR_UI_SCENE = preload("uid://cp6tko4640vjk")
+
+#endregion
+
+
+#region constants
+
 const COMMON_ROUND_COLOR = Color.WHITE
 const BOSS_ROUND_COLOR = Color.RED
 
@@ -69,7 +76,7 @@ func _on_checkpoint_passed() -> void:
 #region static
 
 static func of(checkpoint: RoundPath.Checkpoint) -> RoundIndicatorUI:
-	var round_indicator_ui = Registry.instantiate(Id.of_game("scenes.ui.round_path", "RoundIndicator")) as RoundIndicatorUI
+	var round_indicator_ui = ROUND_INDICATOR_UI_SCENE.instantiate() as RoundIndicatorUI
 	round_indicator_ui._checkpoint = checkpoint
 	return round_indicator_ui
 

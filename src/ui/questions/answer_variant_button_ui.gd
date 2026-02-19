@@ -1,6 +1,13 @@
 class_name AnswerVariantButtonUI extends Button
 
 
+#region constants
+
+const ANSWER_VARIANT_BUTTON_UI_SCENE = preload("uid://br0qj680wyqvx")
+
+#endregion
+
+
 #region enums
 
 enum ValidationFlags {
@@ -69,7 +76,7 @@ func _update_button_color_by(validation: ValidationFlags) -> void:
 #region static
 
 static func of(variant: String) -> AnswerVariantButtonUI:
-	var answer_button_ui = Registry.instantiate(Id.of_game("scenes.ui.questions", "AnswerVariantButtonUI")) as AnswerVariantButtonUI
+	var answer_button_ui = ANSWER_VARIANT_BUTTON_UI_SCENE.instantiate() as AnswerVariantButtonUI
 	answer_button_ui._variant = variant
 	return answer_button_ui
 

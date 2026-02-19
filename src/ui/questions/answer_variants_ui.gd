@@ -1,6 +1,13 @@
 class_name AnswerVariantsUI extends Control
 
 
+#region constants
+
+const ANSWER_VARIANTS_UI_SCENE = preload("uid://hmx4kj3amtkw")
+
+#endregion
+
+
 #region signals
 
 signal answered(variant_idx: int)
@@ -88,7 +95,7 @@ func _on_button_pressed(variant_idx: int) -> void:
 #region static
 
 static func make() -> AnswerVariantsUI:
-	var answer_variants_ui = Registry.instantiate(Id.of_game("scenes.ui.questions", "AnswerVariantUI")) as AnswerVariantsUI
+	var answer_variants_ui = ANSWER_VARIANTS_UI_SCENE.instantiate() as AnswerVariantsUI
 	return answer_variants_ui
 
 #endregion

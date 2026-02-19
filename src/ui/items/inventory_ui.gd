@@ -1,6 +1,13 @@
 class_name InventoryUI extends Control
 
 
+#region constants
+
+const INVENTORY_UI_SCENE = preload("uid://bq17lx2juymgh")
+
+#endregion
+
+
 #region fields
 
 var _inventory: Inventory
@@ -66,7 +73,7 @@ func _on_accessory_removed(_accessory: Accessory, index: int) -> void:
 #region public
 
 static func of(inventory: Inventory) -> InventoryUI:
-	var inventory_ui = Registry.instantiate(Id.of_game("scenes.ui.items", "InventoryUI")) as InventoryUI
+	var inventory_ui = INVENTORY_UI_SCENE.instantiate() as InventoryUI
 	inventory_ui._inventory = inventory
 	return inventory_ui
 

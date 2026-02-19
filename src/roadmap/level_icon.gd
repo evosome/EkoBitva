@@ -3,6 +3,13 @@ class_name LevelIcon extends Node2D
 
 #region constants
 
+const LEVEL_ICON_SCENE = preload("uid://cavy8aaomojf3")
+
+#endregion
+
+
+#region constants
+
 ## Modulation color of level icon, when the level is locked
 const DEFAULT_LOCKED_MODCOLOR = Color.DARK_GRAY
 
@@ -103,7 +110,7 @@ func _on_input_event(viewport, event: InputEvent, shape_idx: int):
 #region static
 
 static func of(level_node: LevelTree.LevelNode) -> LevelIcon:
-	var level_icon = Registry.instantiate(Id.of_game("scenes.roadmap", "LevelIcon")) as LevelIcon
+	var level_icon = LEVEL_ICON_SCENE.instantiate() as LevelIcon
 	level_icon._level_node = level_node
 	return level_icon
 

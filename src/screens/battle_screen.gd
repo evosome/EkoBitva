@@ -1,6 +1,13 @@
 class_name BattleScreen extends Screen
 
 
+#region constants
+
+const LEVEL_SELECTION_SCREEN = preload("uid://c8ttfvppl820")
+
+#endregion
+
+
 #region fields
 
 var _player_info: PlayerInfo
@@ -50,7 +57,7 @@ func on_exit() -> void:
 #region private
 
 func _switch_back_to_level_selection() -> void:
-	var level_selection_screen = Registry.instantiate(Id.of_game("scenes.screens", "LevelSelectionScreen"))
+	var level_selection_screen = LEVEL_SELECTION_SCREEN.instantiate()
 	var context = LevelSelectionScreen.Context.new()
 	context.roadmap = _roadmap
 	context.player_data = _player_info

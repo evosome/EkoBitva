@@ -5,6 +5,8 @@ class_name TreasureBagUI extends Control
 
 const DEFAULT_VISIBLE_SIZE = 4
 
+const TREASURE_BAG_UI_SCENE = preload("uid://b0bx71475ou2i")
+
 #endregion
 
 
@@ -102,7 +104,7 @@ func _on_treasure_added(treasure: Treasure) -> void:
 #region static
 
 static func of(treasure_bag: TreasureBag) -> TreasureBagUI:
-	var treasure_bag_ui = Registry.instantiate(Id.of_game("scenes.ui.treasure", "TreasureBagUI")) as TreasureBagUI
+	var treasure_bag_ui = TREASURE_BAG_UI_SCENE.instantiate() as TreasureBagUI
 	treasure_bag_ui._treasure_bag = treasure_bag
 	return treasure_bag_ui
 

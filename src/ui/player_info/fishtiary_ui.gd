@@ -1,6 +1,13 @@
 class_name FishtiaryUI extends Control
 
 
+#region constants
+
+const FISHTIARY_UI_SCENE = preload("uid://bo8xv3kg3xkno")
+
+#endregion
+
+
 #region fields
 
 var _fishtiary: Fishtiary
@@ -36,7 +43,7 @@ func _setup_entries() -> void:
 #region static
 
 static func of(fishtiary: Fishtiary) -> FishtiaryUI:
-    var fishtiary_ui = Registry.instantiate(Id.of_game("scenes.ui.player_info", "FishtiaryUI")) as FishtiaryUI
+    var fishtiary_ui = FISHTIARY_UI_SCENE.instantiate() as FishtiaryUI
     fishtiary_ui._fishtiary = fishtiary
     return fishtiary_ui
 

@@ -3,6 +3,13 @@
 class_name LevelSelectionScreen extends Screen
 
 
+#region constants
+
+const BATTLE_SCREEN = preload("uid://37vgamfipd14")
+
+#endregion
+
+
 #region fields
 
 var _roadmap: Roadmap
@@ -50,7 +57,7 @@ func _setup_player_info(player_data: PlayerInfo) -> void:
 
 
 func _switch_battle_screen_with(level_attempt: LevelAttempt) -> void:
-	var battle_screen = Registry.instantiate(Id.of_game("scenes.screens", "BattleScreen"))
+	var battle_screen = BATTLE_SCREEN.instantiate()
 
 	var context = BattleScreen.Context.new()
 	context.level_attempt = level_attempt

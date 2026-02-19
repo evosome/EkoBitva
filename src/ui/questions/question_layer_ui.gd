@@ -3,6 +3,13 @@ class_name QuestionLayerUI extends Control
 
 #region constants
 
+const QUESTION_LAYER_UI_SCENE = preload("uid://vl443t31pkj6")
+
+#endregion
+
+
+#region constants
+
 const CORRECT_TITLE_TEXT = "Правильно!"
 const INCORRECT_TITLE_TEXT = "Неправильно!"
 
@@ -114,7 +121,7 @@ func _on_user_answered(variant_idx: int) -> void:
 #region static
 
 static func make() -> QuestionLayerUI:
-	var question_layer_ui = Registry.instantiate(Id.of_game("scenes.ui.questions", "QuestionLayerUI")) as QuestionLayerUI
+	var question_layer_ui = QUESTION_LAYER_UI_SCENE.instantiate() as QuestionLayerUI
 	return question_layer_ui
 
 #endregion

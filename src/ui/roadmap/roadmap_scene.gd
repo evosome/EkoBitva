@@ -1,6 +1,13 @@
 class_name RoadmapScene extends Node2D
 
 
+#region constants
+
+const ROADMAP_SCENE_SCENE = preload("uid://lqe63xmn6gst")
+
+#endregion
+
+
 #region signals
 
 signal icon_selected(level_icon: LevelIcon)
@@ -115,7 +122,7 @@ func _on_icon_clicked(icon: LevelIcon) -> void:
 #region static
 
 static func of(roadmap: Roadmap) -> RoadmapScene:
-	var roadmap_scene = Registry.instantiate(Id.of_game("scenes.ui.roadmap", "RoadmapScene")) as RoadmapScene
+	var roadmap_scene = ROADMAP_SCENE_SCENE.instantiate() as RoadmapScene
 	roadmap_scene._roadmap = roadmap
 	return roadmap_scene
 

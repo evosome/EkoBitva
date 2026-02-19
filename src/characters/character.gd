@@ -3,6 +3,13 @@ class_name Character extends Node2D
 
 #region constants
 
+const CHARACTER_SCENE = preload("uid://bbr4uyuuya63u")
+
+#endregion
+
+
+#region constants
+
 const MAX_HEALTH_TIER_MULTIPLIER = 0.6
 
 #endregion
@@ -105,7 +112,7 @@ func _on_health_ended() -> void:
 #region static
 
 static func of(type: CharacterType, tier: int) -> Character:
-	var character = Registry.instantiate(Id.of_game("scenes.characters", "Character")) as Character
+	var character = CHARACTER_SCENE.instantiate() as Character
 	character._type = type
 	character._current_tier = tier
 	return character

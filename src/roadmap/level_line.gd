@@ -7,6 +7,8 @@ const LOCKED_COLOR = Color.DARK_GRAY
 const UNLOCKED_COLOR = Color.GREEN
 const PASSED_COLOR = Color.WHITE
 
+const LEVEL_LINE = preload("uid://caxio728cqjm2")
+
 #endregion
 
 
@@ -58,7 +60,7 @@ func _on_state_changed(state: LevelTree.NodeStates) -> void:
 #region static
 
 static func between(node: LevelTree.LevelNode, parent: LevelTree.LevelNode) -> LevelLine:
-	var level_line = Registry.instantiate(Id.of_game("scenes.roadmap", "LevelLine")) as LevelLine
+	var level_line = LEVEL_LINE.instantiate() as LevelLine
 	level_line._node = node
 	level_line._parent = parent
 	return level_line

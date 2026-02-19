@@ -3,6 +3,13 @@ class_name FishtiaryEntryUI extends Control
 
 #region constants
 
+const FISHTIARY_ENTRY_UI_SCENE = preload("uid://bbhe4gh2sjtmh")
+
+#endregion
+
+
+#region constants
+
 const UNLOCKED_COLOR = Color.WHITE
 const LOCKED_COLOR = Color.BLACK
 const LOCKED_LABEL_TEXT = "???"
@@ -64,7 +71,7 @@ func _on_entry_unlocked() -> void:
 #region static
 
 static func of(entry: Fishtiary.Entry) -> FishtiaryEntryUI:
-	var fishtiary_entry_ui = Registry.instantiate(Id.of_game("scenes.ui.player_info", "FishtiaryEntryUI")) as FishtiaryEntryUI
+	var fishtiary_entry_ui = FISHTIARY_ENTRY_UI_SCENE.instantiate() as FishtiaryEntryUI
 	fishtiary_entry_ui._entry = entry
 	return fishtiary_entry_ui
 
