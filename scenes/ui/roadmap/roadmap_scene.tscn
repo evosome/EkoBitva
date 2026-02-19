@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://lqe63xmn6gst"]
+
+[ext_resource type="Script" uid="uid://chcjnh564vjh8" path="res://src/ui/roadmap/roadmap_scene.gd" id="1_vflp3"]
+[ext_resource type="Script" uid="uid://cb0e8nmbii4p4" path="res://src/roadmap/roadmap_camera.gd" id="2_8iju0"]
+
+[node name="RoadmapScene" type="Node2D" unique_id=468728465 node_paths=PackedStringArray("_icons_container", "_lines_container", "_roadmap_camera")]
+script = ExtResource("1_vflp3")
+_icons_container = NodePath("Icons")
+_lines_container = NodePath("Lines")
+_roadmap_camera = NodePath("RoadmapCamera")
+metadata/_custom_type_script = "uid://chcjnh564vjh8"
+
+[node name="RoadmapCamera" type="Camera2D" parent="." unique_id=831445196]
+script = ExtResource("2_8iju0")
+metadata/_custom_type_script = "uid://cb0e8nmbii4p4"
+
+[node name="Lines" type="Node" parent="." unique_id=1144752054]
+
+[node name="Icons" type="Node" parent="." unique_id=1894450337]

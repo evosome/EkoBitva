@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://lgo435hcs47b"]
+
+[ext_resource type="Script" uid="uid://ftme1bdcfj2x" path="res://src/ui/roadmap/roadmap_ui.gd" id="1_3lmar"]
+
+[node name="RoadmapUI" type="MarginContainer" unique_id=2012030535 node_paths=PackedStringArray("_viewport")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3lmar")
+_viewport = NodePath("SubViewportContainer/SubViewport")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=868691160]
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=91374462]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+physics_object_picking = true
+size = Vector2i(1152, 648)
+render_target_update_mode = 4

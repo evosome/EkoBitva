@@ -14,7 +14,7 @@ const NODE_WAVE_AMPLITUDE = 2
 #region fields
 
 var _max_depth: int
-var _tilemap: TileMapLayer
+var _roadmap: Roadmap
 var _level_type_pool: LevelTypePool
 
 #endregion
@@ -26,7 +26,7 @@ func generate(depth: int, roadmap: Roadmap) -> void:
 	var level_tree = roadmap.get_level_tree()
 
 	_max_depth = depth
-	_tilemap = roadmap.get_tilemap()
+	_roadmap = roadmap
 	_level_type_pool = roadmap.get_level_type_pool()
 
 	var root_level_type = _level_type_pool.get_next()
@@ -50,7 +50,7 @@ func _rec_generate(root: LevelTree.LevelNode, direction: int, depth: int) -> voi
 		direction * NODE_WAVE_AMPLITUDE + randi_range(2, 10),
 		depth * NODE_PADDING)
 
-	var global_position = _tilemap.map_to_local(position)
+	var global_position = _roadmap.tilemap_to_global(position)
 	root = root.create_child(level, global_position)
 	_rec_generate(root, -direction, depth + 1)
 

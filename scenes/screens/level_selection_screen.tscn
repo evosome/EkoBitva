@@ -13,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_e7bav")
 script = ExtResource("2_2jbq8")
-_roadmap_container = NodePath("HBoxContainer/GameScreen__Content/RoadmapView/SubViewport")
+_roadmap_container = NodePath("HBoxContainer/GameScreen__Content/MarginContainer/RoadmapView/SubViewport")
 _player_info_container = NodePath("HBoxContainer/PlayerInfoMargin")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1385421026]
@@ -65,15 +65,46 @@ layout_mode = 2
 theme_type_variation = &"Label__Header40"
 text = "Дорожная карта"
 
-[node name="RoadmapView" type="SubViewportContainer" parent="HBoxContainer/GameScreen__Content" unique_id=1173066927]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/GameScreen__Content" unique_id=1669133272]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RoadmapView" type="SubViewportContainer" parent="HBoxContainer/GameScreen__Content/MarginContainer" unique_id=1173066927]
 layout_mode = 2
 size_flags_vertical = 3
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="HBoxContainer/GameScreen__Content/RoadmapView" unique_id=1867221540]
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/GameScreen__Content/MarginContainer/RoadmapView" unique_id=1867221540]
 transparent_bg = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 physics_object_picking = true
 size = Vector2i(720, 553)
 render_target_update_mode = 4
+
+[node name="_HelpTextMargin" type="MarginContainer" parent="HBoxContainer/GameScreen__Content/MarginContainer" unique_id=846583163]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/GameScreen__Content/MarginContainer/_HelpTextMargin" unique_id=1558959805]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="_HowToPlay" type="Label" parent="HBoxContainer/GameScreen__Content/MarginContainer/_HelpTextMargin/VBoxContainer" unique_id=194311235]
+layout_mode = 2
+theme_type_variation = &"Label__Header32"
+text = "Чтобы начать играть нажмите,
+ЛКМ по иконке уровня."
+
+[node name="_HowToMoveCamera" type="Label" parent="HBoxContainer/GameScreen__Content/MarginContainer/_HelpTextMargin/VBoxContainer" unique_id=1909781185]
+layout_mode = 2
+theme_type_variation = &"Label__Header32"
+text = "Зажмите СКМ, чтобы
+перемещать камеру"

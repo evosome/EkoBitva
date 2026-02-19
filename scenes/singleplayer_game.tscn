@@ -12,10 +12,11 @@
 [ext_resource type="Resource" uid="uid://cq4u4n7cplerd" path="res://scenes/questions/questions_registry.tres" id="9_hd1lb"]
 [ext_resource type="Resource" uid="uid://dbsiuiaodcrvv" path="res://scenes/characters/characters_registry.tres" id="10_s1j42"]
 [ext_resource type="Resource" uid="uid://jk1284eoyldv" path="res://resources/fish_types/fish_types_registry.tres" id="11_xhb01"]
+[ext_resource type="Resource" uid="uid://3majt7flgxjw" path="res://scenes/ui/roadmap/roadmap_registry.tres" id="13_s1j42"]
 
 [node name="SingleplayerGame" type="Node" unique_id=1924540075]
 script = ExtResource("1_ygfj8")
 
 [node name="EditorRegistration" type="Node" parent="." unique_id=505648854]
 script = ExtResource("1_nt5c6")
-_groups = Array[ExtResource("2_q5gnf")]([ExtResource("3_vylko"), ExtResource("4_yv1gn"), ExtResource("5_ygfj8"), ExtResource("6_s1j42"), ExtResource("7_xhb01"), ExtResource("8_ga4cn"), ExtResource("9_hd1lb"), ExtResource("10_s1j42"), ExtResource("11_xhb01")])
+_groups = Array[ExtResource("2_q5gnf")]([ExtResource("3_vylko"), ExtResource("4_yv1gn"), ExtResource("5_ygfj8"), ExtResource("6_s1j42"), ExtResource("7_xhb01"), ExtResource("8_ga4cn"), ExtResource("9_hd1lb"), ExtResource("10_s1j42"), ExtResource("11_xhb01"), ExtResource("13_s1j42")])

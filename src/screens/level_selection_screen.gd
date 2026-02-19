@@ -39,8 +39,9 @@ func on_exit() -> void:
 #region private
 
 func _setup_roadmap(roadmap: Roadmap) -> void:
-	_roadmap_container.add_child(roadmap)
-	roadmap.icon_selected.connect(_on_icon_selected, CONNECT_ONE_SHOT)
+	var roadmap_ui = RoadmapUI.of(roadmap)
+	_roadmap_container.add_child(roadmap_ui)
+	roadmap_ui.icon_selected.connect(_on_icon_selected, CONNECT_ONE_SHOT)
 
 
 func _setup_player_info(player_data: PlayerInfo) -> void:
