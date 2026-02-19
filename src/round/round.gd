@@ -24,21 +24,23 @@ var _is_over: bool
 var _associated_question_pool: QuestionPool
 var _current_question: Question
 var _result: Result
+var _current_tier: int
 
 #endregion
 
 
 #region builtins
 
-func _init(info: RoundInfo, arena: Arena) -> void:
+func _init(info: RoundInfo, arena: Arena, tier: int) -> void:
 	_info = info
 	_is_over = false
+	_current_tier = tier
 
 	var question_bank = info.associated_question_bank
 	_associated_question_pool = QuestionPool.of(question_bank)
 
 	var enemy_type = info.possible_enemy_types.pick_random()
-	_enemy_character = Character.of(enemy_type)
+	_enemy_character = Character.of(enemy_type, _current_tier)
 	_enemy_character.died.connect(_on_enemy_died)
 
 	arena.set_enemy_character(_enemy_character)
@@ -118,7 +120,7 @@ func _randomize_treasure() -> Treasure:
 		var random_type = possible_loot.pick_random()
 		result_loot.append(Accessory
 			.random_of(random_type)
-			.range_tier(1, 10)  # TODO: range tier must be in current_tier, current_tier+2
+			.range_tier(_current_tier, _current_tier + 2)
 			.include_rarity(Accessory.ALL_RARITIES)
 			.include_quality(Accessory.ALL_QUALITIES)
 			.build())

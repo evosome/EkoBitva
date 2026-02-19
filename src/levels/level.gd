@@ -45,9 +45,7 @@ func get_last_attempt() -> LevelAttempt:
 #region public
 
 func make_attempt(player_data: PlayerInfo) -> LevelAttempt:
-	var arena_info = _info.arena_info
-	var round_sequencer = _info.round_sequencer
-	var attempt = LevelAttempt.on(arena_info, player_data, round_sequencer)
+	var attempt = LevelAttempt.on(self, player_data)
 	attempt.over.connect(_on_attempt_over, CONNECT_ONE_SHOT)
 	_last_attempt = attempt
 	return attempt

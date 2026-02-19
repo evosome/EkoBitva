@@ -49,6 +49,12 @@ func set_health(value: int) -> void:
 func get_max_health() -> int:
 	return _max_health
 
+
+func set_max_health(value: int) -> void:
+	_max_health = value
+	var current_health = clamp(_health_amount, 0, _max_health)
+	set_health(current_health)
+
 #endregion
 
 

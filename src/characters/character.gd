@@ -1,6 +1,13 @@
 class_name Character extends Node2D
 
 
+#region constants
+
+const MAX_HEALTH_TIER_MULTIPLIER = 0.6
+
+#endregion
+
+
 #region signals
 
 signal died()
@@ -11,6 +18,7 @@ signal died()
 #region fields
 
 var _type: CharacterType
+var _current_tier: int
 
 @export var _buff_component: BuffComponent
 @export var _health_component: HealthComponent
@@ -21,6 +29,10 @@ var _type: CharacterType
 #region builtins
 
 func _ready() -> void:
+	var max_health = _health_component.get_max_health() * MAX_HEALTH_TIER_MULTIPLIER * _current_tier
+	_health_component.set_max_health(max_health)
+	_health_component.set_health(max_health)
+
 	_health_component.died.connect(_on_health_ended)
 
 
@@ -92,9 +104,10 @@ func _on_health_ended() -> void:
 
 #region static
 
-static func of(type: CharacterType) -> Character:
+static func of(type: CharacterType, tier: int) -> Character:
 	var character = Registry.instantiate(Id.of_game("scenes.characters", "Character")) as Character
 	character._type = type
+	character._current_tier = tier
 	return character
 
 #endregion

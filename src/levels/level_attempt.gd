@@ -24,21 +24,26 @@ var _player_character: Character
 
 #region builtins
 
-func _init(player: PlayerInfo, arena_info: ArenaInfo, round_sequencer: RoundSequencer) -> void:
+func _init(level: Level, player_info: PlayerInfo) -> void:
 
 	_treasure_bag = TreasureBag.new()
 
-	_current_player = player
+	_current_player = player_info
 
-	var player_character_type = player.get_character_type()
-	var player_character = Character.of(player_character_type)
+	var level_tier = level.get_tier()
+	var player_character_type = player_info.get_character_type()
+	var player_character = Character.of(player_character_type, level_tier)
 	_player_character = player_character
 
+	var level_info = level.get_info()
+
+	var arena_info = level_info.arena_info
 	var arena = Arena.make(arena_info, player_character)
 	arena.character_died.connect(_on_character_died)
 	_arena = arena
 
-	_round_path = RoundPath.new(round_sequencer, arena)
+	var round_sequencer = level_info.round_sequencer
+	_round_path = RoundPath.new(round_sequencer, arena, level_tier)
 
 #endregion
 
@@ -137,8 +142,8 @@ func _on_round_over(round_result: Round.Result) -> void:
 
 #region static
 
-static func on(arena_info: ArenaInfo, with_player: PlayerInfo, round_sequencer: RoundSequencer) -> LevelAttempt:
-	return LevelAttempt.new(with_player, arena_info, round_sequencer)
+static func on(level: Level, player_info: PlayerInfo) -> LevelAttempt:
+	return LevelAttempt.new(level, player_info)
 
 #endregion
 
