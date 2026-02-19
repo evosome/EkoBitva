@@ -52,6 +52,9 @@ func show_result(question_result: Question.Result) -> void:
 	if correct_idx != user_answer_idx:
 		var incorrect_button = _container.get_child(user_answer_idx) as AnswerVariantButtonUI
 		incorrect_button.set_validation(AnswerVariantButtonUI.ValidationFlags.INCORRECT)
+	
+	#FIXME - remove this, create animation and await it instead of this
+	await get_tree().create_timer(1.5).timeout
 
 #endregion
 

@@ -8,6 +8,7 @@ script = ExtResource("1_8bx8r")
 title = "Почему в Волге заводятся вредные водоросли?"
 seconds_to_answer = 20
 answer_variants = Array[String](["От сильного течения", "От бытовой и заводской грязи в воде", "От перегрева воды", "От жаркого солнца"])
+correct_answer_index = 1
 metadata/_custom_type_script = "uid://qikh37pmhhqy"
 
 [sub_resource type="Resource" id="Resource_u1wd2"]
@@ -30,6 +31,7 @@ script = ExtResource("1_8bx8r")
 title = "Куда попадают отходы с полей и огородов?"
 seconds_to_answer = 30
 answer_variants = Array[String](["В специльные печи", "В реки с дождевой водой", "Под землю", "На свалку"])
+correct_answer_index = 1
 metadata/_custom_type_script = "uid://qikh37pmhhqy"
 
 [resource]
