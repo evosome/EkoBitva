@@ -13,9 +13,6 @@ const DEFAULT_TILEMAP_SIZE = 16
 var _level_tree: LevelTree
 var _level_type_pool: LevelTypePool
 
-#FIXME - remove this
-@export var _tilemap: TileMapLayer
-
 #endregion
 
 
@@ -23,17 +20,12 @@ var _level_type_pool: LevelTypePool
 
 func _init(info: RoadmapInfo) -> void:
 	_level_tree = LevelTree.new()
-	_tilemap = TileMapLayer.new()
 	_level_type_pool = info.level_type_pool
 
 #endregion
 
 
 #region getters/setters
-
-func get_tilemap() -> TileMapLayer:
-	return _tilemap
-
 
 func get_tilemap_size() -> int:
 	return DEFAULT_TILEMAP_SIZE
