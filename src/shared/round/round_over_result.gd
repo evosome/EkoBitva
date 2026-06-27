@@ -1,4 +1,4 @@
-class_name RoundResult extends RefCounted
+class_name RoundOverResult
 
 
 #region enums
@@ -13,7 +13,6 @@ enum RoundEndReason {
 
 #region fields
 
-var _is_win: bool
 var _end_reason: RoundEndReason
 var _treasure: Treasure
 
@@ -22,8 +21,7 @@ var _treasure: Treasure
 
 #region builtins
 
-func _init(is_win: bool, end_reason: RoundEndReason, treasure: Treasure) -> void:
-	_is_win = is_win
+func _init(end_reason: RoundEndReason, treasure: Treasure) -> void:
 	_end_reason = end_reason
 	_treasure = treasure
 
@@ -31,10 +29,6 @@ func _init(is_win: bool, end_reason: RoundEndReason, treasure: Treasure) -> void
 
 
 #region getters/setters
-
-func is_win() -> bool:
-	return _is_win
-
 
 func get_end_reason() -> RoundEndReason:
 	return _end_reason

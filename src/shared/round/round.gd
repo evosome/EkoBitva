@@ -9,150 +9,35 @@ const MAX_LOOT_AMOUNT = 2
 #endregion
 
 
-#region signals
-
-signal over(result: Result)
-
-#endregion
-
-
 #region fields
 
-var _info: RoundInfo
+var _type: RoundType
+var _tier: int
 var _enemy_character: Character
-var _is_over: bool
-var _associated_question_pool: QuestionPool
-var _current_question: Question
-var _result: Result
-var _current_tier: int
 
 #endregion
 
 
 #region builtins
 
-func _init(info: RoundInfo, arena: Arena, tier: int) -> void:
-	_info = info
-	_is_over = false
-	_current_tier = tier
-
-	var question_bank = info.associated_question_bank
-	_associated_question_pool = QuestionPool.of(question_bank)
-
-	var enemy_type = info.possible_enemy_types.pick_random()
-	_enemy_character = Character.of(enemy_type, _current_tier)
-	_enemy_character.died.connect(_on_enemy_died)
-
-	arena.set_enemy_character(_enemy_character)
-
-#endregion
-
-
-#region debug only
-
-func __force_over() -> void:
-	if !OS.is_debug_build():
-		push_error("Unable to call `__force_over` debug method in non-debug enviroment")
-		return
-	
-	print("Forcely end the round")
-	_do_over()
+func _init(info: RoundType, tier: int, enemy_character: Character) -> void:
+	_type = info
+	_tier = tier
+	_enemy_character = enemy_character
 
 #endregion
 
 
 #region getters/setters
 
-func is_over() -> bool:
-	return _is_over
+func get_type() -> RoundType:
+	return _type
 
 
-func get_result() -> Result:
-	return _result
+func get_tier() -> int:
+	return _tier
 
-
-func get_info() -> RoundInfo:
-	return _info
-
-## Reference to enemy character entity. It should be spawned
-## on arena 
 func get_enemy_character() -> Character:
 	return _enemy_character
-
-
-func get_next_question() -> Question:
-
-	if _is_over:
-		push_error("Unable to request new question from this round, because it has been ended")
-		return null
-
-	if _current_question && !_current_question.is_answered():
-		push_error("Unable to request new question, because previous one has been answered")
-		return null
-
-	var new_question = _associated_question_pool.queue()
-	_current_question = new_question
-	return new_question
-
-
-func can_get_next_question() -> bool:
-	return _current_question && _current_question.is_answered() && !_is_over
-
-#endregion
-
-
-#region private
-
-func _do_over() -> void:
-	_is_over = true
-	var random_treasure = _randomize_treasure()
-	_result = Result.new(true, random_treasure)
-	over.emit(_result)
-
-
-func _randomize_treasure() -> Treasure:
-	var base_gold = _info.base_gold
-	var possible_loot = _info.possible_loot
-
-	var result_loot: Array[Accessory] = []
-	var random_loot_amount: int = randi_range(MIN_LOOT_AMOUNT, MAX_LOOT_AMOUNT)
-	for i in range(random_loot_amount):
-		var random_type = possible_loot.pick_random()
-		result_loot.append(Accessory
-			.random_of(random_type)
-			.range_tier(_current_tier, _current_tier + 2)
-			.include_rarity(Accessory.ALL_RARITIES)
-			.include_quality(Accessory.ALL_QUALITIES)
-			.build())
-
-	var new_treasure = Treasure.new(base_gold, result_loot)
-	return new_treasure
-
-#endregion
-
-
-#region event handlers
-
-func _on_enemy_died() -> void:
-	_do_over()
-
-#endregion
-
-
-#region inner classes
-
-class Result:
-	var _is_win: bool
-	var _treasure: Treasure
-
-	func _init(win: bool, treasure: Treasure) -> void:
-		_is_win = win
-		_treasure = treasure
-	
-	func is_win() -> bool:
-		return _is_win
-	
-	func get_treasure() -> Treasure:
-		return _treasure
 
 #endregion

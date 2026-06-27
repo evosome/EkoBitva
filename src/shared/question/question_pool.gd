@@ -3,8 +3,6 @@ class_name QuestionPool
 
 #region fields
 
-static var pool: Dictionary = {}
-
 var _question_bank: QuestionBank
 var _question_types: Array[QuestionType] = []
 
@@ -31,16 +29,5 @@ func queue() -> Question:
 	var question_type = _question_types.pop_front()
 	_question_types.push_back(question_type)
 	return Question.of(question_type, _question_bank)
-
-#endregion
-
-
-#region static
-
-static func of(question_bank: QuestionBank) -> QuestionPool:
-	if !pool.has(question_bank):
-		pool[question_bank] = QuestionPool.new(question_bank)
-	var current_pool = pool[question_bank]
-	return current_pool
 
 #endregion

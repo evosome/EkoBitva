@@ -1,4 +1,4 @@
-class_name RoundInfo extends Resource
+class_name RoundType extends Resource
 
 
 #region enums

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EditorRegistrationGroup" format=3 uid="uid://cq4u4n7cplerd"]
 
-[ext_resource type="Script" uid="uid://bkuka0d5dhqyc" path="res://src/registry/utils/editor_registration_entry.gd" id="1_bs7qp"]
-[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="2_hjnso"]
+[ext_resource type="Script" uid="uid://bkuka0d5dhqyc" path="res://src/shared/registry/utils/editor_registration_entry.gd" id="1_bs7qp"]
+[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/shared/registry/utils/editor_registration_group.gd" id="2_hjnso"]
 [ext_resource type="PackedScene" uid="uid://hmx4kj3amtkw" path="res://scenes/questions/answer_variants.tscn" id="2_rbgto"]
 [ext_resource type="PackedScene" uid="uid://br0qj680wyqvx" path="res://scenes/questions/answer_variant_button_ui.tscn" id="3_rbgto"]
 [ext_resource type="PackedScene" uid="uid://x46l6dn1iueu" path="res://scenes/questions/countdown_timer.tscn" id="4_xpycc"]

@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="EditorRegistrationGroup" format=3 uid="uid://jk1284eoyldv"]
 
-[ext_resource type="Script" uid="uid://bkuka0d5dhqyc" path="res://src/registry/utils/editor_registration_entry.gd" id="1_fnu8s"]
+[ext_resource type="Script" uid="uid://bkuka0d5dhqyc" path="res://src/shared/registry/utils/editor_registration_entry.gd" id="1_fnu8s"]
 [ext_resource type="Resource" uid="uid://bgraj4bt77cpt" path="res://resources/fish_types/berg_goby_fish.tres" id="2_gmsfo"]
-[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="2_ucbv8"]
+[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/shared/registry/utils/editor_registration_group.gd" id="2_ucbv8"]
 [ext_resource type="Resource" uid="uid://b30ipbj46mlgs" path="res://resources/fish_types/stenodus.tres" id="3_gmsfo"]
 
 [sub_resource type="Resource" id="Resource_fnu8s"]

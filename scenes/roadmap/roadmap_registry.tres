@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EditorRegistrationGroup" format=3 uid="uid://beiuqu57v61q6"]
 
-[ext_resource type="Script" uid="uid://bkuka0d5dhqyc" path="res://src/registry/utils/editor_registration_entry.gd" id="1_hfr18"]
-[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="2_4rvb0"]
+[ext_resource type="Script" uid="uid://bkuka0d5dhqyc" path="res://src/shared/registry/utils/editor_registration_entry.gd" id="1_hfr18"]
+[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/shared/registry/utils/editor_registration_group.gd" id="2_4rvb0"]
 [ext_resource type="PackedScene" uid="uid://cavy8aaomojf3" path="res://scenes/roadmap/level_icon.tscn" id="2_a3j0h"]
 [ext_resource type="PackedScene" uid="uid://caxio728cqjm2" path="res://scenes/roadmap/level_line.tscn" id="3_a3j0h"]
 [ext_resource type="PackedScene" uid="uid://b1gdxtl5rnrc4" path="res://scenes/roadmap/roadmap.tscn" id="4_gel86"]
