@@ -1,3 +1,5 @@
+## Passive view of the player info panel. It only knows how to show
+## the character and where to place sub-views built by the presenter.
 class_name PlayerInfoUI extends Control
 
 
@@ -10,8 +12,6 @@ const PLAYER_INFO_UI_SCENE = preload("uid://bdb3xip1yotfl")
 
 #region fields
 
-var _player_info: PlayerInfo
-
 @export var _inventory_ui_container: Control
 @export var _fishtiary_ui_container: Control
 @export var character_name_label: Label
@@ -20,46 +20,31 @@ var _player_info: PlayerInfo
 #endregion
 
 
-#region builtins
+#region setters (presenter-facing)
 
-func _ready() -> void:
-	var inventory = _player_info.get_inventory()
-	var inventory_ui = InventoryUI.of(inventory)
-	_inventory_ui_container.add_child(inventory_ui)
-
-	var fishtiary = _player_info.get_fishtiary()
-	var fishtiart_ui = FishtiaryUI.of(fishtiary)
-	_fishtiary_ui_container.add_child(fishtiart_ui)
-
-	var character_type = _player_info.get_character_type()
-
-	var character_name = character_type.name
-	_set_character_name(character_name)
-
-	var character_icon = character_type.icon
-	_set_character_icon(character_icon)
-
-#endregion
+func set_character_name(value: String) -> void:
+	character_name_label.text = value
 
 
-#region private
+func set_character_icon(value: Texture2D) -> void:
+	character_icon_texture_rect.texture = value
 
-func _set_character_name(name: String) -> void:
-	if character_name_label:
-		character_name_label.text = name
 
-func _set_character_icon(icon: Texture2D) -> void:
-	if character_icon_texture_rect:
-		character_icon_texture_rect.texture = icon
+## Container where the presenter should place the inventory view.
+func inventory_container() -> Control:
+	return _inventory_ui_container
+
+
+## Container where the presenter should place the fishtiary view.
+func fishtiary_container() -> Control:
+	return _fishtiary_ui_container
 
 #endregion
 
 
 #region static
 
-static func of(player_info: PlayerInfo) -> PlayerInfoUI:
-	var player_info_ui = PLAYER_INFO_UI_SCENE.instantiate() as PlayerInfoUI
-	player_info_ui._player_info = player_info
-	return player_info_ui
+static func make() -> PlayerInfoUI:
+	return PLAYER_INFO_UI_SCENE.instantiate() as PlayerInfoUI
 
 #endregion

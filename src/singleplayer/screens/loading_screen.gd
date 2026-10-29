@@ -1,11 +1,6 @@
+## Presenter of the boot loading screen: plays the loading animation
+## and asks `NavigationManager` to continue the game flow.
 class_name LoadingScreen extends Screen
-
-
-#region constants
-
-const DEVELOPER_MESSAGE_SCREEN = preload("uid://cl66q8u8pxhpn")
-
-#endregion
 
 
 #region fields
@@ -15,16 +10,15 @@ const DEVELOPER_MESSAGE_SCREEN = preload("uid://cl66q8u8pxhpn")
 #endregion
 
 
-#region overrides
+#region screen
 
-func on_enter(ctx: Variant) -> void:
+func on_enter(ctx) -> void:
 	_animation_player.play("loading_anim")
 	await _animation_player.animation_finished
-	var developer_message_screen = DEVELOPER_MESSAGE_SCREEN.instantiate()
-	switch_to(developer_message_screen)
+	ctx.game.navigation.switch_to("DeveloperMessageScreen", Screen.Context.new(ctx.game))
 
 
 func on_exit() -> void:
-	return
+	pass
 
 #endregion

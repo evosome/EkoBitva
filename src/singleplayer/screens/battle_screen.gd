@@ -1,223 +1,168 @@
+## Presenter of the battle screen. It contains no battle rules at all:
+## `BattleManager` decides what happens, this screen only mirrors it into
+## passive views and forwards the player answer back to the manager.
 class_name BattleScreen extends Screen
 
 
-#region constants
-
-const LEVEL_SELECTION_SCREEN = preload("uid://c8ttfvppl820")
-
-#endregion
-
-
 #region fields
-
-var _player_info: PlayerInfo
-var _roadmap: Roadmap
 
 @export var _question_layer: QuestionLayerUI
 @export var _battle_viewport_container: Node
 @export var _round_indicator_path_container: Control
 @export var _treasure_bag_container: Control
 
+var _game: GameContext
+var _battle: BattleManager
+
+var _round_path_ui: RoundPathUI
+var _treasure_bag_ui: TreasureBagUI
+
 #endregion
 
 
-#region overrides
+#region screen
 
-func on_enter(ctx: Context) -> void:
-	
-	_player_info = ctx.player_info
-	_roadmap = ctx.roadmap
+func on_enter(ctx) -> void:
 
-	var level_attempt = ctx.level_attempt
-	var attempt_arena = level_attempt.get_arena()
-	_battle_viewport_container.add_child(attempt_arena)
+	_game = ctx.game
+	_battle = ctx.battle
 
-	var current_treasure_bag = level_attempt.get_treasure_bag()
-	var treasure_bag_ui = TreasureBagUI.of(current_treasure_bag)
-	_treasure_bag_container.add_child(treasure_bag_ui)
+	if !_battle:
+		push_error("Battle screen was entered without battle manager")
+		return
 
-	var round_path = level_attempt.get_round_path()
-	var round_path_ui = RoundPathUI.of(round_path)
-	_round_indicator_path_container.add_child(round_path_ui)
+	_battle_viewport_container.add_child(_battle.attempt().get_arena())
+	_setup_round_path()
+	_setup_treasure_bag()
+	_connect_battle()
 
-	var battle_context = BattleContext.new()
-	battle_context.screen = self
-	battle_context.level_attempt = level_attempt
-	battle_context.question_layer = _question_layer
-
-	IntroState.new(battle_context).enter()
+	_battle.run()
 
 
 func on_exit() -> void:
-	pass
+	_disconnect_battle()
+	_free_views()
+	if _game:
+		_game.end_battle()
 
 #endregion
 
 
 #region private
 
-func _switch_back_to_level_selection() -> void:
-	var level_selection_screen = LEVEL_SELECTION_SCREEN.instantiate()
-	var context = LevelSelectionScreen.Context.new()
-	context.roadmap = _roadmap
-	context.player_data = _player_info
-	switch_to(level_selection_screen, context)
+func _setup_round_path() -> void:
+	_round_path_ui = RoundPathUI.make()
+	_round_indicator_path_container.add_child(_round_path_ui)
+	var index = 0
+	for round_type in _battle.round_types():
+		_round_path_ui.add_indicator(ViewDataFactory.round_indicator(index, round_type))
+		index += 1
+
+
+func _setup_treasure_bag() -> void:
+	_treasure_bag_ui = TreasureBagUI.make()
+	_treasure_bag_container.add_child(_treasure_bag_ui)
+
+
+func _connect_battle() -> void:
+	_battle.question_presented.connect(_on_question_presented)
+	_battle.countdown_ticked.connect(_on_countdown_ticked)
+	_battle.answer_resolved.connect(_on_answer_resolved)
+	_battle.round_started.connect(_on_round_started)
+	_battle.round_passed.connect(_on_round_passed)
+	_battle.treasure_added.connect(_on_treasure_added)
+	_battle.attempt_over.connect(_on_attempt_over)
+	_question_layer.answer_chosen.connect(_on_answer_chosen)
+
+
+func _disconnect_battle() -> void:
+
+	if _battle:
+		_battle.question_presented.disconnect(_on_question_presented)
+		_battle.countdown_ticked.disconnect(_on_countdown_ticked)
+		_battle.answer_resolved.disconnect(_on_answer_resolved)
+		_battle.round_started.disconnect(_on_round_started)
+		_battle.round_passed.disconnect(_on_round_passed)
+		_battle.treasure_added.disconnect(_on_treasure_added)
+		_battle.attempt_over.disconnect(_on_attempt_over)
+
+	_question_layer.answer_chosen.disconnect(_on_answer_chosen)
+
+
+func _free_views() -> void:
+
+	if _round_path_ui:
+		_round_path_ui.queue_free()
+		_round_path_ui = null
+
+	if _treasure_bag_ui:
+		_treasure_bag_ui.queue_free()
+		_treasure_bag_ui = null
+
+	_question_layer.hide_question()
+	_question_layer.reset_countdown()
+
+	var arena = _battle.attempt().get_arena() if _battle else null
+	if arena and arena.get_parent():
+		arena.get_parent().remove_child(arena)
+		arena.queue_free()
+
+
+func _round_indicator_id(index: int) -> StringName:
+	return &"round_%d" % index
+
+#endregion
+
+
+#region event handlers
+
+func _on_question_presented(question: Question, number: int) -> void:
+	_question_layer.show_question(ViewDataFactory.question(question, number))
+
+
+func _on_countdown_ticked(seconds: int) -> void:
+	_question_layer.set_countdown(seconds)
+
+
+func _on_answer_resolved(result: AnswerResult) -> void:
+	_question_layer.show_result(ViewDataFactory.answer_result(result))
+
+
+func _on_round_started(index: int, _round: Round) -> void:
+	_round_path_ui.set_indicator_state(_round_indicator_id(index), RoundIndicatorViewData.State.CURRENT)
+
+
+func _on_round_passed(index: int) -> void:
+	_round_path_ui.set_indicator_state(_round_indicator_id(index), RoundIndicatorViewData.State.PASSED)
+
+
+func _on_treasure_added(treasure: Treasure) -> void:
+	var treasure_bag = _battle.attempt().get_treasure_bag()
+	_treasure_bag_ui.set_gold(treasure_bag.get_total_gold())
+	_treasure_bag_ui.add_items(ViewDataFactory.treasure_items(treasure))
+
+
+func _on_answer_chosen(variant_idx: int) -> void:
+	_battle.submit_answer(variant_idx)
+
+
+func _on_attempt_over(result: LevelResult) -> void:
+	_game.session.apply_level_result(_battle.level(), result)
+	_game.navigation.switch_to("LevelSelectionScreen", Screen.Context.new(_game))
 
 #endregion
 
 
 #region inner classes
 
-class Context:
-	var roadmap: Roadmap
-	var player_info: PlayerInfo
-	var level_attempt: LevelAttempt
+## Context of the battle screen carries the already started battle manager,
+## created by `LevelSelectionScreen` through `GameContext.start_battle`.
+class Context extends Screen.Context:
 
+	var battle: BattleManager
 
-class BattleContext:
-	var screen: BattleScreen
-	var level_attempt: LevelAttempt
-	var current_round: Round
-	var question_layer: QuestionLayerUI
-	var current_question: Question
-	var last_answer_result: Question.Result
-
-
-## Base class for all battle states
-@abstract
-class BattleState extends RefCounted:
-
-	var ctx: BattleContext
-
-	func _init(ctx) -> void:
-		self.ctx = ctx
-	
-	func enter() -> void:
-		print_debug("Entered {state} state".format({ state = self }))
-		await on_enter()
-	
-	func transition_to(state: BattleState) -> void:
-		await state.enter()
-	
-	func _to_string() -> String:
-		return "BattleState(qualified_name=\"{name}\")".format({
-			name = get_qualified_name()
-		})
-
-	@abstract func on_enter() -> void
-	@abstract func get_qualified_name() -> String
-
-
-class IntroState extends BattleState:
-
-	func on_enter() -> void:
-		transition_to(MakeRoundState.new(ctx))
-	
-	func get_qualified_name() -> String:
-		return "IntroState"
-
-
-class MakeRoundState extends BattleState:
-
-	func on_enter() -> void:
-		var level_attempt = ctx.level_attempt
-
-		var new_round = level_attempt.next()
-		ctx.current_round = new_round
-
-		transition_to(ShowQuestionState.new(ctx))
-	
-	func get_qualified_name() -> String:
-		return "MakeRoundState"
-
-class ShowQuestionState extends BattleState:
-	
-	func on_enter() -> void:
-		var current_round = ctx.current_round
-
-		var current_question = current_round.get_next_question()
-		ctx.current_question = current_question
-
-		var question_layer = ctx.question_layer
-		await question_layer.show_question(current_question)
-
-		transition_to(QuestionAnswerState.new(ctx))
-	
-	func get_qualified_name() -> String:
-		return "ShowQuestionState"
-
-
-class QuestionAnswerState extends BattleState:
-	
-	func on_enter() -> void:
-
-		var current_question = ctx.current_question
-		
-		var question_layer = ctx.question_layer
-		
-		current_question.start()
-		var answer_result = await current_question.over
-		ctx.last_answer_result = answer_result
-
-		await question_layer.show_result(answer_result)
-
-		transition_to(BattleShowState.new(ctx))
-	
-	func get_qualified_name() -> String:
-		return "QuestionAnswerState"
-
-
-class BattleShowState extends BattleState:
-	
-	func on_enter() -> void:
-		
-		var current_attempt = ctx.level_attempt
-
-		if !current_attempt.is_over():
-			_continue_game()
-		else:
-			transition_to(OutroState.new(ctx))
-		
-	func _continue_game() -> void:
-
-		var current_round = ctx.current_round
-
-		#FIXME - remove this
-		var current_attempt = ctx.level_attempt
-		var answer_result = ctx.last_answer_result
-		if answer_result.is_correct():
-			current_round.get_enemy_character().do_damage(DamageInfo.new(25))
-		else:
-			current_attempt.get_player_character().do_damage(DamageInfo.new(25))
-
-		if current_attempt.is_over():
-			transition_to(OutroState.new(ctx))
-			return
-
-		if !current_round.is_over():
-			transition_to(ShowQuestionState.new(ctx))
-		else:
-			transition_to(MakeRoundState.new(ctx))
-	
-	func get_qualified_name() -> String:
-		return "BattleShowState"
-
-
-class OutroState extends BattleState:
-	
-	func on_enter() -> void:
-
-		var current_attempt = ctx.level_attempt
-
-		#FIXME - remove it
-		var treasure_bag = current_attempt.get_treasure_bag()
-		var player_info = ctx.screen._player_info
-		var player_inventory = player_info.get_inventory()
-		InventoryUtils.consume_treasure_bag(player_inventory, treasure_bag)
-
-		ctx.screen._switch_back_to_level_selection()
-	
-	func get_qualified_name() -> String:
-		return "OutroState"
+	func _init(game: GameContext = null, battle: BattleManager = null) -> void:
+		super(game)
+		self.battle = battle
 
 #endregion

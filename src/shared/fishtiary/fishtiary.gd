@@ -39,6 +39,10 @@ func unlock_entry(fish_type: FishType) -> void:
 	entry_unlocked.emit(entry)
 
 
+func get_entry(fish_type: FishType) -> Entry:
+	return _get_entry(fish_type)
+
+
 func get_entries() -> Array[Entry]:
 	var entries: Array[Entry]
 	var entries_values = _entries.values()

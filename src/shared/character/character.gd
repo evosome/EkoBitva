@@ -12,6 +12,10 @@ const CHARACTER_SCENE = preload("uid://bbr4uyuuya63u")
 
 const MAX_HEALTH_TIER_MULTIPLIER = 0.6
 
+## Level tier zero would make any character die instantly,
+## so health is always calculated with at least this tier.
+const MIN_HEALTH_TIER = 1
+
 #endregion
 
 
@@ -36,7 +40,8 @@ var _current_tier: int
 #region builtins
 
 func _ready() -> void:
-	var max_health = _health_component.get_max_health() * MAX_HEALTH_TIER_MULTIPLIER * _current_tier
+	var effective_tier = max(MIN_HEALTH_TIER, _current_tier)
+	var max_health = _health_component.get_max_health() * MAX_HEALTH_TIER_MULTIPLIER * effective_tier
 	_health_component.set_max_health(max_health)
 	_health_component.set_health(max_health)
 

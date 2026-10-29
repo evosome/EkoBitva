@@ -1,3 +1,4 @@
+## Passive view of the whole round path (list of round indicators).
 class_name RoundPathUI extends Control
 
 
@@ -10,37 +11,34 @@ const ROUND_PATH_UI_SCENE = preload("uid://duu8256yvkrev")
 
 #region fields
 
-var _round_path: RoundPath
+var _indicators: Dictionary[StringName, RoundIndicatorUI] = {}
 
 @export var _indicator_list: Control
 
 #endregion
 
 
-#region builtins
+#region public (presenter-facing)
 
-func _ready() -> void:
-	_add_round_indicators()
+func add_indicator(data: RoundIndicatorViewData) -> void:
+	var indicator = RoundIndicatorUI.of(data)
+	_indicators[data.id] = indicator
+	_indicator_list.add_child(indicator)
 
-#endregion
 
-
-#region private
-
-func _add_round_indicators() -> void:
-	var checkpoints = _round_path.get_checkpoints()
-	for checkpoint in checkpoints:
-		var round_indicator_ui = RoundIndicatorUI.of(checkpoint)
-		_indicator_list.add_child(round_indicator_ui)
+func set_indicator_state(id: StringName, state: RoundIndicatorViewData.State) -> void:
+	var indicator = _indicators.get(id)
+	if !indicator:
+		push_warning("There is no round indicator with id: ", id)
+		return
+	indicator.set_state(state)
 
 #endregion
 
 
 #region static
 
-static func of(round_path: RoundPath) -> RoundPathUI:
-	var round_path_ui = ROUND_PATH_UI_SCENE.instantiate() as RoundPathUI
-	round_path_ui._round_path = round_path
-	return round_path_ui
+static func make() -> RoundPathUI:
+	return ROUND_PATH_UI_SCENE.instantiate() as RoundPathUI
 
 #endregion

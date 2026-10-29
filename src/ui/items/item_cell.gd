@@ -1,3 +1,4 @@
+## Passive view of a single inventory/treasure cell.
 class_name ItemCellUI extends Control
 
 
@@ -5,21 +6,16 @@ class_name ItemCellUI extends Control
 
 const ITEM_CELL_UI_SCENE = preload("uid://cypsyqthk6gbh")
 
-#endregion
-
-
-#region constants
-
 const COMMON_RARITY_COLOR = Color.GRAY
 const RARE_RARITY_COLOR = Color.GREEN
 const EPIC_RARITY_COLOR = Color.PURPLE
 const LEGENDARY_RARITY_COLOR = Color.GOLD
 
 const RARITY_COLOR_MAP = {
-	Accessory.Rarity.COMMON: COMMON_RARITY_COLOR,
-	Accessory.Rarity.RARE: RARE_RARITY_COLOR,
-	Accessory.Rarity.EPIC: EPIC_RARITY_COLOR,
-	Accessory.Rarity.LEGENDARY: LEGENDARY_RARITY_COLOR,
+	ItemViewData.Rarity.COMMON: COMMON_RARITY_COLOR,
+	ItemViewData.Rarity.RARE: RARE_RARITY_COLOR,
+	ItemViewData.Rarity.EPIC: EPIC_RARITY_COLOR,
+	ItemViewData.Rarity.LEGENDARY: LEGENDARY_RARITY_COLOR,
 }
 
 const COMMON_QUALITY_COLOR = Color.WHITE
@@ -27,9 +23,9 @@ const GOOD_QUALITY_COLOR = Color.GREEN
 const BEST_QUALITY_COLOR = Color.GOLD
 
 const QUALITY_COLOR_MAP = {
-	Accessory.Quality.COMMON: COMMON_QUALITY_COLOR,
-	Accessory.Quality.GOOD: GOOD_QUALITY_COLOR,
-	Accessory.Quality.BEST: BEST_QUALITY_COLOR
+	ItemViewData.Quality.COMMON: COMMON_QUALITY_COLOR,
+	ItemViewData.Quality.GOOD: GOOD_QUALITY_COLOR,
+	ItemViewData.Quality.BEST: BEST_QUALITY_COLOR
 }
 
 #endregion
@@ -37,7 +33,7 @@ const QUALITY_COLOR_MAP = {
 
 #region fields
 
-var _item: Accessory
+var _data: ItemViewData
 
 @export var _item_icon: TextureRect
 @export var _cell_panel: Panel
@@ -49,38 +45,25 @@ var _item: Accessory
 #region builtins
 
 func _ready() -> void:
-	reset()
-	if _item:
-		wrap_item(_item)
+	if _data:
+		_render()
+	else:
+		reset()
 
 #endregion
 
 
-#region public
+#region public (presenter-facing)
 
-## Dynamicly wrap item and apply visibility changes for new wrapped item
-func wrap_item(value: Accessory) -> void:
-	
-	if !value:
-		return
-	
-	var item_type = value.get_type()
-
-	var rarity = value.get_rarity()
-	_set_cell_color_by(rarity)
-
-	var item_texture = item_type.icon
-	_set_icon_texture(item_texture)
-
-	var quality = value.get_quality()
-	_set_quality_star_color_by(quality)
-	_set_quality_star_visible(true)
-
-	_item = value
+## Shows the item described by `data`.
+func set_item(data: ItemViewData) -> void:
+	_data = data
+	_render()
 
 
-## Reset item cell to empty, containing nothing
+## Resets item cell to empty, containing nothing.
 func reset() -> void:
+	_data = null
 	_set_icon_texture(null)
 	_set_quality_star_visible(false)
 
@@ -88,6 +71,18 @@ func reset() -> void:
 
 
 #region private
+
+func _render() -> void:
+
+	if !_data:
+		reset()
+		return
+
+	_set_cell_color(RARITY_COLOR_MAP.get(_data.rarity, COMMON_RARITY_COLOR))
+	_set_icon_texture(_data.icon)
+	_set_quality_star_color(QUALITY_COLOR_MAP.get(_data.quality, COMMON_QUALITY_COLOR))
+	_set_quality_star_visible(true)
+
 
 func _set_icon_texture(value: Texture2D) -> void:
 	_item_icon.texture = value
@@ -97,18 +92,8 @@ func _set_cell_color(value: Color) -> void:
 	_cell_panel.modulate = value
 
 
-func _set_cell_color_by(rarity: Accessory.Rarity) -> void:
-	var rarity_color = RARITY_COLOR_MAP.get(rarity)
-	_set_cell_color(rarity_color)
-
-
 func _set_quality_star_color(value: Color) -> void:
 	_quality_star.modulate = value
-
-
-func _set_quality_star_color_by(value: Accessory.Quality) -> void:
-	var quality_color = QUALITY_COLOR_MAP[value]
-	_quality_star.modulate = quality_color
 
 
 func _set_quality_star_visible(value: bool) -> void:
@@ -119,9 +104,10 @@ func _set_quality_star_visible(value: bool) -> void:
 
 #region static
 
-static func of(item: Accessory) -> ItemCellUI:
+static func of(data: ItemViewData) -> ItemCellUI:
 	var item_cell = ITEM_CELL_UI_SCENE.instantiate() as ItemCellUI
-	item_cell._item = item
+	if data:
+		item_cell._data = data
 	return item_cell
 
 

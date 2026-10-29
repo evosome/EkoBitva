@@ -21,7 +21,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Registry="*res://src/registry/registry.gd"
+Registry="*res://src/shared/registry/registry.gd"
 Global="*uid://do6hbilulones"
 
 [display]

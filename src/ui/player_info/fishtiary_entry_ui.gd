@@ -1,14 +1,10 @@
+## Passive view of a single fishtiary entry.
 class_name FishtiaryEntryUI extends Control
 
 
 #region constants
 
 const FISHTIARY_ENTRY_UI_SCENE = preload("uid://bbhe4gh2sjtmh")
-
-#endregion
-
-
-#region constants
 
 const UNLOCKED_COLOR = Color.WHITE
 const LOCKED_COLOR = Color.BLACK
@@ -19,7 +15,10 @@ const LOCKED_LABEL_TEXT = "???"
 
 #region fields
 
-var _entry: Fishtiary.Entry
+var _id: StringName = &""
+var _icon: Texture2D
+var _display_name: String = ""
+var _is_unlocked: bool = false
 
 @export var _icon_texture: TextureRect
 @export var _name_label: Label
@@ -30,49 +29,43 @@ var _entry: Fishtiary.Entry
 #region builtins
 
 func _ready() -> void:
-	var fish_type = _entry.get_fish_type()
-	
-	_set_icon_texture(fish_type.icon)
+	_render()
 
-	var is_fish_unlocked = _entry.is_unlocked()
-	_set_name_label(fish_type.name if is_fish_unlocked else LOCKED_LABEL_TEXT)
-	_set_modulation_by_unlock_status(is_fish_unlocked)
-	
-	_entry.unlocked.connect(_on_entry_unlocked, CONNECT_ONE_SHOT)
+#endregion
+
+
+#region getters/setters (presenter-facing)
+
+func get_id() -> StringName:
+	return _id
+
+
+func set_unlocked(display_name: String) -> void:
+	_is_unlocked = true
+	_display_name = display_name
+	_render()
 
 #endregion
 
 
 #region private
 
-func _set_icon_texture(value: Texture2D) -> void:
-	_icon_texture.texture = value
-
-
-func _set_name_label(value: String) -> void:
-	_name_label.text = value
-
-
-func _set_modulation_by_unlock_status(is_unlocked: bool) -> void:
-	var color = LOCKED_COLOR
-	if is_unlocked:
-		color = UNLOCKED_COLOR
-	modulate = color
-
-func _on_entry_unlocked() -> void:
-	var fish_type = _entry.get_fish_type()
-	var fish_name = fish_type.name
-	_set_name_label(fish_name)
-	_set_modulation_by_unlock_status(true)
+func _render() -> void:
+	_icon_texture.texture = _icon
+	_name_label.text = _display_name if _is_unlocked else LOCKED_LABEL_TEXT
+	modulate = UNLOCKED_COLOR if _is_unlocked else LOCKED_COLOR
 
 #endregion
 
 
 #region static
 
-static func of(entry: Fishtiary.Entry) -> FishtiaryEntryUI:
-	var fishtiary_entry_ui = FISHTIARY_ENTRY_UI_SCENE.instantiate() as FishtiaryEntryUI
-	fishtiary_entry_ui._entry = entry
-	return fishtiary_entry_ui
+static func of(data: FishEntryViewData) -> FishtiaryEntryUI:
+	var entry_ui = FISHTIARY_ENTRY_UI_SCENE.instantiate() as FishtiaryEntryUI
+	entry_ui._id = data.id
+	entry_ui._icon = data.icon
+	entry_ui._display_name = data.display_name
+	entry_ui._is_unlocked = data.is_unlocked
+	return entry_ui
 
 #endregion

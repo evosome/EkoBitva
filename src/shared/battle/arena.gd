@@ -85,7 +85,7 @@ static func make(info: ArenaInfo, player_character: Character) -> Arena:
 	var packed_arena = info.packed_scene
 	var arena = packed_arena.instantiate() as Arena
 	arena._info = info
-	arena._player_character = player_character
+	arena._set_player_character(player_character)
 	return arena
 
 #endregion

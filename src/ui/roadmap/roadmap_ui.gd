@@ -1,9 +1,9 @@
+## Passive facade over the roadmap canvas. It composes the inner
+## `RoadmapScene` view and exposes a single API for the presenter.
 class_name RoadmapUI extends Control
 
 
 #region constants
-
-const DEFAULT_VISIBLE_SIZE = 4
 
 const ROADMAP_UI_SCENE = preload("uid://lgo435hcs47b")
 
@@ -12,16 +12,14 @@ const ROADMAP_UI_SCENE = preload("uid://lgo435hcs47b")
 
 #region signals
 
-signal icon_selected(level_icon: LevelIcon)
+signal icon_selected(id: StringName)
 
 #endregion
 
 
 #region fields
 
-var _roadmap: Roadmap
 var _roadmap_scene: RoadmapScene
-var _roadmap_camera: RoadmapCamera
 
 @export var _viewport: SubViewport
 
@@ -31,40 +29,60 @@ var _roadmap_camera: RoadmapCamera
 #region builtins
 
 func _ready() -> void:
-	if _roadmap:
-		_setup_roadmap_ui()
+	_ensure_scene()
+
+#endregion
+
+
+#region public (presenter-facing)
+
+## This method is asynchronous.
+func zoom_to(position: Vector2) -> void:
+	_ensure_scene()
+	await _roadmap_scene.zoom_to(position)
+
+
+func add_level_node(data: LevelNodeViewData) -> void:
+	_ensure_scene()
+	_roadmap_scene.add_level_node(data)
+
+
+func set_level_node_state(id: StringName, state: LevelNodeViewData.State) -> void:
+	_ensure_scene()
+	_roadmap_scene.set_level_node_state(id, state)
+
+
+func add_level_line(data: LevelLineViewData) -> void:
+	_ensure_scene()
+	_roadmap_scene.add_level_line(data)
 
 #endregion
 
 
 #region private
 
-func _setup_roadmap_ui() -> void:
+func _ensure_scene() -> void:
 	if _roadmap_scene:
-		_roadmap_scene.queue_free()
-	
-	_roadmap_scene = RoadmapScene.of(_roadmap)
-	_roadmap_scene.icon_selected.connect(_on_icon_selected)
+		return
+
+	_roadmap_scene = RoadmapScene.make()
+	_roadmap_scene.icon_clicked.connect(_on_icon_clicked)
 	_viewport.add_child(_roadmap_scene)
-	
-	await _roadmap_scene.zoom_to_first_level_node()
 
 #endregion
 
 
 #region event handlers
 
-func _on_icon_selected(icon: LevelIcon) -> void:
-	icon_selected.emit(icon)
+func _on_icon_clicked(id: StringName) -> void:
+	icon_selected.emit(id)
 
 #endregion
 
 
 #region static
 
-static func of(roadmap: Roadmap) -> RoadmapUI:
-	var roadmap_ui = ROADMAP_UI_SCENE.instantiate() as RoadmapUI
-	roadmap_ui._roadmap = roadmap
-	return roadmap_ui
+static func make() -> RoadmapUI:
+	return ROADMAP_UI_SCENE.instantiate() as RoadmapUI
 
 #endregion

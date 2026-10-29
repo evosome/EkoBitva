@@ -1,13 +1,7 @@
+## Presenter of the new game generation screen. It starts the session
+## through `SessionManager` and just keeps the animation playing while
+## the game world is being built.
 class_name RoadmapGenerationScreen extends Screen
-
-
-#region constants
-
-#FIXME - character should be selected in special screen
-const BERG_CHARACTER = preload("uid://cruifhqw6ohqc")
-const LEVEL_SELECTION_SCREEN = preload("uid://c8ttfvppl820")
-
-#endregion
 
 
 #region fields
@@ -17,42 +11,19 @@ const LEVEL_SELECTION_SCREEN = preload("uid://c8ttfvppl820")
 #endregion
 
 
-#region overrides
+#region screen
 
-func on_enter(ctx: Context) -> void:
-	var roadmap_generation_info = ctx.roadmap_generation_info
-	if !roadmap_generation_info:
-		push_error("Entered screen, but `roadmap_generation_info` was not set in context")
-		return
-	
-	var roadmap_info = roadmap_generation_info.roadmap_info
-	var roadmap = Roadmap.of(roadmap_info)
-
-	var generator = roadmap_generation_info.roadmap_generator
-	var max_depth = roadmap_generation_info.roadmap_depth
-	generator.generate(max_depth, roadmap)
+func on_enter(ctx) -> void:
 
 	_animation_player.play("loading_anim")
+
+	ctx.game.session.start_new_game()
+
 	await _animation_player.animation_finished
-	
-	var level_selection_screen = LEVEL_SELECTION_SCREEN.instantiate()
-	
-	var context = LevelSelectionScreen.Context.new()
-	context.roadmap = roadmap
-	context.player_data = PlayerInfo.new(BERG_CHARACTER)
-	
-	switch_to(level_selection_screen, context)
+	ctx.game.navigation.switch_to("LevelSelectionScreen", Screen.Context.new(ctx.game))
 
 
 func on_exit() -> void:
-	return
-
-#endregion
-
-
-#region inner classes
-
-class Context:
-	var roadmap_generation_info: RoadmapGenerationInfo
+	pass
 
 #endregion

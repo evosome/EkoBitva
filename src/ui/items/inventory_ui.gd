@@ -1,3 +1,5 @@
+## Passive view of the player inventory: a grid of `ItemCellUI`.
+## The presenter fills cells with view data and keeps them in sync.
 class_name InventoryUI extends Control
 
 
@@ -10,71 +12,65 @@ const INVENTORY_UI_SCENE = preload("uid://bq17lx2juymgh")
 
 #region fields
 
-var _inventory: Inventory
-
 @export var _item_cell_container: Control
 
 #endregion
 
 
-#region builtins
+#region public (presenter-facing)
 
-func _ready() -> void:
-	_clear_container()
-	_setup_item_cells()
+## Ensures that the grid contains exactly `amount` empty cells.
+func fill_slots(amount: int) -> void:
 
-	_inventory.accessory_added.connect(_on_accessory_added)
-	_inventory.accessory_removed.connect(_on_accessory_removed)
+	var current_amount = _item_cell_container.get_child_count()
+
+	while current_amount < amount:
+		_item_cell_container.add_child(ItemCellUI.empty())
+		current_amount += 1
+
+	while current_amount > amount:
+		var last = _item_cell_container.get_child(current_amount - 1)
+		_item_cell_container.remove_child(last)
+		last.queue_free()
+		current_amount -= 1
 
 
-func _exit_tree() -> void:
-	_inventory.accessory_added.disconnect(_on_accessory_added)
-	_inventory.accessory_removed.disconnect(_on_accessory_removed)
+func get_slots() -> int:
+	return _item_cell_container.get_child_count()
+
+
+## Shows the item at the `index` slot.
+func set_item(index: int, data: ItemViewData) -> void:
+	var item_cell = _cell_at(index)
+	if item_cell:
+		item_cell.set_item(data)
+
+
+## Empties the `index` slot.
+func clear_item(index: int) -> void:
+	var item_cell = _cell_at(index)
+	if item_cell:
+		item_cell.reset()
 
 #endregion
 
 
 #region private
 
-func _clear_container() -> void:
-	for child in _item_cell_container.get_children():
-		_item_cell_container.remove_child(child)
+func _cell_at(index: int) -> ItemCellUI:
 
+	if index < 0 or index >= get_slots():
+		push_warning("There is no inventory cell at index: ", index)
+		return null
 
-func _setup_item_cells() -> void:
-
-	for i in range(Inventory.DEFAULT_SIZE):
-		var item_cell = ItemCellUI.empty()
-		_item_cell_container.add_child(item_cell)
-
-	var accessories = _inventory.get_all()
-	for i in range(accessories.size()):
-		var item_cell = _item_cell_container.get_child(i) as ItemCellUI
-		var accessory = accessories[i]
-		item_cell.wrap_item(accessory)
+	return _item_cell_container.get_child(index) as ItemCellUI
 
 #endregion
 
 
-#region event handlers
+#region static
 
-func _on_accessory_added(accessory: Accessory, index: int) -> void:
-	var item_cell = _item_cell_container.get_child(index) as ItemCellUI
-	item_cell.wrap_item(accessory)
-
-
-func _on_accessory_removed(_accessory: Accessory, index: int) -> void:
-	var item_cell = _item_cell_container.get_child(index) as ItemCellUI
-	item_cell.reset()
-
-#endregion
-
-
-#region public
-
-static func of(inventory: Inventory) -> InventoryUI:
-	var inventory_ui = INVENTORY_UI_SCENE.instantiate() as InventoryUI
-	inventory_ui._inventory = inventory
-	return inventory_ui
+static func make() -> InventoryUI:
+	return INVENTORY_UI_SCENE.instantiate() as InventoryUI
 
 #endregion

@@ -1,3 +1,4 @@
+## Passive view of the fishtiary: a list of `FishtiaryEntryUI`.
 class_name FishtiaryUI extends Control
 
 
@@ -10,41 +11,35 @@ const FISHTIARY_UI_SCENE = preload("uid://bo8xv3kg3xkno")
 
 #region fields
 
-var _fishtiary: Fishtiary
+var _entries: Dictionary[StringName, FishtiaryEntryUI] = {}
 
 @export var _entries_container: Control
 
 #endregion
 
 
-#region builtins
+#region public (presenter-facing)
 
-func _ready() -> void:
-    _setup_entries()
+func add_entry(data: FishEntryViewData) -> void:
+	var entry_ui = FishtiaryEntryUI.of(data)
+	_entries[data.id] = entry_ui
+	_entries_container.add_child(entry_ui)
 
-#endregion
 
-
-#region private
-
-func _setup_entries() -> void:
-
-    for child in _entries_container.get_children():
-        _entries_container.remove_child(child)
-
-    var entries = _fishtiary.get_entries()
-    for entry in entries:
-        var entry_ui = FishtiaryEntryUI.of(entry)
-        _entries_container.add_child(entry_ui)
+## Reveals the entry: shows the real fish name instead of the placeholder.
+func set_entry_unlocked(id: StringName, display_name: String) -> void:
+	var entry_ui = _entries.get(id)
+	if !entry_ui:
+		push_warning("There is no fishtiary entry with id: ", id)
+		return
+	entry_ui.set_unlocked(display_name)
 
 #endregion
 
 
 #region static
 
-static func of(fishtiary: Fishtiary) -> FishtiaryUI:
-    var fishtiary_ui = FISHTIARY_UI_SCENE.instantiate() as FishtiaryUI
-    fishtiary_ui._fishtiary = fishtiary
-    return fishtiary_ui
+static func make() -> FishtiaryUI:
+	return FISHTIARY_UI_SCENE.instantiate() as FishtiaryUI
 
 #endregion

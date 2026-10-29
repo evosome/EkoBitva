@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8rpkcufeoxri"]
 
 [ext_resource type="Theme" uid="uid://c3glnbum080au" path="res://resources/themes/EkoBitvaTheme.tres" id="1_ksij3"]
-[ext_resource type="Script" uid="uid://djkblkaitfysg" path="res://src/screens/roadmap_generation_screen.gd" id="2_ksij3"]
+[ext_resource type="Script" uid="uid://djkblkaitfysg" path="res://src/singleplayer/screens/roadmap_generation_screen.gd" id="2_ksij3"]
 [ext_resource type="Texture2D" uid="uid://c1o868kqsyc28" path="res://assets/textures/logo512.png" id="3_s1of1"]
 [ext_resource type="Texture2D" uid="uid://c35g2olitjdfi" path="res://assets/textures/evosome3d.png" id="4_7leqw"]
 

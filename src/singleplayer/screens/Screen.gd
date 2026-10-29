@@ -1,6 +1,9 @@
 ## Screen is special scene with UI components or
-## 2D scene inside, that can be switched using `ScreenManager`.
+## 2D scene inside, that can be switched using `NavigationManager`.
 ## Only for client-side use.
+##
+## A screen is a *presenter*: it owns no game rules. It builds passive
+## views, feeds them with view data and forwards user events to managers.
 @abstract
 class_name Screen extends Control
 
@@ -25,14 +28,13 @@ var _parent_node: Node
 ## This method is asynchronous.
 ## Called, when the screen enters scene tree.
 ## Each screen can be switched to another with some special
-## context object.
-## Context is object
+## context object. Context is object.
 func enter(node: Node, ctx = null) -> void:
 
 	if _parent_node:
 		push_error("Screen has already been assigned to node: ", _parent_node)
 		return
-	
+
 	node.add_child(self)
 	_parent_node = node
 	await on_enter(ctx)
@@ -52,14 +54,6 @@ func exit() -> void:
 	await on_exit()
 	exited.emit()
 
-
-## This method is asynchronous.
-## Replace the current screen with other one on the same parent node.
-func switch_to(screen: Screen, ctx = null) -> void:
-	var shared_parent = _parent_node
-	await exit()
-	await screen.enter(shared_parent, ctx)
-
 #endregion
 
 
@@ -70,5 +64,19 @@ func switch_to(screen: Screen, ctx = null) -> void:
 
 ## This method is protected and should be asynchronous.
 @abstract func on_exit() -> void
+
+#endregion
+
+
+#region inner classes
+
+## Base context, passed into every screen by `NavigationManager`.
+## It gives the presenter access to the composition root managers.
+class Context extends RefCounted:
+
+	var game: GameContext
+
+	func _init(game: GameContext = null) -> void:
+		self.game = game
 
 #endregion
