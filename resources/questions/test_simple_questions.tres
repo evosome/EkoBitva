@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="QuestionBank" format=3 uid="uid://c7qw6pbma82ka"]
 
-[ext_resource type="Script" uid="uid://qikh37pmhhqy" path="res://src/questions/question_type.gd" id="1_8bx8r"]
-[ext_resource type="Script" uid="uid://dcwkyocb5105v" path="res://src/questions/question_bank.gd" id="2_u1wd2"]
+[ext_resource type="Script" uid="uid://qikh37pmhhqy" path="res://src/shared/question/question_type.gd" id="1_8bx8r"]
+[ext_resource type="Script" uid="uid://dcwkyocb5105v" path="res://src/shared/question/question_bank.gd" id="2_u1wd2"]
 
 [sub_resource type="Resource" id="Resource_8bx8r"]
 script = ExtResource("1_8bx8r")

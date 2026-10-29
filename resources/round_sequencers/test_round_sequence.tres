@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ArrayRoundSequence" format=3 uid="uid://com6ju4s7au8p"]
+
+[ext_resource type="Script" uid="uid://ysvykky8qrvs" path="res://src/shared/round/round_type.gd" id="1_jcdoh"]
+[ext_resource type="Resource" uid="uid://c7qw6pbma82ka" path="res://resources/questions/test_simple_questions.tres" id="2_5xadb"]
+[ext_resource type="Script" uid="uid://dpkac3o5r5r88" path="res://src/shared/character/character_type.gd" id="2_mf700"]
+[ext_resource type="Script" uid="uid://dq2sj10h5cjgj" path="res://src/shared/round/sequence/array_round_sequence.gd" id="2_wex0l"]
+[ext_resource type="Resource" uid="uid://cruifhqw6ohqc" path="res://resources/character_types/berg_character_type.tres" id="3_anel5"]
+[ext_resource type="Script" uid="uid://cggrs2kdxihw1" path="res://src/shared/item/accessory_type.gd" id="4_5xadb"]
+[ext_resource type="Texture2D" uid="uid://dxgu78xdo0sbg" path="res://assets/legal/textures/Bagatan_Tsuri_rel_2023-01-12/materials/bobber.png" id="5_anel5"]
+
+[sub_resource type="Resource" id="Resource_guuh5"]
+script = ExtResource("4_5xadb")
+icon = ExtResource("5_anel5")
+metadata/_custom_type_script = "uid://cggrs2kdxihw1"
+
+[sub_resource type="Resource" id="Resource_kiu01"]
+script = ExtResource("1_jcdoh")
+possible_enemy_types = Array[ExtResource("2_mf700")]([ExtResource("3_anel5")])
+possible_loot = Array[ExtResource("4_5xadb")]([SubResource("Resource_guuh5")])
+base_gold = 1200
+battle_type = 1
+associated_question_bank = ExtResource("2_5xadb")
+metadata/_custom_type_script = "uid://ysvykky8qrvs"
+
+[resource]
+script = ExtResource("2_wex0l")
+_ordered_round_types = Array[ExtResource("1_jcdoh")]([SubResource("Resource_kiu01")])
+metadata/_custom_type_script = "uid://dq2sj10h5cjgj"

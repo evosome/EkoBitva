@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="EditorRegistrationGroup" format=3 uid="uid://c56g8j67f2l2q"]
 
-[ext_resource type="Script" uid="uid://bkuka0d5dhqyc" path="res://src/registry/utils/editor_registration_entry.gd" id="1_v3s14"]
+[ext_resource type="Script" uid="uid://bkuka0d5dhqyc" path="res://src/shared/registry/utils/editor_registration_entry.gd" id="1_v3s14"]
 [ext_resource type="PackedScene" uid="uid://cw5wch80c5jxi" path="res://scenes/screens/loading_screen.tscn" id="2_745s4"]
-[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="2_gf0id"]
+[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/shared/registry/utils/editor_registration_group.gd" id="2_gf0id"]
 [ext_resource type="PackedScene" uid="uid://c8rpkcufeoxri" path="res://scenes/screens/roadmap_generation_screen.tscn" id="3_y5aiy"]
 [ext_resource type="PackedScene" uid="uid://c8ttfvppl820" path="res://scenes/screens/level_selection_screen.tscn" id="4_fvsav"]
 [ext_resource type="PackedScene" uid="uid://37vgamfipd14" path="res://scenes/screens/battle_screen.tscn" id="5_y5aiy"]

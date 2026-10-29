@@ -1,3 +1,4 @@
+## Passive view of a single round checkpoint indicator.
 class_name RoundIndicatorUI extends Control
 
 
@@ -5,29 +6,21 @@ class_name RoundIndicatorUI extends Control
 
 const ROUND_INDICATOR_UI_SCENE = preload("uid://cp6tko4640vjk")
 
-#endregion
-
-
-#region constants
-
 const COMMON_ROUND_COLOR = Color.WHITE
 const BOSS_ROUND_COLOR = Color.RED
 
-const PASSED_ROUND_BRIGHTNESS = 0.3
-const UNPASSED_ROUND_BRIGHTNESS = 0.8
+const PENDING_ROUND_BRIGHTNESS = 0.8
 const CURRENT_ROUND_BRIGHTNESS = 1.0
-
-const COLOR_MAP = {
-	RoundInfo.BattleTypes.COMMON: COMMON_ROUND_COLOR,
-	RoundInfo.BattleTypes.BOSS: BOSS_ROUND_COLOR
-}
+const PASSED_ROUND_BRIGHTNESS = 0.3
 
 #endregion
 
 
 #region fields
 
-var _checkpoint: RoundPath.Checkpoint
+var _id: StringName = &""
+var _color: Color = COMMON_ROUND_COLOR
+var _state: RoundIndicatorViewData.State = RoundIndicatorViewData.State.PENDING
 
 @export var _indicator_texture_rect: TextureRect
 
@@ -37,47 +30,50 @@ var _checkpoint: RoundPath.Checkpoint
 #region builtins
 
 func _ready() -> void:
-	var round_info = _checkpoint.get_round_info()
-	
-	var battle_type = round_info.battle_type
-	_set_indicator_color_by(battle_type)
-	_set_indicator_brightness(UNPASSED_ROUND_BRIGHTNESS)
+	_render()
 
-	_checkpoint.passed.connect(_on_checkpoint_passed)
+#endregion
+
+
+#region getters/setters (presenter-facing)
+
+func get_id() -> StringName:
+	return _id
+
+
+func set_state(state: RoundIndicatorViewData.State) -> void:
+	_state = state
+	_render()
 
 #endregion
 
 
 #region private
 
-func _set_indicator_color(value: Color) -> void:
-	_indicator_texture_rect.modulate = value
+func _render() -> void:
+	_indicator_texture_rect.modulate = Color(_color, 1.0)
+	_indicator_texture_rect.modulate.v = _brightness()
 
 
-func _set_indicator_color_by(battle_type: RoundInfo.BattleTypes) -> void:
-	var color = COLOR_MAP[battle_type]
-	_set_indicator_color(color)
-
-
-func _set_indicator_brightness(value: float) -> void:
-	_indicator_texture_rect.modulate.v = value
-
-#endregion
-
-
-#region event handlers
-
-func _on_checkpoint_passed() -> void:
-	_set_indicator_brightness(PASSED_ROUND_BRIGHTNESS)
+func _brightness() -> float:
+	match _state:
+		RoundIndicatorViewData.State.CURRENT:
+			return CURRENT_ROUND_BRIGHTNESS
+		RoundIndicatorViewData.State.PASSED:
+			return PASSED_ROUND_BRIGHTNESS
+		_:
+			return PENDING_ROUND_BRIGHTNESS
 
 #endregion
 
 
 #region static
 
-static func of(checkpoint: RoundPath.Checkpoint) -> RoundIndicatorUI:
+static func of(data: RoundIndicatorViewData) -> RoundIndicatorUI:
 	var round_indicator_ui = ROUND_INDICATOR_UI_SCENE.instantiate() as RoundIndicatorUI
-	round_indicator_ui._checkpoint = checkpoint
+	round_indicator_ui._id = data.id
+	round_indicator_ui._color = BOSS_ROUND_COLOR if data.is_boss else COMMON_ROUND_COLOR
+	round_indicator_ui._state = data.state
 	return round_indicator_ui
 
 #endregion

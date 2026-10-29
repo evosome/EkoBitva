@@ -1,3 +1,6 @@
+## Passive view of the answer variants grid.
+## It knows nothing about questions: the presenter pushes variants
+## and marks the result, the view reports user clicks.
 class_name AnswerVariantsUI extends Control
 
 
@@ -22,54 +25,41 @@ signal answered(variant_idx: int)
 #endregion
 
 
-#region builtins
+#region public (presenter-facing)
 
-#endregion
+## Rebuilds buttons with new `variants` list. Buttons stay non-interactive
+## until `set_interactive(true)` is called.
+func set_variants(variants: Array[String]) -> void:
+	_rebuild_buttons_with(variants)
+	set_interactive(false)
 
 
-#region getters/setters
-
-func _set_interactive(value: bool) -> void:
+## Enables or disables all answer buttons.
+func set_interactive(value: bool) -> void:
 	for child in _container.get_children():
 		if child is Button:
 			child.disabled = !value
 
-#endregion
 
+## Highlights the correct answer and, if needed, the wrong one chosen by user.
+## Pass `-1` as an index to skip highlighting of that button.
+func mark_result(correct_index: int, user_index: int) -> void:
 
-#region public
+	if _has_button(correct_index):
+		var correct_button = _container.get_child(correct_index) as AnswerVariantButtonUI
+		correct_button.set_validation(AnswerVariantButtonUI.ValidationFlags.CORRECT)
 
-## This method updates answer button according to the passed `variants` list and
-## makes grid of answer buttons active (so each button becomes interactive), so user
-## can choose his answer.
-func do_questionare_with(variants: Array[String]) -> void:
-	_refresh_buttons_with(variants)
-	_set_interactive(true)
-
-
-## This method is async.
-## This method shows correct/incorrect answer.
-func show_result(question_result: Question.Result) -> void:
-
-	var correct_idx = question_result.get_correct_answer_idx()
-	var correct_button = _container.get_child(correct_idx) as AnswerVariantButtonUI
-	correct_button.set_validation(AnswerVariantButtonUI.ValidationFlags.CORRECT)
-
-	var user_answer_idx = question_result.get_user_answer_idx()
-	if correct_idx != user_answer_idx:
-		var incorrect_button = _container.get_child(user_answer_idx) as AnswerVariantButtonUI
+	if user_index != correct_index and _has_button(user_index):
+		var incorrect_button = _container.get_child(user_index) as AnswerVariantButtonUI
 		incorrect_button.set_validation(AnswerVariantButtonUI.ValidationFlags.INCORRECT)
-	
-	#FIXME - remove this, create animation and await it instead of this
-	await get_tree().create_timer(1.5).timeout
 
 #endregion
 
 
 #region private
 
-func _refresh_buttons_with(variants: Array[String]) -> void:
-	
+func _rebuild_buttons_with(variants: Array[String]) -> void:
+
 	for child in _container.get_children():
 		_container.remove_child(child)
 
@@ -80,14 +70,18 @@ func _refresh_buttons_with(variants: Array[String]) -> void:
 		variant_button_ui.pressed.connect(_on_button_pressed.bind(variant_idx))
 		_container.add_child(variant_button_ui)
 
+
+func _has_button(index: int) -> bool:
+	return index >= 0 and index < _container.get_child_count()
+
 #endregion
 
 
 #region event handlers
 
 func _on_button_pressed(variant_idx: int) -> void:
-	_set_interactive(false)
-	emit_signal("answered", variant_idx)
+	set_interactive(false)
+	answered.emit(variant_idx)
 
 #endregion
 
@@ -95,7 +89,6 @@ func _on_button_pressed(variant_idx: int) -> void:
 #region static
 
 static func make() -> AnswerVariantsUI:
-	var answer_variants_ui = ANSWER_VARIANTS_UI_SCENE.instantiate() as AnswerVariantsUI
-	return answer_variants_ui
+	return ANSWER_VARIANTS_UI_SCENE.instantiate() as AnswerVariantsUI
 
 #endregion

@@ -1,3 +1,5 @@
+## Passive view of the question countdown.
+## Only the presenter pushes display data here.
 class_name CountdownTimerUI extends Control
 
 
@@ -12,8 +14,6 @@ const INFINITE_LABEL_PATTERN = "oo:oo"
 
 #region fields
 
-var _timer: CountdownTimer
-
 @export var _label: Label
 
 #endregion
@@ -22,30 +22,26 @@ var _timer: CountdownTimer
 #region builtins
 
 func _ready() -> void:
-	_update_label(0)
+	reset()
 
 #endregion
 
 
-#region public
+#region public (presenter-facing)
 
-func wrap_timer(countdown_timer: CountdownTimer) -> void:
-
-	if _timer:
-		push_error("CountdownTimerUI already wrapping countdown timer. Stop it, to wrap other one")
-		return
-	
-	if !countdown_timer:
-		_update_label(-1)
-		return
-
-	_timer = countdown_timer
-	_timer.tick.connect(_on_tick)
-	_timer.stopped.connect(_on_stopped)
+## Shows remaining seconds. Negative value shows the `no timeout` label.
+func set_remaining(seconds: int) -> void:
+	_update_label(seconds)
 
 
-func make_infinite() -> void:
-	wrap_timer(null)
+## Shows that the question has no timeout at all.
+func set_infinite() -> void:
+	_update_label(-1)
+
+
+## Returns label to the initial state.
+func reset() -> void:
+	_update_label(0)
 
 #endregion
 
@@ -65,20 +61,5 @@ func _update_label(seconds: int) -> void:
 	var minutes = seconds / 60
 	var remaining_seconds = seconds % 60
 	_label.text = TIMER_LABEL_PATTERN % [minutes, remaining_seconds]
-
-#endregion
-
-
-#region event handlers
-
-func _on_tick(seconds: int) -> void:
-	_update_label(seconds)
-
-
-func _on_stopped() -> void:
-	_timer.tick.disconnect(_on_tick)
-	_timer.stopped.disconnect(_on_stopped)
-	_timer = null
-	_update_label(0)
 
 #endregion

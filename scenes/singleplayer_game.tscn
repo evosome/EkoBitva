@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bsgw43yxp7afc"]
 
-[ext_resource type="Script" uid="uid://bsu6t00dyk8e3" path="res://src/registry/utils/editor_registration.gd" id="1_nt5c6"]
+[ext_resource type="Script" uid="uid://bsu6t00dyk8e3" path="res://src/shared/registry/utils/editor_registration.gd" id="1_nt5c6"]
 [ext_resource type="Script" uid="uid://b4dgb7ksfoo6n" path="res://src/singleplayer_game.gd" id="1_ygfj8"]
-[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="2_q5gnf"]
+[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/shared/registry/utils/editor_registration_group.gd" id="2_q5gnf"]
 [ext_resource type="Resource" uid="uid://c56g8j67f2l2q" path="res://scenes/screens/screens_registry.tres" id="3_vylko"]
 [ext_resource type="Resource" uid="uid://beiuqu57v61q6" path="res://scenes/roadmap/roadmap_registry.tres" id="4_yv1gn"]
 [ext_resource type="Resource" uid="uid://vv525js56mk0" path="res://scenes/ui/player_info/player_info_registry.tres" id="5_ygfj8"]

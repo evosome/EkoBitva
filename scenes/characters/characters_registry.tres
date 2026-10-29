@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EditorRegistrationGroup" format=3 uid="uid://dbsiuiaodcrvv"]
 
-[ext_resource type="Script" uid="uid://bkuka0d5dhqyc" path="res://src/registry/utils/editor_registration_entry.gd" id="1_tymq8"]
-[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/registry/utils/editor_registration_group.gd" id="2_bn7h4"]
+[ext_resource type="Script" uid="uid://bkuka0d5dhqyc" path="res://src/shared/registry/utils/editor_registration_entry.gd" id="1_tymq8"]
+[ext_resource type="Script" uid="uid://bl8v6px8fi0q1" path="res://src/shared/registry/utils/editor_registration_group.gd" id="2_bn7h4"]
 [ext_resource type="PackedScene" uid="uid://bbr4uyuuya63u" path="res://scenes/characters/character.tscn" id="2_p4asa"]
 
 [sub_resource type="Resource" id="Resource_tymq8"]
